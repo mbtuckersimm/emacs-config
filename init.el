@@ -341,10 +341,7 @@
 
 ;;; SyncTeX ;;;
 
-;; turn on pdfTeX mode automatically
-(add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
-(setq TeX-source-correlate-start-server t)
-;; there are more synctex settings in custom.el
+;; synctex settings all in custom.el now
 
 
 ;;; RefTeX settings ;;;
