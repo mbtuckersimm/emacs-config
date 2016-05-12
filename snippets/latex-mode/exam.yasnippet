@@ -1,0 +1,70 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: exam
+# key: exam
+# --
+\documentclass[12pt,addpoints]{exam}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsxtra}
+\usepackage{enumerate}
+\usepackage{tikz}
+\usepackage{pgfplots}
+
+% \input{letterdefs}
+
+\pagestyle{headandfoot}
+
+\headrule
+% \footrule
+
+% gives extra space for header on first page, but not after that
+\extraheadheight[0.6in]{0in}
+
+\firstpageheader{ \large \textsc{Math ${1:137}} \\\\ ${2:Test name/number} \\\\ ${3:date}}{}{\large \textsc{Name:} \enspace\makebox[2.66in]{\hrulefill} \\\\ Student ID: \enspace\makebox[2.06in] }
+\runningheader{\textsc{Math $1}}{\textsc{$2}}{\textsc{$3}}
+\firstpagefooter{}{}{}
+\runningfooter{}{Page \thepage\ of \numpages}{}
+
+
+% \printanswers
+\noprintanswers
+
+
+
+
+\begin{document}
+
+\phantom{=}
+\vspace{1in}
+\begin{center}
+  {\sc \large Instructions}
+  \begin{enumerate}
+  \item Make sure to box your answers.
+  \item To get partial credit, you will need to show your work clearly.  Don't make me try to guess what you're thinking: show me!
+  \item If you run out of space for a problem, go to the back of the page.  Please write something like \emph{\`\`Continued on back''} so I know to look for the rest of your solution.
+  \item If you get stuck on a problem, don't panic.  Ask yourself what all the words in the problem mean.  Write down the relevant definitions and see if that helps.  If you're still stuck, move on to the next problem and come back later.
+  \end{enumerate}
+\end{center}
+\vspace{1in}
+
+
+\begin{center}
+  \gradetable[v][questions]
+\end{center}
+
+\newpage
+
+
+\begin{questions}
+  
+  %%%%%%%%%%%%%%%%%%%% 
+  
+  \question $0
+  
+  
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%% 
+
+\end{document}

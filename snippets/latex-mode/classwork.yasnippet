@@ -1,0 +1,33 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: classwork
+# key: classwork
+# --
+\documentclass[11pt]{exam}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsxtra}
+\usepackage{pgfplots}
+
+\pagestyle{headandfoot}
+
+\headrule
+% \footrule
+
+% gives extra space for header on first page, but not after that
+\extraheadheight[0.6in]{0in}
+
+\firstpageheader{ \large \sc{Math ${1:course number}} \\\\ Section ${2:chapter/section number} Classwork\\\\ ${3:title}}{}{}
+\firstpagefooter{}{}{}
+
+\begin{document}
+
+
+
+\begin{questions}
+  \question $0
+\end{questions}
+
+
+
+\end{document}

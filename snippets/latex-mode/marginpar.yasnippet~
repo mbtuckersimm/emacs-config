@@ -1,0 +1,5 @@
+# -*- mode: latex; require-final-newline: nil -*-
+# name: marginpar
+# key: mp
+# --
+\\marginpar{$0}%

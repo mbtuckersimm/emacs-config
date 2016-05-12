@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: better-xrightarrow
+# key: xra
+# --
+\newcommand{\xra}[1]{
+\newbox\xrabox\setbox\xrabox\hbox{$\longrightarrow$}%
+\newdimen\xrawidth\xrawidth=\wd\xrabox
+\mathbin{\rlap{\hbox to \xrawidth{\hfill\raise4.5pt\hbox{$\ssty #1$}\hfill}}{\longrightarrow}}}

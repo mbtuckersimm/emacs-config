@@ -1,0 +1,63 @@
+# -*- mode: snippet -*-
+# name: coverletter
+# key: cover
+# --
+%% This uses the ucbletter documentclass, which generates UCB letterhead.
+%% It won't generate the letterhead thing if the \address field is used,
+%% unless the \letterheadanyway command is given
+%% Documentation available at http://math.berkeley.edu/computing/wiki/index.php/Ucbletter
+%% For systemwide policy on UC letterhead, see:
+%% http://www.ucop.edu/ucophome/coordrev/policy/9-28-99ltrhead.html
+
+\documentclass[10pt]{ucbletter}
+
+\usepackage{color}
+\definecolor{blue-black}{rgb}{0,0,0.8}
+\definecolor{green-black}{rgb}{0,0.75,0}
+\definecolor{red-black}{rgb}{0.8,0,0}
+\usepackage[colorlinks,%
+        linkcolor=blue-black,%
+        urlcolor=blue-black,%
+        citecolor=green-black]{hyperref}
+
+\begin{document}
+
+\telephone{(510) 684-1353}
+\name{Matthew Tucker-Simmons}
+\signature{Matthew Tucker-Simmons}
+\upperaddress{{\footnotesize DEPARTMENT OF MATHEMATICS}}
+\department{}
+\www{{\small \url{http://math.berkeley.edu/\textasciitilde mbtucker}}}
+\email{\href{mailto:mbtucker@math.berkeley.edu}{{\tt \small mbtucker@math.berkeley.edu}}}
+
+
+
+\begin{letter}{
+${1:Department of Mathematics}\\\
+${2:School name}\\\
+${3:Address}
+}
+
+\opening{Dear Committee Members,}
+
+$0I am writing to apply for ${4:a postdoctoral position} at $2.  I completed my Ph.D.\ at the University of California, Berkeley in December 2013 under the supervision of Marc Rieffel and Nicolai Reshetikhin.
+
+Broadly, my research interests are in quantum algebra and noncommutative algebraic and differential geometry.
+In particular, I am interested in quantum groups, their homogeneous spaces, and various quantum algebras associated to these.
+I am currently working on projects involving the algebraic, homological, and Poisson structures of certain quantum analogues of polynomial algebras, as well as their application to study differential operators on quantized flag manifolds.
+My research interests are most closely aligned with those of ${5:THESE PROFESSORS} in your department.
+
+As a graduate student at Berkeley I taught two courses as the instructor of record, and I also served as a graduate teaching assistant.
+In addition to core courses such as single and multi-variable calculus, precalculus, and linear algebra, I am interested and able to teach a variety of upper-division and graduate courses including abstract algebra, real and complex analysis, topology, differential geometry, and Lie theory.
+
+I've arranged for letters of recommendation concerning my research from Marc Rieffel, Nicolai Reshetikhin, Ulrich Kr\"ahmer, and Vera Serganova, and a letter concerning teaching from Martin Olsson.  I have also sent my CV, publication list, teaching statement, and research statement via MathJobs.  My papers and preprints are available from my website: \url{http://math.berkeley.edu/~mbtucker}.  Please don't hesitate to contact me by email or by phone if you have any questions or would like any additional materials.
+
+\closing{Thank you for your consideration.  I look forward to hearing from you.
+\newline
+
+Sincerely,}
+
+\end{letter}
+
+
+\end{document}

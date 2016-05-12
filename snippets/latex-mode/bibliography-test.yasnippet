@@ -1,0 +1,17 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: bibliography-test
+# key: bibtest
+# binding: direct-keybinding
+# --
+\documentclass[microtype,edit]{${1:$$(yas-choose-value '("agtart" "gtart_m" "pjmnew" "akt" "ant" "apde" "jomms" "involve" "camcos" "memocs" "amsart"))}}
+
+$0%\published{2016}
+
+\begin{document}
+
+\nocite{*}
+
+%\bibliographystyle{gtart}
+\bibliography{link}
+
+\end{document}

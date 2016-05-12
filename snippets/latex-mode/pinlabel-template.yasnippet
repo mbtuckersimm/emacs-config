@@ -1,0 +1,22 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: pinlabel-template
+# key: pin
+# --
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{pinlabel}
+\usepackage{times,mtpro}
+
+\thispagestyle{empty}
+\pagenumbering{gobble}
+
+\begin{document}
+
+\begin{figure}
+\labellist
+\small
+\endlabellist
+\includegraphics{$0}
+\end{figure}
+
+\end{document}

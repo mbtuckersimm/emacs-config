@@ -1,0 +1,90 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: quiz
+# key: quiz
+# --
+\documentclass[12pt,addpoints]{exam}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsxtra}
+\usepackage{enumerate}
+\usepackage{tikz}
+\usepackage{pgfplots}
+
+%\input{letterdefs}
+
+\pagestyle{headandfoot}
+
+\headrule
+% \footrule
+
+% gives extra space for header on first page, but not after that
+\extraheadheight[0.6in]{0in}
+
+\firstpageheader{ \large \sc{Math ${1:137}} \\\\ Quiz ${2:quiz number} \\\\ ${3:date}}{}{\large \sc{Name:} \enspace\makebox[2.66in]{\hrulefill} \\\\ Student ID: \enspace\makebox[2.06in] }
+\runningheader{\sc{Math $1}}{\sc{Quiz $2}}{\sc{$3}}
+\firstpagefooter{}{}{}
+\runningfooter{}{Page \thepage\ of \numpages}{}
+
+
+%\printanswers
+\noprintanswers
+
+\begin{document}
+
+%Total number of points = \numpoints
+
+\begin{questions}
+  
+%%%%%%%%%%%%%%%%%%%%
+
+\question 
+
+\begin{parts}
+  \part[2] $0
+  
+
+  \begin{solution}[.8in]
+  \end{solution}
+
+  \part[2]
+
+  \begin{solution}[.8in]
+  \end{solution}
+\end{parts}
+
+%%%%%%%%%%%%%%%%%%%%
+
+\question 
+
+\begin{parts}
+   \part[2]
+
+  \begin{solution}[1.5in]
+  \end{solution}
+
+  \part[2]
+  \begin{solution}[1in]
+
+  \end{solution}
+\end{parts}
+
+%%%%%%%%%%%%%%%%%%%%
+
+\question[3]
+
+\begin{solution}[4in]
+\end{solution}
+
+%%%%%%%%%%%%%%%%%%%%
+
+\question[3]
+
+\begin{solution}
+\end{solution}
+
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

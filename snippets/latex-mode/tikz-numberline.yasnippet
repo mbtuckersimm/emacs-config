@@ -1,0 +1,14 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: tikz-numberline
+# key: tikznl
+# --
+$0\usetikzlibrary{arrows}
+\begin{tikzpicture}
+\draw[latex-latex] (-2.5,0) -- (5.5,0) ; %edit here for the axis
+\foreach \x in  {-2,-1,0,1,2,3,4,5} % edit here for the vertical lines
+\draw[shift={(\x,0)},color=black] (0pt,3pt) -- (0pt,-3pt);
+\foreach \x in {-2,-1,0,1,2,3,4,5} % edit here for the numbers
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-3pt) node[below] {$\x$};
+\draw[o-*] (-1.08,.2) -- (4.08,.2); % o for open dot, * for closed dot
+\draw[very thick] (-.92,.2) -- (4.08,.2); % thick line for the set itself
+\end{tikzpicture}

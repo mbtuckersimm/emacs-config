@@ -1,0 +1,28 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: pgfplot
+# key: pgf
+# binding: direct-keybinding
+# --
+\begin{tikzpicture}
+  \begin{axis}[
+    % width = 8cm,
+    axis x line = center, 
+    axis y line = center, 
+    xlabel={$x$},
+    ylabel={$y$},
+    axis equal,
+    % grid = both,
+    xmin = $1,
+    xmax = $2,
+    ymin = $3,
+    ymax = $4, 
+    % xtick =\empty,
+    % ytick=\empty,
+    % xticklabels={},
+    % yticklabels={},
+    samples=301
+  ]
+  \addplot[blue, thick, domain=$5:$6] {$0};
+  % function in terms of x is default
+  \end{axis}
+\end{tikzpicture}%

@@ -1,0 +1,39 @@
+# -*- mode: snippet -*-
+# name: MSP-invoice
+# key: mspinv
+# --
+Invoice `(format-time-string "%Y%m%d")`
+
+Name: Matthew Tucker-Simmons
+
+Payment address:
+
+794 Cypress Walk
+Apartment E
+Goleta, CA 93117
+
+Date of invoice: `(format-time-string "%B %d, %Y")`
+
+Period covered by invoice: ${1:`(format-time-string "%B")`} `(format-time-string "%Y")`
+
+Hours not tracked in EditFlow: ${2:0}
+
+Hours tracked in EditFlow: ${3:0}
+
+Hourly rate: \$20
+
+Total hours: ${4:0}
+
+Total due: \$${4:$(/ (fround (* 100 20.0 (string-to-number yas-text))) 100)}
+
+--------------------------
+
+Breakdown by journal
+
+PJM: \$$5
+ANT: \$$6
+APDE: \$$7
+CAMCOS: \$$8
+Involve: \$$9
+JoMMS: \$$10
+MEMOCS: \$$11

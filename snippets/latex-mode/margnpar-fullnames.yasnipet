@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: marginpar-fullnames
+# key: mpfn
+# --
+\marginparhere{\vskip-.6in With your permission, we prefer to use full names, as it's less impersonal. It also helps the indexing services.}

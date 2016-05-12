@@ -1,0 +1,60 @@
+# -*- mode: snippet -*-
+# name: article
+# key: art
+# --
+%% Author: Matthew Tucker-Simmons
+%% File `(buffer-name)` created on `(format-time-string "%Y-%m-%d")` at `(format-time-string "%H:%M")`
+\documentclass{amsart}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Included files
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{stdpackages}
+\input{stdthms}
+\input{letterdefs}
+\input{stddefs}
+\numberwithin{equation}{section}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  File-specific macros
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\title{$1}
+\author{${2:Matthew Tucker-Simmons}}
+
+%% \address{Department of Mathematics\\\
+%% University of California\\\
+%% Berkeley, CA 94720-3840}
+\email{tucker.simmons@gmail.com}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+$0
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Bibliography
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{bibdiv}
+  \begin{biblist}
+    \bibselect{references}
+  \end{biblist}
+\end{bibdiv}
+
+
+\end{document}
