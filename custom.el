@@ -3,18 +3,19 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(TeX-source-correlate-method (quote synctex)) 
+ '(TeX-source-correlate-method (quote synctex))
  '(TeX-source-correlate-mode t)
  '(TeX-source-correlate-start-server t)
  '(TeX-view-program-list (quote (("Ok" "okular --unique %o#src:%n`pwd`/%b"))))
- ;; '(TeX-view-program-list (quote (("Ok" "okular --unique %o#src:%n`pwd`./%b"))))
- '(TeX-view-program-selection (quote  (((output-dvi has-no-display-manager)
-  "dvi2tty")
- ((output-dvi style-pstricks)
-  "dvips and gv")
- (output-dvi "xdvi")
- (output-pdf "Ok")
- (output-html "xdg-open"))))
+ '(TeX-view-program-selection
+   (quote
+    (((output-dvi has-no-display-manager)
+      "dvi2tty")
+     ((output-dvi style-pstricks)
+      "dvips and gv")
+     (output-dvi "xdvi")
+     (output-pdf "Ok")
+     (output-html "xdg-open"))))
  '(ansi-color-names-vector
    ["#3f3f3f" "#cc9393" "#7f9f7f" "#f0dfaf" "#8cd0d3" "#dc8cc3" "#93e0e3" "#dcdccc"])
  '(bibtex-entry-format (quote (opts-or-alts required-fields)))
@@ -40,6 +41,9 @@
  '(fci-rule-color "#383838")
  '(frame-background-mode (quote dark))
  '(mh-variant "GNU Mailutils 2.99.98")
+ '(org-agenda-files
+   (quote
+    ("/home/matthew/msp/gt/src/work/150204-Weiss/150204-Weiss.org" "/home/matthew/msp/gt/src/work/140414-Ching/140414-Ching.org" "/home/matthew/msp/gt/src/work/131212-Lytchak/131212-Lytchak.org" "/home/matthew/msp/agt/src/work/150621-Musin/150621-Musin.org" "/home/matthew/msp/agt/src/work/141130-Ducoulombier/141130-Ducoulombier.org" "/home/matthew/msp/agt/src/work/141008-Starkston/141088-Starkston.org" "/home/matthew/msp/agt/src/work/140812-Vera/140812-Vera.org" "/home/matthew/msp/warwick/warwick.org" "/home/matthew/msp/mspdoc/mspdoc.org")))
  '(safe-local-variable-values
    (quote
     ((eval show-all)
@@ -55,4 +59,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 140 :width normal)))))
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 140 :width normal))))
+ '(paren-face-match ((t (:foreground "medium aquamarine")))))

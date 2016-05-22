@@ -16,6 +16,7 @@
 ;; sets environment variable MSPHOME in order to use putpaper from within Emacs
 (setenv "MSPHOME" "Documents/msp")
 
+
 ;; function to run shell command putpaper
 ;; relies on setting environment variable MSPHOME to Documents/msp (in)
 (defun putpaper ()

@@ -12,6 +12,7 @@
 
 (add-to-list 'load-path "/home/matthew/.emacs.d/lisp/")
 (load "msp.el")
+(load "org-setup.el")
 
 ;; (setq debug-on-quit t)
 
@@ -95,8 +96,7 @@
 ;; (load-theme 'zenburn t)
 
 ;; solarized color theme
-;; need to work out kinks so that dark version loads
-;; see README.md
+;; have a setting in custom.el that helps load the dark theme
 
 (add-to-list 'custom-theme-load-path "/home/matthew/.emacs.d/themes/solarized/")
 (load-theme 'solarized t)

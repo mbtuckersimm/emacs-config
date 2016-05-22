@@ -1,0 +1,38 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: paper-capture
+# key: cap
+# expand-env: ((yas-indent-line 'fixed))
+# --
+`(progn (org-mode) (show-all))`-*- mode: org; eval: (show-all); -*-
+
+* NITPICKING     :${1:editor}:`(insert (extract-journal))`:
+  :PROPERTIES:
+  :id:      `(insert (extract-journal) " " (extract-paper-id))`
+  :volume:  ${2:volume}
+  :issue:   ${3:issue}
+  :pages:   `(insert (pages-in-main))`
+  :figures: ${4:figures$(yas-choose-value '("no" "yes"))}
+  :END:
+
+* Nitpicking checklist
+$0  + [ ] log: warnings
+  + [ ] log: over/underfull boxes
+  + [ ] title
+  + [ ] pdf index
+  + [ ] figures/tables
+  + [ ] bibliography
+  + [ ] addresses
+  + [ ] ortho
+  + [ ] badblanks
+  + [ ] page bottoms
+  + [ ] marginpars
+
+* For $1 to fix
+
+
+
+* To fix myself
+
+
+
+* Notes
