@@ -71,6 +71,13 @@
   (occur "\[a-z\]-\[A-Z\]")
   (setq case-fold-search t))
 
+(defun hardwired-refs ()
+  (interactive)
+  (setq case-fold-search nil)
+  (occur "[A-Z][a-z]+\.?\\([\n\t ]+\\|~\\)[0-9]")
+  (setq case-fold-search t))
+
+
 (defun abbrevs ()
   (interactive)
   (setq case-fold-search nil)

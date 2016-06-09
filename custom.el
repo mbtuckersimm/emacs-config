@@ -28,6 +28,9 @@
      (("mrkey" . "\\(mr\\)?[0-9]\\{1,8\\}")
       "http://www.ams.org/mathscinet-getitem?mr=%s"
       ("mrkey" "\\(mr\\)?\\([0-9]\\{1,8\\}\\)" 2))
+     (("mrnumber" . "\\(mr\\)?[0-9]\\{1,8\\}")
+      "http://www.ams.org/mathscinet-getitem?mr=%s"
+      ("mrnumber" "\\(mr\\)?\\([0-9]\\{1,8\\}\\)" 2))
      (("arxiv" . "\\([0-9]\\{4\\}\\.[0-9]\\{4,5\\}\\|[-a-z]+/[0-9]\\{7\\}\\|[-a-z]+\\.[a-z]\\{2\\}/[0-9]\\{7\\}\\)\\(v[0-9]+\\)?")
       "http://arxiv.org/abs/%s"
       ("arxiv" ".*" 0))
@@ -43,7 +46,7 @@
  '(mh-variant "GNU Mailutils 2.99.98")
  '(org-agenda-files
    (quote
-    ("/home/matthew/msp/gt/src/work/150204-Weiss/150204-Weiss.org" "/home/matthew/msp/gt/src/work/140414-Ching/140414-Ching.org" "/home/matthew/msp/gt/src/work/131212-Lytchak/131212-Lytchak.org" "/home/matthew/msp/agt/src/work/150621-Musin/150621-Musin.org" "/home/matthew/msp/agt/src/work/141130-Ducoulombier/141130-Ducoulombier.org" "/home/matthew/msp/agt/src/work/141008-Starkston/141088-Starkston.org" "/home/matthew/msp/agt/src/work/140812-Vera/140812-Vera.org" "/home/matthew/msp/warwick/warwick.org" "/home/matthew/msp/mspdoc/mspdoc.org")))
+    ("/home/matthew/msp/gt/src/work/150511-MichaelLock/150511-MichaelLock.org" "/home/matthew/msp/gt/src/work/150204-Weiss/150204-Weiss.org" "/home/matthew/msp/gt/src/work/140414-Ching/140414-Ching.org" "/home/matthew/msp/gt/src/work/140320-Lanneau/140320-Lanneau.org" "/home/matthew/msp/gt/src/work/140203-Cohn/140203-Cohn.org" "/home/matthew/msp/gt/src/work/131212-Lytchak/131212-Lytchak.org" "/home/matthew/msp/agt/src/work/150621-Musin/150621-Musin.org" "/home/matthew/msp/agt/src/work/150428-Motegi/150428-Motegi.org" "/home/matthew/msp/agt/src/work/141130-Ducoulombier/141130-Ducoulombier.org" "/home/matthew/msp/agt/src/work/141008-Starkston/141088-Starkston.org" "/home/matthew/msp/agt/src/work/140915-Varisco/140915-Varisco.org" "/home/matthew/msp/agt/src/work/140818-Kim/140818-Kim.org" "/home/matthew/msp/agt/src/work/140812-Vera/140812-Vera.org" "/home/matthew/msp/warwick/warwick.org" "/home/matthew/msp/mspdoc/mspdoc.org")))
  '(safe-local-variable-values
    (quote
     ((eval show-all)
