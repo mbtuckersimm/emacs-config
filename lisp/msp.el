@@ -77,6 +77,9 @@
   (occur "[A-Z][a-z]+\.?\\([\n\t ]+\\|~\\)[0-9]")
   (setq case-fold-search t))
 
+(defun manual-formatting ()
+  (interactive)
+  (occur "\\(vskip\\|hskip\\|vspace\\|hspace\\|noindent\\|smallbreak\\|medbreak\\|bigbreak\\|smallskip\\|medskip\\|bigskip\\|newpage\\|clearpage\\|linebreak\\|pagebreak\\|\\<par\\>\\)"))
 
 (defun abbrevs ()
   (interactive)
