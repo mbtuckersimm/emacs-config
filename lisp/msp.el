@@ -15,7 +15,7 @@
 
 ;; sets environment variable MSPHOME in order to use putpaper from within Emacs
 (setenv "MSPHOME" "Documents/msp")
-
+(setq vc-rcs-checkin-switches '("-l" "-d"))
 
 ;; function to run shell command putpaper
 ;; relies on setting environment variable MSPHOME to Documents/msp (in)
