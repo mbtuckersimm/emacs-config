@@ -17,6 +17,37 @@
 (setenv "MSPHOME" "Documents/msp")
 (setq vc-rcs-checkin-switches '("-l" "-d"))
 
+(eval-after-load "vc"
+  '(defun vc-steal-lock (file rev owner)
+  "Steal the lock on FILE."
+  (let (file-description)
+    (if rev
+	(setq file-description (format "%s:%s" file rev))
+      (setq file-description file))
+    (when (not (yes-or-no-p (format "Steal the lock on %s from %s? "
+				    file-description owner)))
+      (error "Steal canceled"))
+    (message "Stealing lock on %s..." file)
+    (with-vc-properties
+     (list file)
+     (vc-call steal-lock file rev)
+     `((vc-state . edited)))
+    (vc-resynch-buffer file t t)
+    (message "Stealing lock on %s...done" file)
+    ;; commented this chunk out to avoid emailing re: stealing the lock
+    ;;
+    ;; Write mail after actually stealing, because if the stealing
+    ;; goes wrong, we don't want to send any mail.
+    ;; (compose-mail owner (format "Stolen lock on %s" file-description))
+    ;; (setq default-directory (expand-file-name "~/"))
+    ;; (goto-char (point-max))
+    ;; (insert
+    ;;  (format "I stole the lock on %s, " file-description)
+    ;;  (current-time-string)
+    ;;  ".\n")
+    ;; (message "Please explain why you stole the lock.  Type C-c C-c when done.")
+    )))
+
 ;; function to run shell command putpaper
 ;; relies on setting environment variable MSPHOME to Documents/msp (in)
 (defun putpaper ()
