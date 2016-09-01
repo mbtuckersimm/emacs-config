@@ -81,6 +81,11 @@
   (interactive)
   (occur "\\(vskip\\|hskip\\|vspace\\|hspace\\|noindent\\|smallbreak\\|medbreak\\|bigbreak\\|smallskip\\|medskip\\|bigskip\\|newpage\\|clearpage\\|linebreak\\|pagebreak\\|\\<par\\>\\)"))
 
+;; work in progress
+(defun endashes ()
+  (interactive)
+)
+
 (defun abbrevs ()
   (interactive)
   (setq case-fold-search nil)
