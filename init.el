@@ -216,6 +216,8 @@
 ;; disable scroll bar
 (scroll-bar-mode -1)
 
+(horizontal-scroll-bar-mode -1)
+
 ;; turn on Rainbow Delimiters
 (require 'rainbow-delimiters)
 (add-hook 'LaTeX-mode-hook 'rainbow-delimiters-mode)
