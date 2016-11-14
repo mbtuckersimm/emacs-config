@@ -110,7 +110,7 @@
 
 (defun manual-formatting ()
   (interactive)
-  (occur "\\(vskip\\|hskip\\|vspace\\|hspace\\|noindent\\|smallbreak\\|medbreak\\|bigbreak\\|smallskip\\|medskip\\|bigskip\\|newpage\\|clearpage\\|linebreak\\|pagebreak\\|\\<par\\>\\)"))
+  (occur "\\(vskip\\|hskip\\|vspace\\|hspace\\|noindent\\|smallbreak\\|medbreak\\|bigbreak\\|smallskip\\|medskip\\|bigskip\\|newpage\\|clearpage\\|linebreak\\|newline\\|pagebreak\\|\\<par\\>\\)"))
 
 ;; work in progress
 (defun endashes ()
