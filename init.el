@@ -184,6 +184,10 @@
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 (add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
 
+;; directory tracking in shell-mode
+;; we want to use the dirtrack package rather than shell-dirtrack-mode
+(setq dirtrack-list '("^.*?:\\(.*\\)\n" 1 nil))
+(add-hook 'shell-mode-hook 'dirtrack-mode)
 
 ;; save and restore desktop state
 (setq desktop-dirname "~/.emacs.d/desktop")
