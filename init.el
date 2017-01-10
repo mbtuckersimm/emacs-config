@@ -34,7 +34,7 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (setq ido-auto-merge-work-directories-length -1)
-(setq ido-file-extensions-order '(".tex" ".txt" ".log" ".bib" ".py" ".emacs" ".cls" ".sty"))
+(setq ido-file-extensions-order '(".tex" ".bib" ".log" ".cls" ".sty"))
 (setq ido-separator "\n")
 (ido-mode t)
 
