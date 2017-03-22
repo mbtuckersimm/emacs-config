@@ -11,15 +11,16 @@
   :volume:  ${2:volume}
   :issue:   ${3:issue}
   :pages:   `(insert (pages-in-main))`
-  :figures: ${4:figures$(yas-choose-value '("no" "yes"))}
+  :figures: ${4:figures$(yas-choose-value '("none" "b/w" "inessential color" "essential color"))}
   :END:
 
 * Nitpicking checklist
-$0  + [ ] checked in?
+  + [ ] checked in?
   + [ ] log: warnings
   + [ ] log: over/underfull boxes
   + [ ] packages
   + [ ] arxivreference
+  + [ ] textwidth
   + [ ] author names
   + [ ] badblanks
   + [ ] ortho
@@ -29,6 +30,7 @@ $0  + [ ] checked in?
   + [ ] addresses
   + [ ] math ok
   + [ ] figures/tables
+  + [ ] colorcheck
   + [ ] page bottoms
   + [ ] marginpars
 
@@ -41,3 +43,7 @@ $0  + [ ] checked in?
 
 
 * Notes
+
+** from $1
+
+$0
