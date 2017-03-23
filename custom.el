@@ -46,7 +46,10 @@
  '(mh-variant "GNU Mailutils 2.99.98")
  '(org-agenda-files
    (quote
-    ("/home/matthew/msp/gt/src/work/150617-Alpert/150617-Alpert.org" "/home/matthew/msp/gt/src/work/140818-Cortez/140818-Cortez.org" "/home/matthew/msp/agt/src/work/150930-Casacuberta/150930-Casacuberta.org" "/home/matthew/msp/agt/src/work/150729-Davis/150729-Davis.org" "/home/matthew/msp/agt/src/work/150115-Greenlees/150115-Greenlees.org" "/home/matthew/msp/warwick/warwick.org" "/home/matthew/msp/mspdoc/mspdoc.org")))
+    ("/home/matthew/msp/gt/src/work/141022-Stojanoska/141022-Stojanoska.org" "/home/matthew/msp/agt/src/work/151029-Guillou/151029-Guillou.org" "/home/matthew/msp/agt/src/work/150813-Haugseng/150813-Haugseng.org" "/home/matthew/msp/agt/src/work/150602-Panov/150602-Panov.org" "/home/matthew/msp/agt/src/work/141111-McCleary/141111-McCleary.org" "/home/matthew/msp/agt/src/work/140705-Zhan/140705-Zhan.org" "/home/matthew/msp/agt/src/work/131122-Hanselman/131122-Hanselman.org" "/home/matthew/msp/warwick/warwick.org" "/home/matthew/msp/mspdoc/mspdoc.org")))
+ '(package-selected-packages
+   (quote
+    (org smart-mode-line rainbow-delimiters python-mode python-info pymacs palette mic-paren magit jedi ipython highlight-current-line expand-region autopair auto-complete-auctex auctex ac-math)))
  '(safe-local-variable-values
    (quote
     ((eval show-all)

@@ -12,7 +12,6 @@
 
 (add-to-list 'load-path "/home/matthew/.emacs.d/lisp/")
 (load "msp.el")
-(load "org-setup.el")
 
 ;; (setq debug-on-quit t)
 
@@ -25,7 +24,14 @@
                           ("marmalade" . "http://marmalade-repo.org/packages/")
 			  ("melpa" . "http://melpa.milkbox.net/packages/")))
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+
+;; load self-installed packages 
 (package-initialize)
+
+;; because we're using a newer version of org-mode downloaded from elpa,
+;; and org-setup.el contains code that only works with the new version,
+;; we have to load org-setup *after* initializing packages
+(load "org-setup.el")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  i-do mode
