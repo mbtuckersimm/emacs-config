@@ -40,7 +40,6 @@
   '((default (:foreground "#002b36" :background "LavenderBlush" :weight bold)))
     "Face for ready phase")
 
-
 (setq org-todo-keyword-faces
       '(("NITPICKING" . msp-nitpicking)
 	("NITS_SENT" . msp-nits-sent)
@@ -51,7 +50,6 @@
 	("ACS_ASSIGNED" . msp-acs-assigned)
 	("ACS_DONE" . msp-acs-done)
 	("READY" . msp-ready)))
-
 
 ;; if current working directory (ie default-directory) is /path/to/here,
 ;; this function inserts "here"
