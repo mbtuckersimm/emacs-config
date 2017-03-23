@@ -40,16 +40,6 @@
   '((default (:foreground "#002b36" :background "LavenderBlush" :weight bold)))
     "Face for ready phase")
 
-;; (setq org-todo-keyword-faces
-;;       '(("NITPICKING" . (:foreground "#002b36" :background "tomato" :weight bold))
-;; 	("NITS_SENT" . (:foreground "#002b36" :background "SeaGreen3" :weight bold))
-;; 	("NITS_DONE" . (:foreground "#002b36" :background "chocolate" :weight bold))
-;; 	("PROOFS_SENT" . (:foreground "#002b36" :background "OliveDrab3" :weight bold))
-;; 	("PROOFS_RECEIVED" . (:foreground "#002b36" :background "cyan3" :weight bold))
-;; 	("ACS_RECEIVED" . (:foreground "#002b36" :background "goldenrod" :weight bold))
-;; 	("ACS_ASSIGNED" . (:foreground "#002b36" :background "Plum4" :weight bold))
-;; 	("ACS_DONE" . (:foreground "#002b36" :background "DeepPink" :weight bold))
-;; 	("READY" . org-done)))
 
 (setq org-todo-keyword-faces
       '(("NITPICKING" . msp-nitpicking)
@@ -103,3 +93,13 @@
 
 (global-set-key (kbd "\C-c a") 'org-msp-agenda)
 (setq org-agenda-restore-windows-after-quit t)
+
+;; languages to allow for code block execution
+(org-babel-do-load-languages
+      'org-babel-load-languages
+      '((emacs-lisp . t)
+        (sh . t)
+	(shell . t)
+	(perl . t)
+	(python . t)))
+
