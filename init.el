@@ -118,6 +118,9 @@
 
 (sml/setup)
 
+(setq sml/name-width 35)
+(setq sml/mode-width "full")
+
 ;; (add-to-list 'sml/replacer-regexp-list '("^~/sbcc/137/" ":SBCC:") t)
 (add-to-list 'sml/replacer-regexp-list '("^~/msp/pjm/src/work/" ":PJM:") t)
 (add-to-list 'sml/replacer-regexp-list '("^~/msp/ant/src/work/" ":ANT:") t)
@@ -145,9 +148,6 @@
 (add-to-list 'sml/replacer-regexp-list '("^:ED:snippets" ":YAS:") t)
 (add-to-list 'sml/replacer-regexp-list '("^~/msp/warwick/gtpub/" ":GTPUB:") t)
 (add-to-list 'sml/replacer-regexp-list '("^~/msp/warwick/agtpub/" ":AGTPUB:") t)
-
-(setq sml/name-width 35)
-(setq sml/mode-width "full")
 
 
 (setq blink-cursor-blinks 0)
