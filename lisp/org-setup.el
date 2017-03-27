@@ -82,7 +82,7 @@
 
 (defun extract-paper-id ()
   (interactive)
-  (string-match "msp/.*?work/\\([0-9]+-[A-Za-z]+\\)" default-directory)
+  (string-match "msp/.*?work/\\([0-9]+-[A-Za-z]+\\(-[0-9]+\\)?\\)" default-directory)
   (match-string 1 default-directory))
 
 (defun pages-in-main ()

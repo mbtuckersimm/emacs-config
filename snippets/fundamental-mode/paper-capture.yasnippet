@@ -5,12 +5,12 @@
 # --
 `(progn (org-mode) (show-all))`-*- mode: org; eval: (show-all); -*-
 
-* NITPICKING  prelims received `(format-time-string "%y%m%d")`     :${1:editor}:`(insert (extract-journal))`:
+* NITPICKING  prelims received `(format-time-string "%y%m%d")`     :${1:editor}:`(extract-journal)`:
   :PROPERTIES:
-  :id:      `(insert (extract-journal) " " (extract-paper-id))`
+  :id:      `(concat (extract-journal) " " (extract-paper-id))`
   :volume:  ${2:volume}
   :issue:   ${3:issue}
-  :pages:   `(insert (pages-in-main))`
+  :pages:   `(pages-in-main)`
   :figures: ${4:figures$(yas-choose-value '("none" "b/w" "inessential color" "essential color"))}
   :END:
 
