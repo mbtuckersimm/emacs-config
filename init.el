@@ -111,12 +111,14 @@
 (display-time-mode 1)
 
 ;; smart-mode-line settings
+
+(setq sml/theme 'dark)
+;; (setq sml/theme 'light)
+;; (setq sml/theme 'respectful)
+
 (sml/setup)
-;; (sml/apply-theme 'automatic)
-;; (sml/apply-theme 'dark)
-(sml/apply-theme 'light)
-;; (sml/apply-theme 'respectful)
-(add-to-list 'sml/replacer-regexp-list '("^~/sbcc/137/" ":SBCC:") t)
+
+;; (add-to-list 'sml/replacer-regexp-list '("^~/sbcc/137/" ":SBCC:") t)
 (add-to-list 'sml/replacer-regexp-list '("^~/msp/pjm/src/work/" ":PJM:") t)
 (add-to-list 'sml/replacer-regexp-list '("^~/msp/ant/src/work/" ":ANT:") t)
 (add-to-list 'sml/replacer-regexp-list '("^~/msp/akt/src/work/" ":AKT:") t)
@@ -139,7 +141,10 @@
 (add-to-list 'sml/replacer-regexp-list '("^:GT:[0-9-]+\\([A-Za-z]+\\)/" ":GT:\\1:") t)
 (add-to-list 'sml/replacer-regexp-list '("^~/msp/training/" ":TRAINING:") t)
 (add-to-list 'sml/replacer-regexp-list '("^~/msp/mspdoc/" ":MSPDOC:") t)
-(add-to-list 'sml/replacer-regexp-list '("^:ED:snippets" ":YASNIPPET:") t)
+(add-to-list 'sml/replacer-regexp-list '("^~/msp/dev/" ":DEV:") t)
+(add-to-list 'sml/replacer-regexp-list '("^:ED:snippets" ":YAS:") t)
+(add-to-list 'sml/replacer-regexp-list '("^~/msp/warwick/gtpub/" ":GTPUB:") t)
+(add-to-list 'sml/replacer-regexp-list '("^~/msp/warwick/agtpub/" ":AGTPUB:") t)
 
 (setq sml/name-width 35)
 (setq sml/mode-width "full")
