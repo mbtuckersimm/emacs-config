@@ -268,6 +268,11 @@
 (add-hook 'text-mode-hook (lambda ()
             (set (make-local-variable 'comment-start) ">")))
 
+;; explicitly set % for comments in LaTeX mode too
+;; otherwise the previous setting overrides it
+(add-hook 'LaTeX-mode-hook (lambda ()
+            (set (make-local-variable 'comment-start) "%")))
+
 ;;; AUCTeX AND MATH SETTINGS ;;;
 
 ;; Math mode for LaTeX
