@@ -258,6 +258,10 @@
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
+;; make > into a comment character in text mode
+;; (useful for quoting stuff in email replies, eg)
+(add-hook 'text-mode-hook (lambda ()
+            (set (make-local-variable 'comment-start) ">")))
 
 ;;; AUCTeX AND MATH SETTINGS ;;;
 
