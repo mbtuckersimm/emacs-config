@@ -110,7 +110,13 @@
 
 (defun manual-formatting ()
   (interactive)
-  (occur "\\(vskip\\|hskip\\|vspace\\|hspace\\|noindent\\|smallbreak\\|medbreak\\|bigbreak\\|smallskip\\|medskip\\|bigskip\\|newpage\\|clearpage\\|linebreak\\|newline\\|pagebreak\\|\\<par\\>\\)"))
+  (occur "\\(vskip\\|hskip\\|vspace\\|hspace\\|noindent\\|smallbreak\\|medbreak\\|bigbreak\\|smallskip\\|medskip\\|bigskip\\|newpage\\|clearpage\\|linebreak\\|newline\\|pagebreak\\|\\<par\\>\\|setlength\\)"))
+
+(defun ieeg ()
+  (interactive)
+  (setq case-fold-search nil)
+  (occur "\\<\\(e\.?g\.?\\|i\.?e\.?\\|c\.?f\.?\\)\\>")
+  (setq case-fold-search t))
 
 ;; work in progress
 (defun endashes ()
