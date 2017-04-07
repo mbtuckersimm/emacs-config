@@ -119,7 +119,7 @@
 (sml/setup)
 
 (setq sml/name-width 35)
-(setq sml/mode-width "full")
+(setq sml/mode-width 'full)
 
 ;; (add-to-list 'sml/replacer-regexp-list '("^~/sbcc/137/" ":SBCC:") t)
 (add-to-list 'sml/replacer-regexp-list '("^~/msp/pjm/src/work/" ":PJM:") t)
@@ -153,7 +153,7 @@
 (setq blink-cursor-blinks 0)
 
 ;; highlight the current line
-(add-to-list 'load-path "/home/matthew/.emacs.d/elpa/highlight-current-line-20051013.1756")
+;; (add-to-list 'load-path "/home/matthew/.emacs.d/elpa/highlight-current-line-20051013.1756")
 (require 'highlight-current-line)
 (global-hl-line-mode t)
 (setq highlight-current-line-globally t)
@@ -390,14 +390,14 @@
 
 
 ;;; Auto-Complete ;;;
-(add-to-list 'load-path "~/.emacs.d/elpa/auto-complete-20140519.650")
-(require 'auto-complete) 
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-20140519.650/dict")
-(require 'auto-complete-config) 
-(ac-config-default)
-(global-auto-complete-mode t)
+;; (add-to-list 'load-path "~/.emacs.d/elpa/auto-complete-20140519.650")
+;; (require 'auto-complete) 
+;; (add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-20140519.650/dict")
+;; (require 'auto-complete-config) 
+;; (ac-config-default)
+;; (global-auto-complete-mode t)
 
-(provide 'auto-complete-settings)
+;; (provide 'auto-complete-settings)
 
 
 ;;; miscellaneous ;;;
