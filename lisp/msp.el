@@ -115,7 +115,7 @@
 (defun ieeg ()
   (interactive)
   (setq case-fold-search nil)
-  (occur "\\<\\(e\.?g\.?\\|i\.?e\.?\\|c\.?f\.?\\)\\>")
+  (occur "\\<\\(e\\.?g\\.?\\|i\\.?e\\.?\\|c\\.?f\\.?\\)\\>")
   (setq case-fold-search t))
 
 ;; work in progress
