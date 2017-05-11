@@ -3,6 +3,51 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(TeX-command-list
+   (quote
+    (("TeX" "%(PDF)%(tex) %(file-line-error) %(extraopts) %`%S%(PDFout)%(mode)%' %t" TeX-run-TeX nil
+      (plain-tex-mode texinfo-mode ams-tex-mode)
+      :help "Run plain TeX")
+     ("LaTeX" "%`%l%(mode)%' %t" TeX-run-TeX nil
+      (latex-mode doctex-mode)
+      :help "Run LaTeX")
+     ("Makeinfo" "makeinfo %(extraopts) %t" TeX-run-compile nil
+      (texinfo-mode)
+      :help "Run Makeinfo with Info output")
+     ("Makeinfo HTML" "makeinfo %(extraopts) --html %t" TeX-run-compile nil
+      (texinfo-mode)
+      :help "Run Makeinfo with HTML output")
+     ("AmSTeX" "amstex %(PDFout) %(extraopts) %`%S%(mode)%' %t" TeX-run-TeX nil
+      (ams-tex-mode)
+      :help "Run AMSTeX")
+     ("ConTeXt" "%(cntxcom) --once --texutil %(extraopts) %(execopts)%t" TeX-run-TeX nil
+      (context-mode)
+      :help "Run ConTeXt once")
+     ("ConTeXt Full" "%(cntxcom) %(extraopts) %(execopts)%t" TeX-run-TeX nil
+      (context-mode)
+      :help "Run ConTeXt until completion")
+     ("BibTeX" "bibtex %s" TeX-run-BibTeX nil t :help "Run BibTeX")
+     ("View" "%V" TeX-run-discard-or-function t t :help "Run Viewer")
+     ("Print" "%p" TeX-run-command t t :help "Print the file")
+     ("Queue" "%q" TeX-run-background nil t :help "View the printer queue" :visible TeX-queue-command)
+     ("File" "%(o?)dvips %d -o %f " TeX-run-dvips t t :help "Generate PostScript file")
+     ("Dvips" "%(o?)dvips %d -o %f " TeX-run-dvips nil t :help "Convert DVI file to PostScript")
+     ("Dvipdfmx" "dvipdfmx %d" TeX-run-dvipdfmx nil t :help "Convert DVI file to PDF with dvipdfmx")
+     ("Ps2pdf" "ps2pdf %f" TeX-run-ps2pdf nil t :help "Convert PostScript file to PDF")
+     ("Glossaries" "makeglossaries %s" TeX-run-command nil t :help "Run makeglossaries to create glossary file")
+     ("Index" "makeindex %s" TeX-run-index nil t :help "Run makeindex to create index file")
+     ("Xindy" "texindy %s" TeX-run-command nil t :help "Run xindy to create index file")
+     ("Check" "lacheck %s" TeX-run-compile nil
+      (latex-mode)
+      :help "Check LaTeX file for correctness")
+     ("ChkTeX" "chktex -v6 %s" TeX-run-compile nil
+      (latex-mode)
+      :help "Check LaTeX file for common mistakes")
+     ("Spell" "(TeX-ispell-document \"\")" TeX-run-function nil t :help "Spell-check the document")
+     ("Clean" "TeX-clean" TeX-run-function nil t :help "Delete generated intermediate files")
+     ("Clean All" "(TeX-clean t)" TeX-run-function nil t :help "Delete generated intermediate and output files")
+     ("Patch" "patch %s.bbl %s.pat" TeX-run-command t t :help "Patch the bbl file using the pat file"))))
+ '(TeX-save-query nil)
  '(TeX-source-correlate-method (quote synctex))
  '(TeX-source-correlate-mode t)
  '(TeX-source-correlate-start-server t)
@@ -46,7 +91,7 @@
  '(mh-variant "GNU Mailutils 2.99.98")
  '(org-agenda-files
    (quote
-    ("/home/matthew/msp/gt/src/work/141022-Stojanoska/141022-Stojanoska.org" "/home/matthew/msp/agt/src/work/151029-Guillou/151029-Guillou.org" "/home/matthew/msp/agt/src/work/150813-Haugseng/150813-Haugseng.org" "/home/matthew/msp/agt/src/work/150602-Panov/150602-Panov.org" "/home/matthew/msp/agt/src/work/141111-McCleary/141111-McCleary.org" "/home/matthew/msp/agt/src/work/140705-Zhan/140705-Zhan.org" "/home/matthew/msp/agt/src/work/131122-Hanselman/131122-Hanselman.org" "/home/matthew/msp/warwick/warwick.org" "/home/matthew/msp/mspdoc/mspdoc.org")))
+    ("/home/matthew/msp/gt/src/work/150507-McGerty/150507-McGerty.org" "/home/matthew/msp/agt/src/work/160620-MichaelWest/160620-MichaelWest.org" "/home/matthew/msp/agt/src/work/160615-Suzuki/160615-Suzuki.org" "/home/matthew/msp/agt/src/work/160603-Zemke/160603-Zemke.org" "/home/matthew/msp/agt/src/work/160417-SerTan/160417-SerTan.org" "/home/matthew/msp/agt/src/work/150803-Meier/150803-Meier.org" "/home/matthew/msp/agt/src/work/150707-Gainullin/150707-Gainullin.org" "/home/matthew/msp/warwick/warwick.org" "/home/matthew/msp/mspdoc/mspdoc.org")))
  '(package-selected-packages
    (quote
     (org smart-mode-line rainbow-delimiters python-mode python-info pymacs palette mic-paren magit jedi ipython highlight-current-line expand-region autopair auto-complete-auctex auctex ac-math)))
