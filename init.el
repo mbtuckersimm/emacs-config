@@ -66,7 +66,7 @@
 (global-set-key (kbd "C-c d") 'fix-next-sized-delim)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  keybindings
+;;  global keybindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (global-set-key (kbd "<f5>") 'revert-buffer)
 (global-set-key (kbd "M-[") 'backward-paragraph)
@@ -77,18 +77,24 @@
 (global-set-key (kbd "M-s c") 'how-many)
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
-(global-set-key (kbd "C-c e") 'TeX-error-overview)
+
 ;; next chunk are for functions in msp.el
-(global-set-key (kbd "C-c c") 'comment-and-kill-ring-save)
 ;; (global-set-key (kbd "<f12>") 'save-and-compile)
-(global-set-key (kbd "M-Z") 'comment-to-char)
-(global-set-key (kbd "M-s a") 'azaz)
-(global-set-key (kbd "M-s r") 'ords)
+;; (global-set-key (kbd "M-Z") 'comment-to-char)
+
+(global-set-key (kbd "C-c c") 'comment-and-kill-ring-save)
+
+;; this is Ramsay's replacement for my comment-and-kill-ring-save
+;; but it doesn't work right in all cases
+;; (global-set-key (kbd "C-c c") 'comment-copy-region)
+
 (global-set-key (kbd "M-s n") 'occur-next-occurrence)
 (global-set-key (kbd "M-s p") 'occur-prev-occurrence)
-(global-set-key (kbd "C-x p") 'putpaper)
+
 ;; org-mode
 (global-set-key (kbd "C-c l") 'org-store-link)
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end keybindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

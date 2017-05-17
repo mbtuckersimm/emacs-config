@@ -160,6 +160,68 @@
      ;; remove annoying biber command
      (delete '("Biber" "biber %s" TeX-run-Biber nil t :help "Run Biber") TeX-command-list)))
 
+
+(defun blank-line ()
+  "Return true if there are only whitespace characters on line"
+  (string-match-p "^\\s-*$" (buffer-substring-no-properties
+			    (line-beginning-position) (line-end-position))))
+
+(defun white-line-to-point ()
+  "Return true if there are no nonwhitespace characters before point on line"
+  (string-match-p "^\\s-*$" (buffer-substring-no-properties
+			    (line-beginning-position) (point))))
+
+(defun white-line-from-point ()
+  "Return true if there are no nonwhitespace characters after point on line"
+  (string-match-p "^\\s-*$" (buffer-substring-no-properties
+			    (point) (line-end-position))))
+
+(defun mpar-replace (orig-string new-string)
+  "Replace region with prompted string and marginpar the change"
+  (interactive
+   (let ((oldstring
+	  (buffer-substring-no-properties (region-beginning) (region-end))))
+     (list
+      oldstring
+      (read-string (format "Replace %s with: " oldstring) oldstring))))
+  (delete-region (region-beginning) (region-end))
+  (unless (white-line-to-point) (newline))
+  (insert (format "\\marginpar{%s $\\to$ %s}" orig-string new-string))
+  (newline) 
+  (insert new-string)
+  (forward-whitespace 1)
+  (unless (or (bolp) (white-line-from-point)) (newline)))
+
+(defun comment-copy-region ()
+  "Comment out the current region and copy it below (adding newlines if needed)"
+  (interactive)
+  (save-excursion
+    (let ((cpstring
+	   (buffer-substring-no-properties (region-beginning) (region-end))))
+      (save-excursion
+      (goto-char (region-beginning))
+      (unless (white-line-to-point) (newline))
+      (goto-char (region-end)))
+      (unless (white-line-from-point) (newline))
+      (comment-region (region-beginning) (region-end))
+      (insert cpstring)
+      (forward-whitespace 1)
+      (unless (white-line-from-point) (newline)))))
+
+
+;; set keybindings for msp/tex stuff
+(defun msp-kbd-config ()
+  "Set keybindings for MSP/TeX editing. For use in `LaTeX-mode-hook'."
+  (local-set-key (kbd "C-c e") 'TeX-error-overview)
+  (local-set-key (kbd "M-s a") 'azaz)
+  (local-set-key (kbd "M-s r") 'ords)
+  (local-set-key (kbd "C-x p") 'putpaper)
+  (local-set-key (kbd "C-c r") 'mpar-replace))
+
+;; actually add the hook so the keyboard is configured
+;; when LaTeX-mode is entered
+(add-hook 'LaTeX-mode-hook 'msp-kbd-config)
+
 ;; found basis for this at https://tex.stackexchange.com/a/36914/4642,
 ;; unfortunately it doesn't automatically set the next command
 ;; to LaTeX, as desired
