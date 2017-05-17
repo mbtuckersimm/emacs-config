@@ -151,6 +151,32 @@
         (goto-char point)
         (message "No non-ascii characters."))))
 
+(eval-after-load "tex"
+  '(progn
+     ;; add command to patch bib to TeX-command-list
+     (add-to-list 'TeX-command-list
+     		  '("Patch" "patch %s.bbl %s.pat" TeX-run-compile t t
+     		    :help "Patch the .bbl file using the .pat file"))
+     ;; remove annoying biber command
+     (delete '("Biber" "biber %s" TeX-run-Biber nil t :help "Run Biber") TeX-command-list)))
+
+;; found basis for this at https://tex.stackexchange.com/a/36914/4642,
+;; unfortunately it doesn't automatically set the next command
+;; to LaTeX, as desired
+
+;; (add-to-list 'TeX-command-list
+;;     '("Patch" "patch %s.bbl %s.pat"
+;; 	      (lambda (name command file)
+;; 		 (TeX-run-compile name command file)
+;; 		 ;; (TeX-process-set-variable file 'TeX-command-next "LaTeX"))
+;; 		 (setq TeX-command-next "LaTeX"))
+;;          ;; first t could be set to nil to avoid having to confirm
+;; 	      ;; the patch command
+;;          t t :help "Patch the .bbl file using the .pat file"))
+
+
+
+
 ;; see ~/.emacs.d/lisp/bibtexurlstuff.el
 ;; the code contained there goes into custom-set-variables
 ;; (currently in ~/.emacs, but should go into ~/.emacs.d/custom.el eventually)

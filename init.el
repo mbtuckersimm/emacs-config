@@ -357,13 +357,11 @@
 ))
 
 (setq font-latex-match-warning-keywords
-      '(
-	("redden" "{")
+      '(("redden" "{")
 	("cr")
 	("vspace*")
 	("begingroup")
-	("endgroup")
-))
+	("endgroup")))
 
 
 ;;; SyncTeX ;;;
