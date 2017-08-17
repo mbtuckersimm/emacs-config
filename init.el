@@ -295,6 +295,9 @@
           #'(lambda ()
               (modify-syntax-entry ?$ "\"")))
 
+;; make links clickable in LaTeX mode
+(add-hook 'LaTeX-mode-hook 'goto-address-mode)
+
 ;; set LaTeX-command
 (setq-default LaTeX-command "latex -file-line-error-style -synctex=1")
 
@@ -407,5 +410,3 @@
 ;;; miscellaneous ;;;
 (add-to-list 'auto-mode-alist '("\\.plx\\'" . perl-mode))
 (setq python-shell-interpreter "python3")
-
-
