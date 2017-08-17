@@ -151,6 +151,43 @@
         (goto-char point)
         (message "No non-ascii characters."))))
 
+;; next bunch of stuff adds patch command to TeX command list
+;; accessed by TeX-compile, C-c C-c
+
+;; no idea if this is the right thing to do
+;; copied from TeX-run-BibTeX in tex-buf.el
+(defun TeX-run-patch (name command file)
+  "Create a process for NAME using COMMAND to patch bib of FILE."
+  (let ((process (TeX-run-command name command file)))
+    (setq TeX-sentinel-function #'TeX-patch-sentinel)
+    (if TeX-process-asynchronous
+	process
+      (TeX-synchronous-sentinel name file process))))
+
+;; need to modify this one still
+;; copied from TeX-BibTeX-sentinel in tex-buf.el
+(defun TeX-patch-sentinel (_process _name)
+  "Cleanup output buffer after running patch."
+  (goto-char (point-max))
+  (cond
+   ;; Check whether BibTeX reports any warnings or errors.
+   ((re-search-backward (concat
+			 "^(There \\(?:was\\|were\\) \\([0-9]+\\) "
+			 "\\(warnings?\\|error messages?\\))")
+                        nil t)
+    ;; Tell the user their number so that she sees whether the
+    ;; situation is getting better or worse.
+    (message (concat "BibTeX finished with %s %s. "
+		     "Type `%s' to display output.")
+	     (match-string 1) (match-string 2)
+	     (substitute-command-keys
+	      "\\<TeX-mode-map>\\[TeX-recenter-output-buffer]")))
+   (t
+    (message (concat "BibTeX finished successfully. "
+		     "Run LaTeX again to get citations right."))))
+  ;; In any case, run the default next command.
+  (setq TeX-command-next TeX-command-default))
+
 (eval-after-load "tex"
   '(progn
      ;; add command to patch bib to TeX-command-list
@@ -159,6 +196,21 @@
      		    :help "Patch the .bbl file using the .pat file"))
      ;; remove annoying biber command
      (delete '("Biber" "biber %s" TeX-run-Biber nil t :help "Run Biber") TeX-command-list)))
+
+;; found basis for this at https://tex.stackexchange.com/a/36914/4642,
+;; unfortunately it doesn't automatically set the next command
+;; to LaTeX, as desired
+
+;; (add-to-list 'TeX-command-list
+;;     '("Patch" "patch %s.bbl %s.pat"
+;; 	      (lambda (name command file)
+;; 		 (TeX-run-compile name command file)
+;; 		 ;; (TeX-process-set-variable file 'TeX-command-next "LaTeX"))
+;; 		 (setq TeX-command-next "LaTeX"))
+;;          ;; first t could be set to nil to avoid having to confirm
+;; 	      ;; the patch command
+;;          t t :help "Patch the .bbl file using the .pat file"))
+
 
 
 (defun blank-line ()
@@ -221,20 +273,6 @@
 ;; actually add the hook so the keyboard is configured
 ;; when LaTeX-mode is entered
 (add-hook 'LaTeX-mode-hook 'msp-kbd-config)
-
-;; found basis for this at https://tex.stackexchange.com/a/36914/4642,
-;; unfortunately it doesn't automatically set the next command
-;; to LaTeX, as desired
-
-;; (add-to-list 'TeX-command-list
-;;     '("Patch" "patch %s.bbl %s.pat"
-;; 	      (lambda (name command file)
-;; 		 (TeX-run-compile name command file)
-;; 		 ;; (TeX-process-set-variable file 'TeX-command-next "LaTeX"))
-;; 		 (setq TeX-command-next "LaTeX"))
-;;          ;; first t could be set to nil to avoid having to confirm
-;; 	      ;; the patch command
-;;          t t :help "Patch the .bbl file using the .pat file"))
 
 
 
