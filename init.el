@@ -10,8 +10,6 @@
       `((".*" ,"/home/matthew/.emacs.d/autosaves/" t)))
 
 
-(add-to-list 'load-path "/home/matthew/.emacs.d/lisp/")
-(load "msp.el")
 
 ;; (setq debug-on-quit t)
 
@@ -31,7 +29,10 @@
 ;; because we're using a newer version of org-mode downloaded from elpa,
 ;; and org-setup.el contains code that only works with the new version,
 ;; we have to load org-setup *after* initializing packages
+
+(add-to-list 'load-path "/home/matthew/.emacs.d/lisp/")
 (load "org-setup.el")
+(load "msp.el")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  i-do mode
@@ -62,8 +63,6 @@
 
 ;;  fixing paired delimiters 
 (require 'hl-sexp)
-(load "change-delims") ;; move this to msp.el
-(global-set-key (kbd "C-c d") 'fix-next-sized-delim)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  global keybindings
@@ -77,16 +76,7 @@
 (global-set-key (kbd "M-s c") 'how-many)
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
-
-;; next chunk are for functions in msp.el
-;; (global-set-key (kbd "<f12>") 'save-and-compile)
-;; (global-set-key (kbd "M-Z") 'comment-to-char)
-
 (global-set-key (kbd "C-c c") 'comment-and-kill-ring-save)
-
-;; this is Ramsay's replacement for my comment-and-kill-ring-save
-;; but it doesn't work right in all cases
-;; (global-set-key (kbd "C-c c") 'comment-copy-region)
 
 (global-set-key (kbd "M-s n") 'occur-next-occurrence)
 (global-set-key (kbd "M-s p") 'occur-prev-occurrence)
@@ -211,6 +201,7 @@
 (setq desktop-dirname "~/.emacs.d/desktop")
 (setq desktop-base-file-name "emacsdesktop-save")
 (setq desktop-base-lock-name "lock")
+(setq desktop-auto-save-timeout 120)
 (setq desktop-path (list desktop-dirname))
 (setq desktop-save t)
 (desktop-save-mode 1)
@@ -265,9 +256,6 @@
 (setq ispell-program-name "aspell")
 (setq ispell-list-command "list")
 
-;; expand-region package
-(require 'expand-region)
-(global-set-key (kbd "C-=") 'er/expand-region)
 
 ;; make > into a comment character in text mode
 ;; (useful for quoting stuff in email replies, eg)
@@ -285,7 +273,7 @@
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 
 ;; spellcheck in LaTeX mode
-(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+;; (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 
 ;; make pdflatex the default
 (add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
@@ -410,3 +398,4 @@
 ;;; miscellaneous ;;;
 (add-to-list 'auto-mode-alist '("\\.plx\\'" . perl-mode))
 (setq python-shell-interpreter "python3")
+(setq py-shell-name "python3")
