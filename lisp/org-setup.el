@@ -65,9 +65,8 @@
 		      "/home/matthew/msp/gt/src/work/*/*.org" t))
         (agt-org-files (file-expand-wildcards
 			"/home/matthew/msp/agt/src/work/*/*.org" t))
-	(warwick-todo-file '("/home/matthew/msp/warwick/warwick.org"))
-        (mspdoc-todo-file '("/home/matthew/msp/mspdoc/mspdoc.org")))
-       (setq org-agenda-files (append gt-org-files agt-org-files warwick-todo-file mspdoc-todo-file))))
+	(projects-todo-file '("/home/matthew/msp/orgmode/projects.org")))
+       (setq org-agenda-files (append gt-org-files agt-org-files projects-todo-file))))
 
 (defun org-msp-agenda ()
   (interactive)
