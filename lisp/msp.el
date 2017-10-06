@@ -218,31 +218,111 @@
   (string-match-p "^\\s-*$" (buffer-substring-no-properties
 			    (line-beginning-position) (line-end-position))))
 
+;;; 20171003. Matt asked me some reasonable questions about this function
+;;; mpar-replace that I wrote less than half a year ago. I couldn't help him
+;;; at all, because I'd already forgotten the reasons why I did what I did.
+;;; So I'm going to digest it once again, and comment it sufficiently that
+;;; it hopefully cannot be opaque anymore.
+
+;; This is an auxilliary function, whose purpose is well-described by the 
+;; comment string. I think this short snippet of code is pretty much 
+;; self-documenting. The documentation for string-match-p says it is the same
+;; as string-match, except that it doesn't change the match data.
 (defun white-line-to-point ()
   "Return true if there are no nonwhitespace characters before point on line"
   (string-match-p "^\\s-*$" (buffer-substring-no-properties
 			    (line-beginning-position) (point))))
 
+;; Likewise, this auxilliary function should be clear: return true if there
+;; is nothing on the line after the point, except possibly for whitespace (\s-*)
 (defun white-line-from-point ()
   "Return true if there are no nonwhitespace characters after point on line"
   (string-match-p "^\\s-*$" (buffer-substring-no-properties
 			    (point) (line-end-position))))
 
+;; This is the function we want to understand. It is called interactively, 
+;; but in principle, there is no reason why it needs to be. It could be called
+;; from within the massive semisentient super elisp editor that will eventually
+;; make me redundant. It is for this dreamy reason that the function takes 
+;; arguments: if it were to be strictly only called interactively (a realistic
+;; assumption), then there would be no reason to have a nonempty argument list
+;; for the function: the orig-string and new-string are defined by interactive
+;; input.
+;;
 (defun mpar-replace (orig-string new-string)
   "Replace region with prompted string and marginpar the change"
+  ; first thing we do is call interactive. From the C-h f documentation:
+  ; "If the argument [to interactive] is not a string, it is evaluated to 
+  ; get a list of arguments to pass to the function." In our case the 
+  ; argument is the let form.
   (interactive
+   ; Doing `C-h f let', we see that the return value of (let VARLIST BODY) is
+   ; the last form in body. In our case, the body consists of a single form,
+   ; (list ...) which is a list (described below). The varlist is a single
+   ; variable-definition pair: the variable oldstring, defined by the current
+   ; active region.
    (let ((oldstring
 	  (buffer-substring-no-properties (region-beginning) (region-end))))
+     ; list is just what you expect: we are making a list. This list has two
+     ; items: the oldstring we just defined above, and the return value from
+     ; the read-string form. Thus this two-item list defines those arguments
+     ; to our function: interactive will now give orig-string the value of
+     ; oldstring, and new-string will be whatever we got out of read-string.
      (list
       oldstring
       (read-string (format "Replace %s with: " oldstring) oldstring))))
+  ; Okay, now our arguments are defined. The actual function begins here.
+  ; First we delete the highlighted region.
+  (delete-region (region-beginning) (region-end))
+  ; now we insert a newline, unless we are already at the beginning of a line
+  (unless (white-line-to-point) (newline))
+  ; now we insert our marginpar
+  (insert (format "\\marginpar{%s $\\to$ %s}" orig-string new-string))
+  (newline)
+  ; and now we insert the new-string. I want it on a line by itself, so
+  ; we may need a newline after it.
+  (insert new-string)
+  ; go to the next nonwhitespace character: this may take us to the beginning
+  ; of the next line:
+  (forward-whitespace 1)
+  ; If the point is not at the beginning of a line, and there are nonwhitespace
+  ; characters after the point, then insert a newline (so that our new-string
+  ; is all by itself on a line.)
+  (unless (or (bolp) (white-line-from-point)) (newline))
+  ; move to the end of the marginpar so it can be expanded if desired
+  (re-search-backward "\\marginpar")
+  (move-end-of-line 1)
+  (backward-char 1))
+
+
+(defun mpar-delete (orig-string)
+  "Delete region and marginpar the change"
+  (interactive
+   (let ((oldstring
+	  (buffer-substring-no-properties (region-beginning) (region-end))))
+     (list oldstring)))
   (delete-region (region-beginning) (region-end))
   (unless (white-line-to-point) (newline))
-  (insert (format "\\marginpar{%s $\\to$ %s}" orig-string new-string))
-  (newline) 
+  (insert (format "\\marginpar{deleted \"%s\"}" orig-string))
+  (newline)
+  ;; regexp search puts us back at the end of the marginpar
+  (re-search-backward "}"))
+
+(defun mpar-insert (new-string)
+  "Prompt user for input, insert it at point and marginpar the change"
+  (interactive
+   (let ((inputstring (read-string "Text to insert: " ) ))
+     (list inputstring)))
+  (unless (white-line-to-point) (newline))
+  (insert (format "\\marginpar{inserted \"%s\"}" new-string))
+  (newline)
   (insert new-string)
   (forward-whitespace 1)
-  (unless (or (bolp) (white-line-from-point)) (newline)))
+  (unless (or (bolp) (white-line-from-point)) (newline))
+  (re-search-backward "\\marginpar")
+  (move-end-of-line 1)
+  (backward-char 1))
+
 
 (defun comment-copy-region ()
   "Comment out the current region and copy it below (adding newlines if needed)"
@@ -261,6 +341,114 @@
       (unless (white-line-from-point) (newline)))))
 
 
+
+
+;; expand-region package
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
+;; embrace package
+
+(require 'embrace)
+(global-set-key (kbd "C-,") #'embrace-commander)
+
+;; (defun my-embrace-LaTeX-mode-hook ()
+;;   (embrace-add-pair-regexp ?s "\\(\\\\left\\|\\\\[bB]ig+l?\\)\\s-*\\(\\[\\|(\\|\\\\{\\)"  "\\(\\\\right\\|\\\\[bB]ig+r?\\)\\s-*\\(\\]\\|)\\|\\\\}\\)" 'embrace-with-size (embrace-build-help  "sized left delim" "sized right delim")))
+(defun my-embrace-LaTeX-mode-hook ()
+  (embrace-add-pair-regexp ?s "\\(\\\\left\\|\\\\[bB]ig+l?\\)"  "\\(\\\\right\\|\\\\[bB]ig+r?\\)" 'embrace-with-size (embrace-build-help  "\\left" "\\right")))
+
+(add-hook 'LaTeX-mode-hook 'my-embrace-LaTeX-mode-hook)
+
+;; need to have this highlight the match
+(defun embrace-with-size ()
+  (setq lsizeprefs '(
+		    (0 . "")
+		    (1 . "\\bigl")
+		    (2 . "\\Bigl")
+		    (3 . "\\biggl")
+		    (4 . "\\Biggl")
+		    (5 . "\\left")))
+  (setq rsizeprefs '(
+		    (0 . "")
+		    (1 . "\\bigr")
+		    (2 . "\\Bigr")
+		    (3 . "\\biggr")
+		    (4 . "\\Biggr")
+		    (5 . "\\right")))
+  (embrace--hide-help-buffer)
+  (let ((dsize (string-to-number (char-to-string (read-char-choice "Delimiter size desired (0 --> none, 1 --> \\big, ..., 4 --> \\Bigg, 5--> \\left): " '(?0 ?1 ?2 ?3 ?4 ?5)))) ))
+    (cons (cdr (assoc dsize lsizeprefs)) (cdr (assoc dsize rsizeprefs)) )))
+
+
+;;; so far this works to change existing sizing delims to anything else
+;;; now have some goals:
+;;; 1. write a wrapper to replace change-delims that allows you
+;;;    to bypass most of the work to call embrace-with-size
+;;; 2. write another function that strictly adds sizing to an
+;;;    an existing pair that doesn't have sizing
+;;; 3. combine these two into something that can do both
+;;; 4. get it to interact nicely with ntransient-mark-mode
+
+
+(defun change-delims (dsize)
+  "Change matched pair of sized delimiters to appropriate size.
+   Use 0--5 for normal size, big, Big, bigg, Bigg, left/right respectively.
+   This assumes that point is between the size command and the delimiter.
+   Also assumes that mic-paren has been activated and that the option has been enabled to match \{ and \}.
+   This will probably fail if there are unbalanced delimiters
+   inside the delimiters you are trying to change."
+  (interactive "nDelimiter size desired: ")
+  (setq lsizeprefs '(
+		    (0 . "")
+		    (1 . "\\bigl")
+		    (2 . "\\Bigl")
+		    (3 . "\\biggl")
+		    (4 . "\\Biggl")
+		    (5 . "\\left")))
+  (setq rsizeprefs '(
+		    (0 . "")
+		    (1 . "\\bigr")
+		    (2 . "\\Bigr")
+		    (3 . "\\biggr")
+		    (4 . "\\Biggr")
+		    (5 . "\\right")))
+  ;; need to add a fix for what happens if dsize is out of the desired range
+(unless (eq 5 dsize)
+  (backward-kill-word 1)
+  (backward-delete-char 1)
+  (insert (cdr (assoc dsize rsizeprefs)))
+  (find-right-delimiter)
+  (backward-sexp)
+  (backward-word)
+  (backward-delete-char 1)
+  (kill-word 1)
+  (insert (cdr (assoc dsize lsizeprefs)))))
+
+(defun find-right-delimiter ()
+  "Moves point immediately to the right of the next right delimiter."
+  (interactive)
+  (re-search-forward "\\()\\|]\\|\\}\\)"))
+
+(defun find-size-macro ()
+  (interactive)
+  (re-search-forward "\\\\right\\>"))
+  ;; (re-search-forward "\\(\\\\right\\>\\|\\\\[bB]ig\\{1,2\\}r?\\)"))
+
+(defun fix-next-sized-delim ()
+  (interactive)
+  (find-size-macro)
+  (hl-sexp-mode 1)
+  (hl-sexp-highlight)
+  (condition-case nil  (change-delims (string-to-number (char-to-string (read-char-choice "Delimiter size desired: " '(?0 ?1 ?2 ?3 ?4 ?5)))))
+(quit (hl-sexp-mode 0)))
+  (hl-sexp-mode 0))
+
+
+
+
+
+
+
 ;; set keybindings for msp/tex stuff
 (defun msp-kbd-config ()
   "Set keybindings for MSP/TeX editing. For use in `LaTeX-mode-hook'."
@@ -268,51 +456,9 @@
   (local-set-key (kbd "M-s a") 'azaz)
   (local-set-key (kbd "M-s r") 'ords)
   (local-set-key (kbd "C-x p") 'putpaper)
-  (local-set-key (kbd "C-c r") 'mpar-replace))
+  (local-set-key (kbd "C-c r") 'mpar-replace)
+  (local-set-key (kbd "C-c d") 'fix-next-sized-delim))
 
 ;; actually add the hook so the keyboard is configured
 ;; when LaTeX-mode is entered
 (add-hook 'LaTeX-mode-hook 'msp-kbd-config)
-
-
-
-
-;; see ~/.emacs.d/lisp/bibtexurlstuff.el
-;; the code contained there goes into custom-set-variables
-;; (currently in ~/.emacs, but should go into ~/.emacs.d/custom.el eventually)
-;; it turns mrkey, zblnumber, and arxiv ids into clickable links in a .bib file
-;; for redundancy, that code is also below
-
- ;; '(bibtex-generate-url-list
- ;;   '((("url" . ".*:.*"))
- ;;     (("doi" . "10\\.[0-9]+/.+")
- ;;      "http://dx.doi.org/%s"
- ;;      ("doi" ".*" 0))
- ;;     (("mrkey" . "\\(mr\\)?[0-9]\\{1,8\\}")
- ;;      "http://www.ams.org/mathscinet-getitem?mr=%s"
- ;;      ("mrkey" "\\(mr\\)?\\([0-9]\\{1,8\\}\\)" 2))
- ;;     (("arxiv" . "\\([0-9]\\{4\\}\\.[0-9]\\{4,5\\}\\|[-a-z]+/[0-9]\\{7\\}\\|[-a-z]+\\.[a-z]\\{2\\}/[0-9]\\{7\\}\\)\\(v[0-9]+\\)?")
- ;;      "http://arxiv.org/abs/%s"
- ;;      ("arxiv" ".*" 0))
- ;;     (("zblnumber" . "\\([0-9]\\{4\\}\\.[0-9]\\{5\\}\\|[0-9]\\{8\\}\\)")
- ;;      "http://zbmath.org/?q=an:%s"
- ;;      ("zblnumber" ".*" 0))))
-
-
-;; everything below is still a work in progress
-
-;; (defun find-begin-document ()
-;;   (interactive)
-;;   (goto-char (point-min)) ;; to beginning of buffer
-;;   (search-forward "\\begin{document}")
-;;   (beginning-of-line)) ;; move to beggining of line
-
-;; (defun fullref ()
-;;   (interactive)
-;;   (mark-whole-buffer) ;; the internet says not to use this in interactive programs
-;;     ) ;; look into shell-command-region and call-process-region
-
-;; (defun num-span ()
-;;   (interactive)
-;;   ("")
-;; )
