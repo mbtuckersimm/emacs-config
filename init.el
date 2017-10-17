@@ -10,6 +10,7 @@
       `((".*" ,"/home/matthew/.emacs.d/autosaves/" t)))
 
 
+(add-to-list 'load-path "/home/matthew/.emacs.d/lisp/")
 
 ;; (setq debug-on-quit t)
 
@@ -29,9 +30,10 @@
 ;; because we're using a newer version of org-mode downloaded from elpa,
 ;; and org-setup.el contains code that only works with the new version,
 ;; we have to load org-setup *after* initializing packages
-
-(add-to-list 'load-path "/home/matthew/.emacs.d/lisp/")
 (load "org-setup.el")
+
+;; msp.el contains code pertaining to some of the elpa packages,
+;; so we also have to load that after package-initialize
 (load "msp.el")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -61,29 +63,35 @@
 ;;  end YASnippet stuff
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;  fixing paired delimiters 
-(require 'hl-sexp)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  global keybindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (global-set-key (kbd "<f5>") 'revert-buffer)
+(global-set-key (kbd "<f6>") 'split-window-horizontally)
 (global-set-key (kbd "M-[") 'backward-paragraph)
 (global-set-key (kbd "M-]") 'forward-paragraph)
-(global-set-key (kbd "<f6>") 'split-window-horizontally)
 (global-set-key (kbd "C-c ;") 'comment-or-uncomment-region)
 (global-set-key (kbd "M-s f") 'flush-lines)
 (global-set-key (kbd "M-s c") 'how-many)
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
-(global-set-key (kbd "C-c c") 'comment-and-kill-ring-save)
-
 (global-set-key (kbd "M-s n") 'occur-next-occurrence)
 (global-set-key (kbd "M-s p") 'occur-prev-occurrence)
 
 ;; org-mode
 (global-set-key (kbd "C-c l") 'org-store-link)
 
+;; my stuff
+(global-set-key (kbd "C-c c") 'comment-and-kill-ring-save)
+
+;; level 1 will require new shortcuts for:
+;;    * M-u  upcase-word
+;;    * M-l  downcase-word
+;; (setq ergoemacs-theme "lvl1")
+;; (setq ergoemacs-keyboard-layout "us")
+;; (require 'ergoemacs-mode)
+;; (ergoemacs-mode 1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end keybindings
@@ -113,7 +121,6 @@
 ;; (setq sml/theme 'respectful)
 
 (sml/setup)
-
 (setq sml/name-width 35)
 (setq sml/mode-width 'full)
 
@@ -170,10 +177,6 @@
 ; size to reflect it
 (size-indication-mode t)
 
-; highlight parentheses when the cursor is next to them
-;; (require 'paren)
-;; (show-paren-mode t)
-
 
 (require 'mic-paren) ; loading
 (paren-activate)     ; activating
@@ -207,29 +210,22 @@
 (desktop-save-mode 1)
 (add-hook 'auto-save-hook (lambda () (desktop-save-in-desktop-dir)))
 
-;; Start without toolbar
+;; various general appearance/functionality settings
 (tool-bar-mode -1)
-
-;; Show line-number and column-number in the mode line
 (line-number-mode 1)
 (column-number-mode 1)
+(mouse-wheel-mode t)
+(scroll-bar-mode -1)
+(horizontal-scroll-bar-mode -1)
+(transient-mark-mode 1)
+(delete-selection-mode 1)
 
 ;; Allows to move through mark ring with C-<SPC> after one initial C-u C-<SPC>
 (setq set-mark-command-repeat-pop t)
 
-;; Visual-line mode (word-wrapping)
-;; (global-visual-line-mode nil)
-
 ;; displays filename (or buffername if no filename) in title bar
 (setq frame-title-format '(buffer-file-name "%f" ("%b")))
 
-;; mouse scrolling
-(mouse-wheel-mode t)
-
-;; disable scroll bar
-(scroll-bar-mode -1)
-
-(horizontal-scroll-bar-mode -1)
 
 ;; turn on Rainbow Delimiters
 (require 'rainbow-delimiters)
@@ -243,7 +239,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Require cases to match when replacing
-(setq case-replace nil)
+(setq case-replace t)
 
 (setq require-final-newline t)
 
@@ -305,8 +301,7 @@
 ;; makes emacs query for the master-file when creating a tex file
 ;; (setq-default TeX-master nil)
 
-;; Make emacs go into LaTeX-mode when editing .ltb files (for amsrefs)
-;; (add-to-list 'auto-mode-alist '("\\.ltb\\'" . LaTeX-mode))
+;; Make emacs go into LaTeX-mode when editing .pdf_tex files 
 (add-to-list 'auto-mode-alist '("\\.pdf_tex\\'" . LaTeX-mode))
 
 ;; teach auctex about various msp and ams macros
