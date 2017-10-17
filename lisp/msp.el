@@ -17,6 +17,31 @@
 (setenv "MSPHOME" "Documents/msp")
 (setq vc-rcs-checkin-switches '("-l" "-d"))
 
+;; expand-region package
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
+
+(defun expand-region-LaTeX-mode-hook ()
+  (require 'latex-mode-expansions)
+  (er/add-latex-mode-expansions))
+
+(add-hook 'LaTeX-mode-hook 'expand-region-LaTeX-mode-hook)
+
+;; workaround needed for expand-region to interact nicely
+;; with transient-mark-mode
+(setq shift-select-mode nil)
+
+;; embrace package
+(require 'embrace)
+(global-set-key (kbd "C-,") #'embrace-commander)
+
+;; fastnav a bit too much at this point, maybe later
+;; (require 'fastnav)
+
+(require 'hl-sexp)
+
+
 (eval-after-load "vc"
   '(defun vc-steal-lock (file rev owner)
   "Steal the lock on FILE."
@@ -218,7 +243,7 @@
   (string-match-p "^\\s-*$" (buffer-substring-no-properties
 			    (line-beginning-position) (line-end-position))))
 
-;;; 20171003. Matt asked me some reasonable questions about this function
+;;; Ramsay Dyer 20171003. Matt asked me some reasonable questions about this function
 ;;; mpar-replace that I wrote less than half a year ago. I couldn't help him
 ;;; at all, because I'd already forgotten the reasons why I did what I did.
 ;;; So I'm going to digest it once again, and comment it sufficiently that
@@ -303,7 +328,7 @@
      (list oldstring)))
   (delete-region (region-beginning) (region-end))
   (unless (white-line-to-point) (newline))
-  (insert (format "\\marginpar{deleted \"%s\"}" orig-string))
+  (insert (format "\\marginpar{deleted ``%s''}" orig-string))
   (newline)
   ;; regexp search puts us back at the end of the marginpar
   (re-search-backward "}"))
@@ -314,7 +339,7 @@
    (let ((inputstring (read-string "Text to insert: " ) ))
      (list inputstring)))
   (unless (white-line-to-point) (newline))
-  (insert (format "\\marginpar{inserted \"%s\"}" new-string))
+  (insert (format "\\marginpar{inserted ``%s''}" new-string))
   (newline)
   (insert new-string)
   (forward-whitespace 1)
@@ -323,6 +348,25 @@
   (move-end-of-line 1)
   (backward-char 1))
 
+(defun mpar-combine ()
+  "With point on same line as a marginpar, combine current marginpar with 
+   previous one. Assumes there is only whitespace preceding the marginpar
+   on the current line, and that there is nothing following the marginpar.
+   ('marginpar' can also be marginparhere throughout)"
+  (interactive)
+  (move-beginning-of-line 1)
+  (re-search-forward "\\\\marginpar\\(here\\)?\\s-*{")
+  (er/mark-inside-pairs)
+  (kill-region (region-beginning) (region-end))
+  (move-beginning-of-line 1)
+  (delete-region (point) (progn (re-search-forward "\n") (point)))
+  (re-search-backward "\\\\marginpar")
+  (re-search-forward "{")
+  (backward-char 1)
+  (forward-sexp 1)
+  (backward-char 1)
+  (insert "\\\\[2pt] ")
+  (yank 1))
 
 (defun comment-copy-region ()
   "Comment out the current region and copy it below (adding newlines if needed)"
@@ -342,42 +386,37 @@
 
 
 
-
-;; expand-region package
-(require 'expand-region)
-(global-set-key (kbd "C-=") 'er/expand-region)
-
-;; embrace package
-
-(require 'embrace)
-(global-set-key (kbd "C-,") #'embrace-commander)
-
-;; (defun my-embrace-LaTeX-mode-hook ()
-;;   (embrace-add-pair-regexp ?s "\\(\\\\left\\|\\\\[bB]ig+l?\\)\\s-*\\(\\[\\|(\\|\\\\{\\)"  "\\(\\\\right\\|\\\\[bB]ig+r?\\)\\s-*\\(\\]\\|)\\|\\\\}\\)" 'embrace-with-size (embrace-build-help  "sized left delim" "sized right delim")))
-(defun my-embrace-LaTeX-mode-hook ()
-  (embrace-add-pair-regexp ?s "\\(\\\\left\\|\\\\[bB]ig+l?\\)"  "\\(\\\\right\\|\\\\[bB]ig+r?\\)" 'embrace-with-size (embrace-build-help  "\\left" "\\right")))
-
-(add-hook 'LaTeX-mode-hook 'my-embrace-LaTeX-mode-hook)
-
 ;; need to have this highlight the match
 (defun embrace-with-size ()
-  (setq lsizeprefs '(
-		    (0 . "")
-		    (1 . "\\bigl")
-		    (2 . "\\Bigl")
-		    (3 . "\\biggl")
-		    (4 . "\\Biggl")
-		    (5 . "\\left")))
-  (setq rsizeprefs '(
-		    (0 . "")
-		    (1 . "\\bigr")
-		    (2 . "\\Bigr")
-		    (3 . "\\biggr")
-		    (4 . "\\Biggr")
-		    (5 . "\\right")))
+  (setq lsizeprefs '((0 . "")
+		     (1 . "\\bigl")
+		     (2 . "\\Bigl")
+		     (3 . "\\biggl")
+		     (4 . "\\Biggl")
+		     (5 . "\\left")))
+  (setq rsizeprefs '((0 . "")
+		     (1 . "\\bigr")
+		     (2 . "\\Bigr")
+		     (3 . "\\biggr")
+		     (4 . "\\Biggr")
+		     (5 . "\\right")))
   (embrace--hide-help-buffer)
   (let ((dsize (string-to-number (char-to-string (read-char-choice "Delimiter size desired (0 --> none, 1 --> \\big, ..., 4 --> \\Bigg, 5--> \\left): " '(?0 ?1 ?2 ?3 ?4 ?5)))) ))
     (cons (cdr (assoc dsize lsizeprefs)) (cdr (assoc dsize rsizeprefs)) )))
+
+(defun embrace-change-sized-delims ()
+    (interactive)
+    (let* ((char ?s)
+	   (overlay (embrace--delete ?s t)))
+    (embrace--insert ?s overlay)))
+
+(defun my-embrace-LaTeX-mode-hook ()
+  (embrace-add-pair-regexp ?s "\\(\\\\left\\>\\|\\\\[bB]ig+l?\\)"  "\\(\\\\right\\>\\|\\\\[bB]ig+r?\\)" 'embrace-with-size (embrace-build-help  "\\left" "\\right")))
+
+(add-hook 'LaTeX-mode-hook 'my-embrace-LaTeX-mode-hook)
+
+
+
 
 
 ;;; so far this works to change existing sizing delims to anything else
@@ -387,7 +426,7 @@
 ;;; 2. write another function that strictly adds sizing to an
 ;;;    an existing pair that doesn't have sizing
 ;;; 3. combine these two into something that can do both
-;;; 4. get it to interact nicely with ntransient-mark-mode
+;;; 4. get it to interact nicely with transient-mark-mode
 
 
 (defun change-delims (dsize)
@@ -445,20 +484,28 @@
 
 
 
-
-
-
-
 ;; set keybindings for msp/tex stuff
 (defun msp-kbd-config ()
   "Set keybindings for MSP/TeX editing. For use in `LaTeX-mode-hook'."
   (local-set-key (kbd "C-c e") 'TeX-error-overview)
+  ;; (local-set-key (kbd "C-x p") 'putpaper)
   (local-set-key (kbd "M-s a") 'azaz)
+  (local-set-key (kbd "M-s m") 'manual-formatting)
   (local-set-key (kbd "M-s r") 'ords)
-  (local-set-key (kbd "C-x p") 'putpaper)
-  (local-set-key (kbd "C-c r") 'mpar-replace)
-  (local-set-key (kbd "C-c d") 'fix-next-sized-delim))
+  (local-set-key (kbd "C-; r") 'mpar-replace)
+  (local-set-key (kbd "C-; d") 'mpar-delete)
+  (local-set-key (kbd "C-; i") 'mpar-insert)
+  (local-set-key (kbd "C-; c") 'mpar-combine)
+  (local-set-key (kbd "C-=") 'er/expand-region)
+  (local-set-key (kbd "C-; p") 'er/mark-inside-pairs)
+  (local-set-key (kbd "C-; m") 'er/mark-LaTeX-math)
+  (local-set-key (kbd "C-; e") 'er/mark-LaTeX-inside-environment)
+  (local-set-key (kbd "C-,") #'embrace-commander)
+  ;; still working on this one
+  ;; (local-set-key (kbd "C-c d") 'fix-next-sized-delim)
+  (local-set-key (kbd "C-; f") 'embrace-change-sized-delims))
 
 ;; actually add the hook so the keyboard is configured
 ;; when LaTeX-mode is entered
 (add-hook 'LaTeX-mode-hook 'msp-kbd-config)
+
