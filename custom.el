@@ -47,10 +47,10 @@
  '(mh-variant "GNU Mailutils 2.99.98")
  '(org-agenda-files
    (quote
-    ("/home/matthew/msp/gt/src/work/150507-McGerty/150507-McGerty.org" "/home/matthew/msp/agt/src/work/160620-MichaelWest/160620-MichaelWest.org" "/home/matthew/msp/agt/src/work/160615-Suzuki/160615-Suzuki.org" "/home/matthew/msp/agt/src/work/160603-Zemke/160603-Zemke.org" "/home/matthew/msp/agt/src/work/160417-SerTan/160417-SerTan.org" "/home/matthew/msp/agt/src/work/150803-Meier/150803-Meier.org" "/home/matthew/msp/agt/src/work/150707-Gainullin/150707-Gainullin.org" "/home/matthew/msp/warwick/warwick.org" "/home/matthew/msp/mspdoc/mspdoc.org")))
+    ("/home/matthew/msp/gt/src/work/161201-Lytchak/161201-Lytchak.org" "/home/matthew/msp/gt/src/work/160922-Spatzier/160922-Spatzier.org" "/home/matthew/msp/gt/src/work/160628-Bernstein/160628-Bernstein.org" "/home/matthew/msp/gt/src/work/151104-Tinaglia/151104-Tinaglia.org" "/home/matthew/msp/gt/src/work/141123-Walsh/141123-Walsh.org" "/home/matthew/msp/gt/src/work/120914-Oblomkov/120914-Oblomkov.org" "/home/matthew/msp/agt/src/work/170106-Wright/170106-Wright.org" "/home/matthew/msp/agt/src/work/161028-Cherednik/161028-Cherednik.org" "/home/matthew/msp/agt/src/work/160802-Scheirer/160802-Scheirer.org" "/home/matthew/msp/agt/src/work/160520-Gluck/160520-Gluck.org" "/home/matthew/msp/agt/src/work/070413-Coffey/070413-Coffey.org" "/home/matthew/msp/orgmode/projects.org")))
  '(package-selected-packages
    (quote
-    (org smart-mode-line rainbow-delimiters python-mode python-info pymacs palette mic-paren magit jedi ipython highlight-current-line expand-region autopair auto-complete-auctex auctex ac-math)))
+    (ace-jump-mode embrace org smart-mode-line rainbow-delimiters python-mode python-info pymacs palette mic-paren magit highlight-current-line expand-region autopair auto-complete-auctex auctex ac-math)))
  '(safe-local-variable-values
    (quote
     ((eval show-all)

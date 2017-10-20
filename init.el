@@ -36,6 +36,9 @@
 ;; so we also have to load that after package-initialize
 (load "msp.el")
 
+(require 'ace-jump-mode)
+(global-set-key (kbd "C-.") 'ace-jump-mode)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  i-do mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -84,6 +87,8 @@
 
 ;; my stuff
 (global-set-key (kbd "C-c c") 'comment-and-kill-ring-save)
+
+
 
 ;; level 1 will require new shortcuts for:
 ;;    * M-u  upcase-word
