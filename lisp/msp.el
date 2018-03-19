@@ -295,7 +295,7 @@
      ; oldstring, and new-string will be whatever we got out of read-string.
      (list
       oldstring
-      (read-string (format "Replace %s with: " oldstring) oldstring))))
+      (read-string (format "Replace \'%s\' with: " oldstring) oldstring))))
   ; Okay, now our arguments are defined. The actual function begins here.
   ; First we delete the highlighted region.
   (delete-region (region-beginning) (region-end))
@@ -508,4 +508,25 @@
 ;; actually add the hook so the keyboard is configured
 ;; when LaTeX-mode is entered
 (add-hook 'LaTeX-mode-hook 'msp-kbd-config)
+
+(defun add-msp-envs ()
+  (add-to-list 'LaTeX-environment-list '("noparthm"))
+  (add-to-list 'LaTeX-environment-list '("squeeze"))
+  (add-to-list 'LaTeX-environment-list '("tcases"))
+  (add-to-list 'LaTeX-environment-list '("fussyeq")))
+(add-hook 'LaTeX-mode-hook 'add-msp-envs)
+
+(defun add-msp-classes ()
+  (add-to-list 'LaTeX-style-list '("agtart"))
+  (add-to-list 'LaTeX-style-list '("akt"))
+  (add-to-list 'LaTeX-style-list '("ant"))
+  (add-to-list 'LaTeX-style-list '("apde"))
+  (add-to-list 'LaTeX-style-list '("camcos"))
+  (add-to-list 'LaTeX-style-list '("gtart_m"))
+  (add-to-list 'LaTeX-style-list '("gtpart"))
+  (add-to-list 'LaTeX-style-list '("involve"))
+  (add-to-list 'LaTeX-style-list '("jomms"))
+  (add-to-list 'LaTeX-style-list '("memocs"))
+  (add-to-list 'LaTeX-style-list '("pjmnew")))
+(add-hook 'LaTeX-mode-hook 'add-msp-classes)
 
