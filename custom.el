@@ -27,10 +27,10 @@
       "http://dx.doi.org/%s"
       ("doi" ".*" 0))
      (("mrkey" . "\\(mr\\)?[0-9]\\{1,8\\}")
-      "http://www.ams.org/mathscinet-getitem?mr=%s"
+      "http://mathscinet.ams.org/mathscinet-getitem?mr=%s"
       ("mrkey" "\\(mr\\)?\\([0-9]\\{1,8\\}\\)" 2))
      (("mrnumber" . "\\(mr\\)?[0-9]\\{1,8\\}")
-      "http://www.ams.org/mathscinet-getitem?mr=%s"
+      "http://mathscinet.ams.org/mathscinet-getitem?mr=%s"
       ("mrnumber" "\\(mr\\)?\\([0-9]\\{1,8\\}\\)" 2))
      (("arxiv" . "\\([0-9]\\{4\\}\\.[0-9]\\{4,5\\}\\|[-a-z]+/[0-9]\\{7\\}\\|[-a-z]+\\.[a-z]\\{2\\}/[0-9]\\{7\\}\\)\\(v[0-9]+\\)?")
       "http://arxiv.org/abs/%s"
@@ -41,16 +41,28 @@
  '(column-number-mode t)
  '(custom-safe-themes
    (quote
-    ("8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "7b4a48ba440cf63b7e9f3183f085a2f306ba8405b7c4c5f74126349cf8fe141f" "c42ef18cfebf144a7c39ec8a95dd268dbe8276b858e793b0a2e8aa3d20e6edb1" "602cf380fedc6ce52b135ffd1be4bfedc96aafd80645844817f3de0b12e6e077" "d6115669a9d0bdde235c33549bab6927910b5f7162a1c618548b59285bdd58f1" "fc43b3ef4682a5826485515cccef323ac71219e0698bed7b8ed806ffb93270df" "009bf2d575807e71e244c2223362bf48f348f05f7d2bf5ed23dc2991fca83ecf" "34543312860bbc58b2fcf4d24a9bdc5c114347f16903ac9d7ae70f3c44616a9e" "9a4aca5cddf34a7f70afe7b1057232d1b86c26daed1e1d7324ea804ba3911fcd" default)))
+    ("bcc6775934c9adf5f3bd1f428326ce0dcd34d743a92df48c128e6438b815b44f" "2a739405edf418b8581dcd176aaf695d319f99e3488224a3c495cb0f9fd814e3" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "7b4a48ba440cf63b7e9f3183f085a2f306ba8405b7c4c5f74126349cf8fe141f" "c42ef18cfebf144a7c39ec8a95dd268dbe8276b858e793b0a2e8aa3d20e6edb1" "602cf380fedc6ce52b135ffd1be4bfedc96aafd80645844817f3de0b12e6e077" "d6115669a9d0bdde235c33549bab6927910b5f7162a1c618548b59285bdd58f1" "fc43b3ef4682a5826485515cccef323ac71219e0698bed7b8ed806ffb93270df" "009bf2d575807e71e244c2223362bf48f348f05f7d2bf5ed23dc2991fca83ecf" "34543312860bbc58b2fcf4d24a9bdc5c114347f16903ac9d7ae70f3c44616a9e" "9a4aca5cddf34a7f70afe7b1057232d1b86c26daed1e1d7324ea804ba3911fcd" default)))
  '(fci-rule-color "#383838")
  '(frame-background-mode (quote dark))
+ '(helm-boring-buffer-regexp-list
+   (quote
+    ("\\` " "\\`\\*helm" "\\`\\*Echo Area" "\\`\\*Minibuf")))
+ '(helm-boring-file-regexp-list
+   (quote
+    ("\\.o$" "~$" "\\.bin$" "\\.lbin$" "\\.so$" "\\.a$" "\\.ln$" "\\.elc$" "\\.glo$" "\\.lot$" "\\.svn/\\|\\.svn$" "\\.hg/\\|\\.hg$" "\\.git/\\|\\.git$" "\\.bzr/\\|\\.bzr$" "CVS/\\|CVS$" "_darcs/\\|_darcs$" "_MTN/\\|_MTN$" "\\.fmt$" "\\.tfm$" "\\.class$" "\\.fas$" "\\.lib$" "\\.mem$" "\\.x86f$" "\\.sparcf$" "\\.dfsl$" "\\.pfsl$" "\\.d64fsl$" "\\.p64fsl$" "\\.lx64fsl$" "\\.lx32fsl$" "\\.dx64fsl$" "\\.dx32fsl$" "\\.fx64fsl$" "\\.fx32fsl$" "\\.sx64fsl$" "\\.sx32fsl$" "\\.wx64fsl$" "\\.wx32fsl$" "\\.fasl$" "\\.ufsl$" "\\.fsl$" "\\.dxl$" "\\.lo$" "\\.la$" "\\.gmo$" "\\.mo$" "\\.cp$" "\\.fn$" "\\.ky$" "\\.pg$" "\\.tp$" "\\.vr$" "\\.cps$" "\\.fns$" "\\.kys$" "\\.pgs$" "\\.tps$" "\\.vrs$" "\\.pyc$" "\\.pyo$")))
+ '(helm-buffer-max-length 30)
+ '(helm-buffers-end-truncated-string "…")
+ '(helm-buffers-truncate-lines t)
+ '(helm-moccur-show-buffer-fontification t)
+ '(helm-moccur-truncate-lines nil)
  '(mh-variant "GNU Mailutils 2.99.98")
  '(org-agenda-files
    (quote
-    ("/home/matthew/msp/gt/src/work/161201-Lytchak/161201-Lytchak.org" "/home/matthew/msp/gt/src/work/160922-Spatzier/160922-Spatzier.org" "/home/matthew/msp/gt/src/work/160628-Bernstein/160628-Bernstein.org" "/home/matthew/msp/gt/src/work/151104-Tinaglia/151104-Tinaglia.org" "/home/matthew/msp/gt/src/work/141123-Walsh/141123-Walsh.org" "/home/matthew/msp/gt/src/work/120914-Oblomkov/120914-Oblomkov.org" "/home/matthew/msp/agt/src/work/170106-Wright/170106-Wright.org" "/home/matthew/msp/agt/src/work/161028-Cherednik/161028-Cherednik.org" "/home/matthew/msp/agt/src/work/160802-Scheirer/160802-Scheirer.org" "/home/matthew/msp/agt/src/work/160520-Gluck/160520-Gluck.org" "/home/matthew/msp/agt/src/work/070413-Coffey/070413-Coffey.org" "/home/matthew/msp/orgmode/projects.org")))
+    ("/home/matthew/msp/gt/src/work/161012-Moller/161012-Moller.org" "/home/matthew/msp/gt/src/work/160926-Danciger/160926-Danciger.org" "/home/matthew/msp/gt/src/work/160819-Ormsby/160819-Ormsby.org" "/home/matthew/msp/gt/src/work/130426-Barwick/130426-Barwick.org" "/home/matthew/msp/agt/src/work/170830-Wilson/170830-Wilson.org" "/home/matthew/msp/agt/src/work/170829-Jabuka/170829-Jabuka.org" "/home/matthew/msp/agt/src/work/170718-Quesney/170718-Quesney.org" "/home/matthew/msp/agt/src/work/170331-leichen/170331-leichen.org" "/home/matthew/msp/agt/src/work/170330-Mikhailov/170330-Mikhailov.org" "/home/matthew/msp/agt/src/work/170123-Hayano/170123-Hayano.org" "/home/matthew/msp/agt/src/work/170115-Nelson/170115-Nelson.org" "/home/matthew/msp/agt/src/work/170104-Douglas/170104-Douglas.org" "/home/matthew/msp/agt/src/work/160716-Tomova/160716-Tomova.org" "/home/matthew/msp/agt/src/work/160520-Gluck/160520-Gluck.org" "/home/matthew/msp/agt/src/work/160426-Kuperberg-2/160426-Kuperberg-2.org" "/home/matthew/msp/agt/src/work/160125-CarmenRovi/160125-CarmenRovi.org" "/home/matthew/msp/agt/src/work/141125-ZhenkunLi/141125-ZhenkunLi.org" "/home/matthew/msp/agt/src/work/070413-Coffey/070413-Coffey.org" "/home/matthew/msp/orgmode/projects.org")))
  '(package-selected-packages
    (quote
-    (ace-jump-mode embrace org smart-mode-line rainbow-delimiters python-mode python-info pymacs palette mic-paren magit highlight-current-line expand-region autopair auto-complete-auctex auctex ac-math)))
+    (helm-projectile ag helm-ag zen-and-art-theme hc-zenburn-theme zenburn-theme undo-tree unicode-fonts iedit wgrep-helm helm ace-jump-mode embrace org smart-mode-line rainbow-delimiters python-mode python-info pymacs palette mic-paren magit highlight-current-line expand-region autopair auto-complete-auctex auctex ac-math)))
+ '(py-split-window-on-execute t)
  '(safe-local-variable-values
    (quote
     ((eval show-all)
