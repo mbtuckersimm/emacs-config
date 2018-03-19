@@ -42,15 +42,46 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  i-do mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require 'ido)
-(setq ido-save-directory-list-file "/home/matthew/.emacs.d/.ido.last")
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(setq ido-auto-merge-work-directories-length -1)
-(setq ido-file-extensions-order '(".tex" ".bib" ".log" ".cls" ".sty"))
-(setq ido-separator "\n")
-(ido-mode t)
+;; (require 'ido)
+;; (setq ido-save-directory-list-file "/home/matthew/.emacs.d/.ido.last")
+;; (setq ido-enable-flex-matching t)
+;; (setq ido-everywhere t)
+;; (setq ido-auto-merge-work-directories-length -1)
+;; (setq ido-file-extensions-order '(".tex" ".bib" ".log" ".cls" ".sty"))
+;; (setq ido-separator "\n")
+;; (ido-mode t)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Helm mode
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'helm-config)
+
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-h a") 'helm-apropos)
+(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+(global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "C-x c g") 'helm-google-suggest)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "M-s o") 'helm-occur)
+
+(setq helm-M-x-fuzzy-match        t
+      helm-buffers-fuzzy-matching t
+      helm-recentf-fuzzy-match    t
+      helm-ff-fuzzy-matching      t
+      helm-mode-fuzzy-match       t)
+
+(helm-mode 1)
+
+;; helm projectile
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+
+
+;; undo-tree
+(require 'undo-tree)
 
 ;;; YASnippet ;;;
 
@@ -58,10 +89,7 @@
 (add-to-list 'load-path "/home/matthew/.emacs.d/snippets/")
 (require 'yasnippet) ;; not yasnippet-bundle
 (yas-global-mode 1)
-;(yas/initialize)
-;(yas-load-directory yas-load-dir)
-;; (setq yas-triggers-in-field t); Enable nested triggering of snippets
-;; (setq yas/wrap-around-region t); Allow snippets to wrap around region - couldn't figure out.
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end YASnippet stuff
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -89,14 +117,14 @@
 (global-set-key (kbd "C-c c") 'comment-and-kill-ring-save)
 
 
-
+;; ergo-emacs mode
 ;; level 1 will require new shortcuts for:
 ;;    * M-u  upcase-word
 ;;    * M-l  downcase-word
 ;; (setq ergoemacs-theme "lvl1")
 ;; (setq ergoemacs-keyboard-layout "us")
 ;; (require 'ergoemacs-mode)
-;; (ergoemacs-mode 1)
+;; (ergoemacs-mode t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end keybindings
@@ -106,10 +134,13 @@
 ;;  APPEARANCE SETTINGS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; unicode font support
+(require 'unicode-fonts)
+(unicode-fonts-setup)
+
 ;; ZenBurn color theme
-;; to change the highlight-line color, it is under the hl-line-mode
-;; settings in zenburn-theme.el
-;; (load-theme 'zenburn t)
+;; (load-theme 'hc-zenburn t)
+;; (load-theme 'solarized-dark t)
 
 ;; solarized color theme
 ;; have a setting in custom.el that helps load the dark theme
@@ -223,7 +254,7 @@
 (scroll-bar-mode -1)
 (horizontal-scroll-bar-mode -1)
 (transient-mark-mode 1)
-(delete-selection-mode 1)
+;; (delete-selection-mode 1)
 
 ;; Allows to move through mark ring with C-<SPC> after one initial C-u C-<SPC>
 (setq set-mark-command-repeat-pop t)
@@ -293,6 +324,9 @@
 ;; not sure what this is: was told to put it in by auctex QuickStart documentation
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
+
+;; disable annoying comment behavior
+(setq LaTeX-syntactic-comments nil)
 
 ;; set fill-prefix to nothing in bibtex mode
 (add-hook 'bibtex-mode-hook
@@ -384,15 +418,6 @@
      (setq reftex-label-alist '(AMSTeX))))
 
 
-;;; Auto-Complete ;;;
-;; (add-to-list 'load-path "~/.emacs.d/elpa/auto-complete-20140519.650")
-;; (require 'auto-complete) 
-;; (add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-20140519.650/dict")
-;; (require 'auto-complete-config) 
-;; (ac-config-default)
-;; (global-auto-complete-mode t)
-
-;; (provide 'auto-complete-settings)
 
 
 ;;; miscellaneous ;;;
