@@ -13,7 +13,6 @@
 
 (add-to-list 'load-path "/home/matthew/.emacs.d/lisp/")
 
-;; various general appearance/functionality settings
 (tool-bar-mode -1)
 (line-number-mode 1)
 (column-number-mode 1)
@@ -24,6 +23,7 @@
 (display-time-mode 1)
 (size-indication-mode t)
 (setq blink-cursor-blinks 0)
+(setq require-final-newline t)
 
 ;; move through mark ring with C-<SPC> after one initial C-u C-<SPC>
 (setq set-mark-command-repeat-pop t)
@@ -233,16 +233,12 @@
 (add-to-list 'sml/replacer-regexp-list '("^~/msp/warwick/gtpub/" ":GTPUB:") t)
 (add-to-list 'sml/replacer-regexp-list '("^~/msp/warwick/agtpub/" ":AGTPUB:") t)
 
-
-;; highlight the current line
 (require 'highlight-current-line)
 (global-hl-line-mode t)
 (setq highlight-current-line-globally t)
 (setq highlight-current-line-high-faces nil)
 (setq highlight-current-line-whole-line nil)
-;; (setq hl-line-face (quote highlight))
 
-; text decoration
 (require 'font-lock)
 (setq font-lock-maximum-decoration t)
 (global-font-lock-mode t)
@@ -250,26 +246,16 @@
 (setq jit-lock-contextually t)
 (setq jit-lock-stealth-verbose t)
 
-
-(require 'mic-paren) ; loading
-(paren-activate)     ; activating
-;; (setq paren-match-face 'highlight)
+(require 'mic-paren)
+(paren-activate)
 (setq paren-sexp-mode t)
-(add-hook 'LaTeX-mode-hook
-	  (function (lambda ()
-		      (paren-toggle-matching-quoted-paren 1)
-		      (paren-rtoggle-matching-paired-delimiter 1))))
-
 
 (require 'rainbow-delimiters)
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 (add-hook 'LaTeX-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'python-mode-hook 'rainbow-delimiters-mode)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end appearance
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -279,12 +265,8 @@
 ;; Require cases to match when replacing
 (setq case-replace t)
 
-(setq require-final-newline t)
-
-
 (setq ispell-program-name "aspell")
 (setq ispell-list-command "list")
-
 
 ;; make > into a comment character in text mode
 ;; (useful for quoting stuff in email replies, eg)
@@ -315,8 +297,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  language-specific stuff
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; TeX setup moved to separate file since it's bulky
 (load "tex-config.el")
@@ -332,3 +315,6 @@
 
 ;; Perl
 (defalias 'perl-mode 'cperl-mode)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  end language-specific stuff
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

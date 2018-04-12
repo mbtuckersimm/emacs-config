@@ -1,5 +1,12 @@
 ;;; AUCTeX AND MATH SETTINGS ;;;
 
+;; make $ and $$ pair properly in LaTeX mode
+(add-hook 'LaTeX-mode-hook
+	  (function (lambda ()
+		      (paren-toggle-matching-quoted-paren 1)
+		      (paren-rtoggle-matching-paired-delimiter 1))))
+
+
 ;; Math mode for LaTeX
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 
