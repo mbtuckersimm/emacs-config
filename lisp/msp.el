@@ -17,30 +17,11 @@
 (setenv "MSPHOME" "Documents/msp")
 (setq vc-rcs-checkin-switches '("-l" "-d"))
 
-;; expand-region package
-(require 'expand-region)
-(global-set-key (kbd "C-=") 'er/expand-region)
-
-
 (defun expand-region-LaTeX-mode-hook ()
   (require 'latex-mode-expansions)
   (er/add-latex-mode-expansions))
 
 (add-hook 'LaTeX-mode-hook 'expand-region-LaTeX-mode-hook)
-
-;; workaround needed for expand-region to interact nicely
-;; with transient-mark-mode
-(setq shift-select-mode nil)
-
-;; embrace package
-(require 'embrace)
-(global-set-key (kbd "C-,") #'embrace-commander)
-
-;; fastnav a bit too much at this point, maybe later
-;; (require 'fastnav)
-
-(require 'hl-sexp)
-
 
 (eval-after-load "vc"
   '(defun vc-steal-lock (file rev owner)

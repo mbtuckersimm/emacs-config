@@ -1,6 +1,8 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  basic setup
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
-
 (server-start)
 
 ;; this stuff changes the locations for autosaves and backups
@@ -9,52 +11,62 @@
 (setq auto-save-file-name-transforms
       `((".*" ,"/home/matthew/.emacs.d/autosaves/" t)))
 
-
 (add-to-list 'load-path "/home/matthew/.emacs.d/lisp/")
-
-;; (setq debug-on-quit t)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  end basic setup
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  PACKAGE REPO SETTINGS
+;;  package settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'package)
-(setq package-archives '(("ELPA" . "http://tromey.com/elpa/") 
+(setq package-archives '(("elpa" . "http://tromey.com/elpa/") 
                           ("gnu" . "http://elpa.gnu.org/packages/")
                           ("marmalade" . "http://marmalade-repo.org/packages/")
-			  ("melpa" . "http://melpa.milkbox.net/packages/")))
+			  ("melpa" . "http://melpa.milkbox.net/packages/")
+			  ("melpa-stable" . "https://stable.melpa.org/packages/")))
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 
 ;; load self-installed packages 
 (package-initialize)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  end package settings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; because we're using a newer version of org-mode downloaded from elpa,
-;; and org-setup.el contains code that only works with the new version,
-;; we have to load org-setup *after* initializing packages
-(load "org-setup.el")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  originally from msp.el
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; msp.el contains code pertaining to some of the elpa packages,
 ;; so we also have to load that after package-initialize
-(load "msp.el")
+;; (load "msp.el")
+
+;; expand-region package
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+(global-set-key (kbd "C-; p") 'er/mark-inside-pairs)
+
+;; workaround needed for expand-region to interact nicely
+;; with transient-mark-mode
+(setq shift-select-mode nil)
+
+(require 'embrace)
+(global-set-key (kbd "C-,") #'embrace-commander)
+
+(require 'hl-sexp)
 
 (require 'ace-jump-mode)
 (global-set-key (kbd "C-.") 'ace-jump-mode)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  i-do mode
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (require 'ido)
-;; (setq ido-save-directory-list-file "/home/matthew/.emacs.d/.ido.last")
-;; (setq ido-enable-flex-matching t)
-;; (setq ido-everywhere t)
-;; (setq ido-auto-merge-work-directories-length -1)
-;; (setq ido-file-extensions-order '(".tex" ".bib" ".log" ".cls" ".sty"))
-;; (setq ido-separator "\n")
-;; (ido-mode t)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  Helm mode
+;;  end msp.el
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  helm 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'helm-config)
 
 (global-set-key (kbd "M-x") 'helm-M-x)
@@ -78,20 +90,19 @@
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  end Helm 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-;; undo-tree
-(require 'undo-tree)
-
-;;; YASnippet ;;;
-
-;; Set YASnippet load-directory
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;   YASnippet
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-to-list 'load-path "/home/matthew/.emacs.d/snippets/")
 (require 'yasnippet) ;; not yasnippet-bundle
 (yas-global-mode 1)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  end YASnippet stuff
+;;  end YASnippet
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
@@ -107,28 +118,44 @@
 (global-set-key (kbd "M-s c") 'how-many)
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
-(global-set-key (kbd "M-s n") 'occur-next-occurrence)
-(global-set-key (kbd "M-s p") 'occur-prev-occurrence)
-
-;; org-mode
-(global-set-key (kbd "C-c l") 'org-store-link)
-
-;; my stuff
-(global-set-key (kbd "C-c c") 'comment-and-kill-ring-save)
-
-
-;; ergo-emacs mode
-;; level 1 will require new shortcuts for:
-;;    * M-u  upcase-word
-;;    * M-l  downcase-word
-;; (setq ergoemacs-theme "lvl1")
-;; (setq ergoemacs-keyboard-layout "us")
-;; (require 'ergoemacs-mode)
-;; (ergoemacs-mode t)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end keybindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  org
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "\C-c a") 'org-agenda)
+(setq org-agenda-files '("/home/matthew/msp/orgmode/"))
+(setq org-agenda-restore-windows-after-quit t)
+(require 'org)
+
+;; languages to allow for code block execution
+(org-babel-do-load-languages
+      'org-babel-load-languages
+      '((emacs-lisp . t)
+        (sh . t)
+	(shell . t)
+	(perl . t)
+	(python . t)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  end org
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+;; my stuff
+(defun comment-and-kill-ring-save ()
+  "Copy the current region into the kill ring and then comment it out"
+  (interactive)
+  (save-excursion
+    (kill-ring-save (region-beginning) (region-end))
+    (comment-region (region-beginning) (region-end))))
+(global-set-key (kbd "C-c c") 'comment-and-kill-ring-save)
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  APPEARANCE SETTINGS
@@ -138,20 +165,15 @@
 (require 'unicode-fonts)
 (unicode-fonts-setup)
 
-;; ZenBurn color theme
-;; (load-theme 'hc-zenburn t)
-;; (load-theme 'solarized-dark t)
-
 ;; solarized color theme
 ;; have a setting in custom.el that helps load the dark theme
+;; (add-to-list 'custom-theme-load-path "/home/matthew/.emacs.d/themes/solarized/")
+;; (load-theme 'solarized t)
 
-(add-to-list 'custom-theme-load-path "/home/matthew/.emacs.d/themes/solarized/")
-(load-theme 'solarized t)
+(load-theme 'atom-one-dark t)
 
-(display-time-mode 1)
 
 ;; smart-mode-line settings
-
 (setq sml/theme 'dark)
 ;; (setq sml/theme 'light)
 ;; (setq sml/theme 'respectful)
@@ -188,18 +210,15 @@
 (add-to-list 'sml/replacer-regexp-list '("^~/msp/warwick/gtpub/" ":GTPUB:") t)
 (add-to-list 'sml/replacer-regexp-list '("^~/msp/warwick/agtpub/" ":AGTPUB:") t)
 
-
 (setq blink-cursor-blinks 0)
 
 ;; highlight the current line
-;; (add-to-list 'load-path "/home/matthew/.emacs.d/elpa/highlight-current-line-20051013.1756")
 (require 'highlight-current-line)
 (global-hl-line-mode t)
 (setq highlight-current-line-globally t)
 (setq highlight-current-line-high-faces nil)
 (setq highlight-current-line-whole-line nil)
-(setq hl-line-face (quote highlight))
-
+;; (setq hl-line-face (quote highlight))
 
 ; text decoration
 (require 'font-lock)
@@ -212,7 +231,6 @@
 ; if there is size information associated with text, change the text
 ; size to reflect it
 (size-indication-mode t)
-
 
 (require 'mic-paren) ; loading
 (paren-activate)     ; activating
@@ -240,7 +258,7 @@
 (setq desktop-dirname "~/.emacs.d/desktop")
 (setq desktop-base-file-name "emacsdesktop-save")
 (setq desktop-base-lock-name "lock")
-(setq desktop-auto-save-timeout 120)
+(setq desktop-auto-save-timeout 300)
 (setq desktop-path (list desktop-dirname))
 (setq desktop-save t)
 (desktop-save-mode 1)
@@ -254,6 +272,7 @@
 (scroll-bar-mode -1)
 (horizontal-scroll-bar-mode -1)
 (transient-mark-mode 1)
+(display-time-mode 1)
 ;; (delete-selection-mode 1)
 
 ;; Allows to move through mark ring with C-<SPC> after one initial C-u C-<SPC>
@@ -262,12 +281,12 @@
 ;; displays filename (or buffername if no filename) in title bar
 (setq frame-title-format '(buffer-file-name "%f" ("%b")))
 
-
 ;; turn on Rainbow Delimiters
 (require 'rainbow-delimiters)
 (add-hook 'LaTeX-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'python-mode-hook 'rainbow-delimiters-mode)
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -299,128 +318,18 @@
 (add-hook 'LaTeX-mode-hook (lambda ()
             (set (make-local-variable 'comment-start) "%")))
 
-;;; AUCTeX AND MATH SETTINGS ;;;
 
-;; Math mode for LaTeX
-(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+;; TeX setup moved to separate file since it's bulky
+(load "tex-config.el")
 
-;; spellcheck in LaTeX mode
-;; (add-hook 'LaTeX-mode-hook 'flyspell-mode)
-
-;; make pdflatex the default
-(add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
-
-;; hopefully this should make autopair work with dollar signs
-(add-hook 'LaTeX-mode-hook
-          #'(lambda ()
-              (modify-syntax-entry ?$ "\"")))
-
-;; make links clickable in LaTeX mode
-(add-hook 'LaTeX-mode-hook 'goto-address-mode)
-
-;; set LaTeX-command
-(setq-default LaTeX-command "latex -file-line-error-style -synctex=1")
-
-;; not sure what this is: was told to put it in by auctex QuickStart documentation
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
-
-;; disable annoying comment behavior
-(setq LaTeX-syntactic-comments nil)
-
-;; set fill-prefix to nothing in bibtex mode
-(add-hook 'bibtex-mode-hook
-	  (function (lambda ()
-		      (setq fill-prefix nil))))
-
-
-;; Have AUCTeX report warnings as well as errors.
-; (add-hook 'LaTeX-mode-hook 'TeX-toggle-debug-warnings)
-
-;; makes emacs query for the master-file when creating a tex file
-;; (setq-default TeX-master nil)
-
-;; Make emacs go into LaTeX-mode when editing .pdf_tex files 
-(add-to-list 'auto-mode-alist '("\\.pdf_tex\\'" . LaTeX-mode))
-
-;; teach auctex about various msp and ams macros
-(setq font-latex-match-function-keywords
-      '(
-	("alterref" "{{")
-	("eqalign" "{")
-	("eqaligntop" "{")
-	("eqalignbot" "{")
-	("displaylines")
-	("def")
-	("let")
-	("qandq")
-	("qr")
-	("email" "{")
-	("keyword" "{")
-	("subject" "{{{")
-	("numberwithin" "{{")
-	("AtBeginDocument" "{")
-	("hypertarget" "{{")
-	("hyperlink" "{{")
-	("includegraphics" "[{")
-	("labellist")
-	("endlabellist")
-	("vadjust" "{")
-	("vspace")
-	("qua")
-))
-
-(setq font-latex-match-textual-keywords
-      '(
-	("marginpar")
-	("marginparhere")
-))
-
-(setq font-latex-match-reference-keywords 
-    '(
-	   ("fullref" "{") 
-	   ("citeyear" "[{") 
-	   ("citeNP" "[{") 
-	   ("citeyearNP" "[{") 
-	   ("citeN" "[{") 
-	   ("citeANP" "{")
-	   ("citeib" "[[{")
-))
-
-(setq font-latex-match-warning-keywords
-      '(("redden" "{")
-	("cr")
-	("vspace*")
-	("begingroup")
-	("endgroup")))
-
-
-;;; SyncTeX ;;;
-
-;; synctex settings all in custom.el now
-
-
-;;; RefTeX settings ;;;
-
-;; activate RefTeX and make it interact with AUCTeX
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-(setq reftex-plug-into-auctex t)
-
-;; don't prompt with intermediate menu
-(setq reftex-ref-macro-prompt nil)
-
-;; tell RefTeX about MSP style refs (fullref)
-(eval-after-load "reftex"
-  '(progn
-     (add-to-list 'reftex-ref-style-alist
-      '("MSP" t (("\\fullref" ?f) ("\\ref" ?r) ("\\eqref" ?e) ("\\pageref" ?p))))
-     (setq reftex-ref-style-default-list '("MSP"))
-     (setq reftex-label-alist '(AMSTeX))))
-
-
-
-
-;;; miscellaneous ;;;
-(add-to-list 'auto-mode-alist '("\\.plx\\'" . perl-mode))
+;; Python setup
+(elpy-enable)
 (setq python-shell-interpreter "python3")
-(setq py-shell-name "python3")
+(setq elpy-rpc-python-command "python3")
+(setq python-shell-interpreter-args "-i")
+(setq py-shell-name "Python shell")
+(setq elpy-shell-echo-input nil)
+(setq elpy-shell-display-buffer-after-send t)
+
+;; Perl
+(defalias 'perl-mode 'cperl-mode)
