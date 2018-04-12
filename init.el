@@ -22,8 +22,8 @@
 (horizontal-scroll-bar-mode -1)
 (transient-mark-mode 1)
 (display-time-mode 1)
+(size-indication-mode t)
 (setq blink-cursor-blinks 0)
-;; (delete-selection-mode 1)
 
 ;; move through mark ring with C-<SPC> after one initial C-u C-<SPC>
 (setq set-mark-command-repeat-pop t)
@@ -59,9 +59,7 @@
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 (global-set-key (kbd "C-; p") 'er/mark-inside-pairs)
-
-;; workaround needed for expand-region to interact nicely
-;; with transient-mark-mode
+;; workaround for expand-region to interact nicely with transient-mark-mode
 (setq shift-select-mode nil)
 
 (require 'embrace)
@@ -78,8 +76,28 @@
 
 (require 'unicode-fonts)
 (unicode-fonts-setup)
+
+(require 'autopair)
+(autopair-global-mode) 
+(setq autopair-autowrap t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end packages 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  desktop mode
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq desktop-dirname "~/.emacs.d/desktop")
+(setq desktop-base-file-name "emacsdesktop-save")
+(setq desktop-base-lock-name "lock")
+(setq desktop-auto-save-timeout 300)
+(setq desktop-path (list desktop-dirname))
+(setq desktop-save t)
+(desktop-save-mode 1)
+(add-hook 'auto-save-hook (lambda () (desktop-save-in-desktop-dir)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  end desktop mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
@@ -137,6 +155,27 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  shell mode
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; stop editor from breaking line into fields
+(setq comint-use-prompt-regexp t)
+
+;; Add colors when running the shell
+(require 'ansi-color)
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+(add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
+
+;; directory tracking in shell-mode
+;; we want to use the dirtrack package rather than shell-dirtrack-mode
+(setq dirtrack-list '("^.*?:\\(.*\\)\n" 1 nil))
+(add-hook 'shell-mode-hook 'dirtrack-mode)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  end shell mode
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  global keybindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (global-set-key (kbd "<f5>") 'revert-buffer)
@@ -152,30 +191,16 @@
 ;;  end keybindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; my stuff
-(defun comment-and-kill-ring-save ()
-  "Copy the current region into the kill ring and then comment it out"
-  (interactive)
-  (save-excursion
-    (kill-ring-save (region-beginning) (region-end))
-    (comment-region (region-beginning) (region-end))))
-(global-set-key (kbd "C-c c") 'comment-and-kill-ring-save)
-
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  APPEARANCE SETTINGS
+;;  appearance
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (load-theme 'atom-one-dark t)
 ;; had this setting in custom.el that helps load the dark solarized theme
 ; '(frame-background-mode (quote dark))
 ;; (add-to-list 'custom-theme-load-path "/home/matthew/.emacs.d/themes/solarized/")
 ;; (load-theme 'solarized t)
 
-
-;; smart-mode-line settings
-(setq sml/theme 'dark) ;; (setq sml/theme 'light) ;; (setq sml/theme 'respectful)
+(setq sml/theme 'dark) ;; can use one of 'dark, 'light or 'respectful
 (sml/setup)
 (setq sml/name-width 35)
 (setq sml/mode-width 'full)
@@ -225,9 +250,6 @@
 (setq jit-lock-contextually t)
 (setq jit-lock-stealth-verbose t)
 
-; if there is size information associated with text, change the text
-; size to reflect it
-(size-indication-mode t)
 
 (require 'mic-paren) ; loading
 (paren-activate)     ; activating
@@ -236,42 +258,22 @@
 (add-hook 'LaTeX-mode-hook
 	  (function (lambda ()
 		      (paren-toggle-matching-quoted-paren 1)
-		      (paren-toggle-matching-paired-delimiter 1))))
-
-;; stop editor from breaking line into fields
-(setq comint-use-prompt-regexp t)
-
-;; Add colors when running the shell
-(require 'ansi-color)
-(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-(add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
-
-;; directory tracking in shell-mode
-;; we want to use the dirtrack package rather than shell-dirtrack-mode
-(setq dirtrack-list '("^.*?:\\(.*\\)\n" 1 nil))
-(add-hook 'shell-mode-hook 'dirtrack-mode)
-
-;; save and restore desktop state
-(setq desktop-dirname "~/.emacs.d/desktop")
-(setq desktop-base-file-name "emacsdesktop-save")
-(setq desktop-base-lock-name "lock")
-(setq desktop-auto-save-timeout 300)
-(setq desktop-path (list desktop-dirname))
-(setq desktop-save t)
-(desktop-save-mode 1)
-(add-hook 'auto-save-hook (lambda () (desktop-save-in-desktop-dir)))
+		      (paren-rtoggle-matching-paired-delimiter 1))))
 
 
-;; turn on Rainbow Delimiters
 (require 'rainbow-delimiters)
 (add-hook 'LaTeX-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'python-mode-hook 'rainbow-delimiters-mode)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  end appearance
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  TEXT-EDITING SETTINGS
+;;  text-editing
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Require cases to match when replacing
@@ -279,11 +281,6 @@
 
 (setq require-final-newline t)
 
-;; turns on AutoPair
-(require 'autopair)
-(autopair-global-mode) ;; enable autopair in all buffers 
-;; enable auto-wrap for AutoPair
-(setq autopair-autowrap t)
 
 (setq ispell-program-name "aspell")
 (setq ispell-list-command "list")
@@ -298,6 +295,27 @@
 ;; otherwise the previous setting overrides it
 (add-hook 'LaTeX-mode-hook (lambda ()
             (set (make-local-variable 'comment-start) "%")))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  end text-editing
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  custom functions (move to other file?)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun comment-and-kill-ring-save ()
+  "Copy the current region into the kill ring and then comment it out"
+  (interactive)
+  (save-excursion
+    (kill-ring-save (region-beginning) (region-end))
+    (comment-region (region-beginning) (region-end))))
+(global-set-key (kbd "C-c c") 'comment-and-kill-ring-save)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  end custom functions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
 
 
 ;; TeX setup moved to separate file since it's bulky
