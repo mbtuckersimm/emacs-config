@@ -12,39 +12,51 @@
       `((".*" ,"/home/matthew/.emacs.d/autosaves/" t)))
 
 (add-to-list 'load-path "/home/matthew/.emacs.d/lisp/")
+
+;; various general appearance/functionality settings
+(tool-bar-mode -1)
+(line-number-mode 1)
+(column-number-mode 1)
+(mouse-wheel-mode t)
+(scroll-bar-mode -1)
+(horizontal-scroll-bar-mode -1)
+(transient-mark-mode 1)
+(display-time-mode 1)
+(setq blink-cursor-blinks 0)
+;; (delete-selection-mode 1)
+
+;; move through mark ring with C-<SPC> after one initial C-u C-<SPC>
+(setq set-mark-command-repeat-pop t)
+
+;; displays filename (or buffername if no filename) in title bar
+(setq frame-title-format '(buffer-file-name "%f" ("%b")))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end basic setup
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  package settings
+;;  package manager
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'package)
 (setq package-archives '(("elpa" . "http://tromey.com/elpa/") 
                           ("gnu" . "http://elpa.gnu.org/packages/")
                           ("marmalade" . "http://marmalade-repo.org/packages/")
-			  ("melpa" . "http://melpa.milkbox.net/packages/")
-			  ("melpa-stable" . "https://stable.melpa.org/packages/")))
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+         		  ("melpa" . "http://melpa.milkbox.net/packages/")
+	        	  ("melpa-stable" . "https://stable.melpa.org/packages/")
+		          ("org" . "http://orgmode.org/elpa/")))
 
 ;; load self-installed packages 
 (package-initialize)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  end package settings
+;;  end package manager
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  originally from msp.el
+;;  packages with minimal config
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; msp.el contains code pertaining to some of the elpa packages,
-;; so we also have to load that after package-initialize
-;; (load "msp.el")
-
-;; expand-region package
 (require 'expand-region)
-(global-set-key (kbd "C-=") 'er/expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 (global-set-key (kbd "C-; p") 'er/mark-inside-pairs)
 
@@ -59,8 +71,15 @@
 
 (require 'ace-jump-mode)
 (global-set-key (kbd "C-.") 'ace-jump-mode)
+
+(add-to-list 'load-path "/home/matthew/.emacs.d/snippets/")
+(require 'yasnippet) 
+(yas-global-mode 1)
+
+(require 'unicode-fonts)
+(unicode-fonts-setup)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  end msp.el
+;;  end packages 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
@@ -91,35 +110,7 @@
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  end Helm 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;   YASnippet
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "/home/matthew/.emacs.d/snippets/")
-(require 'yasnippet) ;; not yasnippet-bundle
-(yas-global-mode 1)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  end YASnippet
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  global keybindings
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(global-set-key (kbd "<f5>") 'revert-buffer)
-(global-set-key (kbd "<f6>") 'split-window-horizontally)
-(global-set-key (kbd "M-[") 'backward-paragraph)
-(global-set-key (kbd "M-]") 'forward-paragraph)
-(global-set-key (kbd "C-c ;") 'comment-or-uncomment-region)
-(global-set-key (kbd "M-s f") 'flush-lines)
-(global-set-key (kbd "M-s c") 'how-many)
-(global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  end keybindings
+;;  end helm 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
@@ -145,6 +136,21 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  global keybindings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(global-set-key (kbd "<f5>") 'revert-buffer)
+(global-set-key (kbd "<f6>") 'split-window-horizontally)
+(global-set-key (kbd "M-[") 'backward-paragraph)
+(global-set-key (kbd "M-]") 'forward-paragraph)
+(global-set-key (kbd "C-c ;") 'comment-or-uncomment-region)
+(global-set-key (kbd "M-s f") 'flush-lines)
+(global-set-key (kbd "M-s c") 'how-many)
+(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  end keybindings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; my stuff
 (defun comment-and-kill-ring-save ()
@@ -161,23 +167,15 @@
 ;;  APPEARANCE SETTINGS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; unicode font support
-(require 'unicode-fonts)
-(unicode-fonts-setup)
-
-;; solarized color theme
-;; have a setting in custom.el that helps load the dark theme
+(load-theme 'atom-one-dark t)
+;; had this setting in custom.el that helps load the dark solarized theme
+; '(frame-background-mode (quote dark))
 ;; (add-to-list 'custom-theme-load-path "/home/matthew/.emacs.d/themes/solarized/")
 ;; (load-theme 'solarized t)
 
-(load-theme 'atom-one-dark t)
-
 
 ;; smart-mode-line settings
-(setq sml/theme 'dark)
-;; (setq sml/theme 'light)
-;; (setq sml/theme 'respectful)
-
+(setq sml/theme 'dark) ;; (setq sml/theme 'light) ;; (setq sml/theme 'respectful)
 (sml/setup)
 (setq sml/name-width 35)
 (setq sml/mode-width 'full)
@@ -210,7 +208,6 @@
 (add-to-list 'sml/replacer-regexp-list '("^~/msp/warwick/gtpub/" ":GTPUB:") t)
 (add-to-list 'sml/replacer-regexp-list '("^~/msp/warwick/agtpub/" ":AGTPUB:") t)
 
-(setq blink-cursor-blinks 0)
 
 ;; highlight the current line
 (require 'highlight-current-line)
@@ -264,22 +261,6 @@
 (desktop-save-mode 1)
 (add-hook 'auto-save-hook (lambda () (desktop-save-in-desktop-dir)))
 
-;; various general appearance/functionality settings
-(tool-bar-mode -1)
-(line-number-mode 1)
-(column-number-mode 1)
-(mouse-wheel-mode t)
-(scroll-bar-mode -1)
-(horizontal-scroll-bar-mode -1)
-(transient-mark-mode 1)
-(display-time-mode 1)
-;; (delete-selection-mode 1)
-
-;; Allows to move through mark ring with C-<SPC> after one initial C-u C-<SPC>
-(setq set-mark-command-repeat-pop t)
-
-;; displays filename (or buffername if no filename) in title bar
-(setq frame-title-format '(buffer-file-name "%f" ("%b")))
 
 ;; turn on Rainbow Delimiters
 (require 'rainbow-delimiters)
