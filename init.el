@@ -48,6 +48,8 @@
 
 ;; load self-installed packages
 (package-initialize)
+
+(require 'use-package)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end package manager
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -56,30 +58,55 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  packages with minimal config
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require 'expand-region)
-(global-set-key (kbd "C-=") 'er/expand-region)
-(global-set-key (kbd "C-; p") 'er/mark-inside-pairs)
+(use-package expand-region
+  :bind (("C-="   . er/expand-region)
+	 ("C-; p" . er/mark-inside-pairs))
+  :config
+  (setq shift-select-mode nil))
+;;(require 'expand-region)
+  ;; (global-set-key (kbd "C-=") 'er/expand-region)
+  ;; (global-set-key (kbd "C-; p") 'er/mark-inside-pairs)
+  ;; (setq shift-select-mode nil)
 ;; workaround for expand-region to interact nicely with transient-mark-mode
-(setq shift-select-mode nil)
 
-(require 'embrace)
-(global-set-key (kbd "C-,") #'embrace-commander)
+(use-package embrace
+  :bind ("C-," . embrace-commander))
+;; (require 'embrace)
+;; (global-set-key (kbd "C-,") #'embrace-commander)
 
-(require 'ace-jump-mode)
-(global-set-key (kbd "C-.") 'ace-jump-mode)
+(use-package ace-jump-mode
+  :bind ("C-." . ace-jump-mode))
+;; (require 'ace-jump-mode)
+;; (global-set-key (kbd "C-.") 'ace-jump-mode)
 
-(add-to-list 'load-path "/home/matthew/.emacs.d/snippets/")
-(require 'yasnippet)
-(yas-global-mode 1)
+(use-package yasnippet
+  :init
+  (add-to-list 'load-path "/home/matthew/.emacs.d/snippets/")
+  :config
+  (yas-global-mode 1))
+;; (add-to-list 'load-path "/home/matthew/.emacs.d/snippets/")
+;; (require 'yasnippet)
+;; (yas-global-mode 1)
 
-(require 'unicode-fonts)
-(unicode-fonts-setup)
+(use-package unicode-fonts
+  :config
+  (unicode-fonts-setup))
+;; (require 'unicode-fonts)
+;; (unicode-fonts-setup)
 
-(require 'autopair)
-(autopair-global-mode)
-(setq autopair-autowrap t)
+(use-package autopair
+  :config
+  (autopair-global-mode)
+  (setq autopair-autowrap t))
+;; (require 'autopair)
+;; (autopair-global-mode)
+;; (setq autopair-autowrap t)
 
-(add-hook 'after-init-hook #'global-flycheck-mode)
+(use-package flycheck
+  :init
+  (global-flycheck-mode))
+
+;;(add-hook 'after-init-hook #'global-flycheck-mode)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -88,13 +115,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  desktop mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'desktop)
+(desktop-save-mode 1)
 (setq desktop-dirname "~/.emacs.d/desktop")
 (setq desktop-base-file-name "emacsdesktop-save")
 (setq desktop-base-lock-name "lock")
 (setq desktop-auto-save-timeout 300)
 (setq desktop-path (list desktop-dirname))
 (setq desktop-save t)
-(desktop-save-mode 1)
 (add-hook 'auto-save-hook (lambda () (desktop-save-in-desktop-dir)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end desktop mode
@@ -104,29 +132,77 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  helm
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require 'helm-config)
+;(require 'helm)
+(use-package helm-config
+  ;; :init
+  ;; (custom-set-variables '(helm-command-prefix-key "C-;"))
+  :config
+  (bind-keys :map helm-command-map
+             ("a" . helm-ag)
+             ("o" . helm-occur)
+             ("y" . yas-insert-snippet)))
 
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-h a") 'helm-apropos)
-(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
-(global-set-key (kbd "C-x b") 'helm-mini)
-(global-set-key (kbd "C-x c g") 'helm-google-suggest)
-(global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "M-s o") 'helm-occur)
+(use-package helm
+  :config
+  (setq
+   helm-split-window-default-side 'right ;; open helm buffer in another window
+   helm-candidate-number-limit 200 ; limit the number of displayed canidates
+   ;; helm-command
+   helm-M-x-requires-pattern 0     ; show all candidates when set to 0
+   helm-M-x-fuzzy-match        t
+   helm-buffers-fuzzy-matching t
+   helm-recentf-fuzzy-match    t
+   helm-ff-fuzzy-matching      t
+   helm-mode-fuzzy-match       t)
+  (bind-keys ("M-x" . helm-M-x)
+             ("M-y" . helm-show-kill-ring)
+             ("C-x b" . helm-mini)
+	     ("C-x C-f" . helm-find-files)
+	     ("C-h a"   . helm-apropos)
+	     ("C-x C-b" . helm-buffers-list)
+	     ("M-s o"   . helm-occur)
+	     ("C-x c g" . helm-google-suggest)))
 
-(setq helm-M-x-fuzzy-match        t
-      helm-buffers-fuzzy-matching t
-      helm-recentf-fuzzy-match    t
-      helm-ff-fuzzy-matching      t
-      helm-mode-fuzzy-match       t)
+(use-package helm-mode
+  :config
+  (helm-mode 1))
 
-(helm-mode 1)
+;;  :init
+;; (use-package helm
+;;   :config
+;;  )
+ 
+;(require 'helm-config)
+
+;; (global-set-key (kbd "M-x") 'helm-M-x)
+;; (global-set-key (kbd "C-x C-f") 'helm-find-files)
+;; (global-set-key (kbd "C-h a") 'helm-apropos)
+;; (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+;; (global-set-key (kbd "C-x b") 'helm-mini)
+;; (global-set-key (kbd "C-x c g") 'helm-google-suggest)
+;; (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+;; (global-set-key (kbd "M-s o") 'helm-occur)
+
+;; (helm-mode t)
+
+;; (setq helm-M-x-fuzzy-match        t)
+;; (setq helm-buffers-fuzzy-matching t)
+;; (setq helm-recentf-fuzzy-match    t)
+;; (setq helm-ff-fuzzy-matching      t)
+;; (setq helm-mode-fuzzy-match       t)
 
 ;; helm projectile
-(projectile-global-mode)
-(setq projectile-completion-system 'helm)
-(helm-projectile-on)
+(use-package helm-projectile
+;  :init
+  :config
+  (projectile-mode)
+  (helm-projectile-on)
+  (setq projectile-completion-system 'helm))
+
+;; (require 'helm-projectile)
+;; (setq projectile-completion-system 'helm)
+;; (projectile-mode)
+;; (helm-projectile-on)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end helm
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -135,40 +211,57 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  org
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(global-set-key (kbd "C-c l") 'org-store-link)
-(global-set-key (kbd "\C-c a") 'org-agenda)
-(setq org-agenda-files '("/home/matthew/msp/orgmode/"))
-(setq org-agenda-restore-windows-after-quit t)
-(require 'org)
-
-;; languages to allow for code block execution
-(org-babel-do-load-languages
+(use-package org
+  :config
+  (setq org-agenda-files '("/home/matthew/msp/orgmode/"))
+  (setq org-agenda-restore-windows-after-quit t)
+  (org-babel-do-load-languages
       'org-babel-load-languages
       '((emacs-lisp . t)
         (sh . t)
 	(shell . t)
 	(perl . t)
 	(python . t)))
+  (setq org-todo-keywords '((sequence "TODO(t)" "BACKBURNER(b)" "WAITING(w)" "IN PROGRESS(p)""|" "DONE(d)")))
+  (defface org-backburner-face
+    '((default (:foreground "DarkMagenta" :weight bold)))
+    "Face for back burner projects"
+    :group 'matt-org-faces)
+  (defface org-waiting-face
+    '((default (:foreground "DarkCyan" :weight bold)))
+    "Face for stuff I'm waiting on"
+    :group 'matt-org-faces)
+  (defface org-in-progress-face
+    '((default (:foreground "Darkgoldenrod3" :weight bold)))
+    "Face for stuff I'm waiting on"
+    :group 'matt-org-faces)
+  (setq org-todo-keyword-faces
+	'(("BACKBURNER" . org-backburner-face)
+	  ("WAITING" . org-waiting-face)
+	  ("IN PROGRESS" . org-in-progress-face)))
+  (setq org-log-done 'time)
+  (setq org-log-done 'note)
+  :defer t)
 
-(setq org-todo-keywords '((sequence "TODO(t)" "BACKBURNER(b)" "WAITING(w)" "|" "DONE(d)")))
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "\C-c a") 'org-agenda)
 
-;; (defface backburner-face
-;;   '((default (:foreground "#002b36" :background "DarkMagenta" :weight bold)))
-;;   "Face for back burner projects")
-(defface backburner-face
-  '((default (:foreground "DarkMagenta" :weight bold)))
-  "Face for back burner projects")
+;;(require 'org)
+;; (global-set-key (kbd "C-c l") 'org-store-link)
+;; (global-set-key (kbd "\C-c a") 'org-agenda)
+;; (setq org-agenda-files '("/home/matthew/msp/orgmode/"))
+;; (setq org-agenda-restore-windows-after-quit t)
 
-(defface waiting-face
-  '((default (:foreground "DarkCyan" :weight bold)))
-    "Face for stuff I'm waiting on")
+;; languages to allow for code block execution
+;; (org-babel-do-load-languages
+;;       'org-babel-load-languages
+;;       '((emacs-lisp . t)
+;;         (sh . t)
+;; 	(shell . t)
+;; 	(perl . t)
+;; 	(python . t)))
 
-(setq org-todo-keyword-faces
-      '(("BACKBURNER" . backburner-face)
-	("WAITING" . waiting-face)))
 
-(setq org-log-done 'time)
-(setq org-log-done 'note)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end org
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -220,8 +313,8 @@
 ;; (add-to-list 'custom-theme-load-path "/home/matthew/.emacs.d/themes/solarized/")
 ;; (load-theme 'solarized t)
 
-(setq sml/theme 'dark) ;; can use one of 'dark, 'light or 'respectful
 (sml/setup)
+(setq sml/theme 'dark) ;; can use one of 'dark, 'light or 'respectful
 (setq sml/name-width 35)
 (setq sml/mode-width 'full)
 
@@ -329,6 +422,7 @@
 (require 'isortify)
 (add-hook 'python-mode-hook 'isort-mode)
 
+(require 'elpy)
 (elpy-enable)
 (setq python-shell-interpreter "python3")
 (setq elpy-rpc-python-command "python3")
