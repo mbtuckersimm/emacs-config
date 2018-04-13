@@ -39,14 +39,14 @@
 ;;  package manager
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'package)
-(setq package-archives '(("elpa" . "http://tromey.com/elpa/") 
+(setq package-archives '(("elpa" . "http://tromey.com/elpa/")
                           ("gnu" . "http://elpa.gnu.org/packages/")
                           ("marmalade" . "http://marmalade-repo.org/packages/")
          		  ("melpa" . "http://melpa.milkbox.net/packages/")
 	        	  ("melpa-stable" . "https://stable.melpa.org/packages/")
 		          ("org" . "http://orgmode.org/elpa/")))
 
-;; load self-installed packages 
+;; load self-installed packages
 (package-initialize)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end package manager
@@ -65,23 +65,23 @@
 (require 'embrace)
 (global-set-key (kbd "C-,") #'embrace-commander)
 
-(require 'hl-sexp)
-
 (require 'ace-jump-mode)
 (global-set-key (kbd "C-.") 'ace-jump-mode)
 
 (add-to-list 'load-path "/home/matthew/.emacs.d/snippets/")
-(require 'yasnippet) 
+(require 'yasnippet)
 (yas-global-mode 1)
 
 (require 'unicode-fonts)
 (unicode-fonts-setup)
 
 (require 'autopair)
-(autopair-global-mode) 
+(autopair-global-mode)
 (setq autopair-autowrap t)
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  end packages 
+;;  end packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
@@ -102,7 +102,7 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  helm 
+;;  helm
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'helm-config)
 
@@ -128,7 +128,7 @@
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  end helm 
+;;  end helm
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
@@ -149,6 +149,26 @@
 	(shell . t)
 	(perl . t)
 	(python . t)))
+
+(setq org-todo-keywords '((sequence "TODO(t)" "BACKBURNER(b)" "WAITING(w)" "|" "DONE(d)")))
+
+;; (defface backburner-face
+;;   '((default (:foreground "#002b36" :background "DarkMagenta" :weight bold)))
+;;   "Face for back burner projects")
+(defface backburner-face
+  '((default (:foreground "DarkMagenta" :weight bold)))
+  "Face for back burner projects")
+
+(defface waiting-face
+  '((default (:foreground "DarkCyan" :weight bold)))
+    "Face for stuff I'm waiting on")
+
+(setq org-todo-keyword-faces
+      '(("BACKBURNER" . backburner-face)
+	("WAITING" . waiting-face)))
+
+(setq org-log-done 'time)
+(setq org-log-done 'note)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end org
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -304,7 +324,11 @@
 ;; TeX setup moved to separate file since it's bulky
 (load "tex-config.el")
 
-;; Python setup
+;; Python
+
+(require 'isortify)
+(add-hook 'python-mode-hook 'isort-mode)
+
 (elpy-enable)
 (setq python-shell-interpreter "python3")
 (setq elpy-rpc-python-command "python3")

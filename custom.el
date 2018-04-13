@@ -57,8 +57,9 @@
  '(mh-variant "GNU Mailutils 2.99.98")
  '(package-selected-packages
    (quote
-    (atom-dark-theme atom-one-dark-theme elpy material-theme helm-projectile ag helm-ag zen-and-art-theme hc-zenburn-theme zenburn-theme undo-tree unicode-fonts iedit wgrep-helm helm ace-jump-mode embrace org smart-mode-line rainbow-delimiters python-mode python-info pymacs palette mic-paren magit highlight-current-line expand-region autopair auto-complete-auctex auctex ac-math)))
+    (flycheck isortify atom-dark-theme atom-one-dark-theme elpy material-theme helm-projectile ag helm-ag zen-and-art-theme hc-zenburn-theme zenburn-theme undo-tree unicode-fonts iedit wgrep-helm helm ace-jump-mode embrace org smart-mode-line rainbow-delimiters python-mode python-info pymacs palette mic-paren magit highlight-current-line expand-region autopair auto-complete-auctex auctex ac-math)))
  '(py-split-window-on-execute t)
+ '(pyvenv-tracking-ask-before-change t)
  '(safe-local-variable-values
    (quote
     ((eval show-all)
