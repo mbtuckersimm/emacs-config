@@ -140,69 +140,37 @@
   (bind-keys :map helm-command-map
              ("a" . helm-ag)
              ("o" . helm-occur)
-             ("y" . yas-insert-snippet)))
+             ("y" . yas-insert-snippet)
+	     ("g" . helm-google-suggest)))
 
 (use-package helm
-  :config
-  (setq
-   helm-split-window-default-side 'right ;; open helm buffer in another window
-   helm-candidate-number-limit 200 ; limit the number of displayed canidates
-   ;; helm-command
-   helm-M-x-requires-pattern 0     ; show all candidates when set to 0
-   helm-M-x-fuzzy-match        t
-   helm-buffers-fuzzy-matching t
-   helm-recentf-fuzzy-match    t
-   helm-ff-fuzzy-matching      t
-   helm-mode-fuzzy-match       t)
-  (bind-keys ("M-x" . helm-M-x)
-             ("M-y" . helm-show-kill-ring)
-             ("C-x b" . helm-mini)
-	     ("C-x C-f" . helm-find-files)
-	     ("C-h a"   . helm-apropos)
-	     ("C-x C-b" . helm-buffers-list)
-	     ("M-s o"   . helm-occur)
-	     ("C-x c g" . helm-google-suggest)))
+  :custom
+   (helm-split-window-default-side 'right) ;; open helm buffer in another window
+   (helm-candidate-number-limit 200) ; limit the number of displayed canidates
+   (helm-M-x-requires-pattern   0)     ; show all candidates when set to 0
+   (helm-M-x-fuzzy-match        t)
+   (helm-buffers-fuzzy-matching t)
+   (helm-recentf-fuzzy-match    t)
+   (helm-ff-fuzzy-matching      t)
+   (helm-mode-fuzzy-match       t)
+   :bind
+   (("M-x" . helm-M-x)
+    ("M-y" . helm-show-kill-ring)
+    ("C-x b" . helm-mini)
+    ("C-x C-f" . helm-find-files)
+    ("C-h a"   . helm-apropos)
+    ("C-x C-b" . helm-buffers-list)
+    ("M-s o"   . helm-occur)))
 
 (use-package helm-mode
   :config
   (helm-mode 1))
 
-;;  :init
-;; (use-package helm
-;;   :config
-;;  )
- 
-;(require 'helm-config)
-
-;; (global-set-key (kbd "M-x") 'helm-M-x)
-;; (global-set-key (kbd "C-x C-f") 'helm-find-files)
-;; (global-set-key (kbd "C-h a") 'helm-apropos)
-;; (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
-;; (global-set-key (kbd "C-x b") 'helm-mini)
-;; (global-set-key (kbd "C-x c g") 'helm-google-suggest)
-;; (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-;; (global-set-key (kbd "M-s o") 'helm-occur)
-
-;; (helm-mode t)
-
-;; (setq helm-M-x-fuzzy-match        t)
-;; (setq helm-buffers-fuzzy-matching t)
-;; (setq helm-recentf-fuzzy-match    t)
-;; (setq helm-ff-fuzzy-matching      t)
-;; (setq helm-mode-fuzzy-match       t)
-
-;; helm projectile
 (use-package helm-projectile
-;  :init
   :config
   (projectile-mode)
   (helm-projectile-on)
   (setq projectile-completion-system 'helm))
-
-;; (require 'helm-projectile)
-;; (setq projectile-completion-system 'helm)
-;; (projectile-mode)
-;; (helm-projectile-on)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end helm
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -212,9 +180,10 @@
 ;;  org
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package org
+  :custom
+  (org-agenda-restore-windows-after-quit t)
   :config
   (setq org-agenda-files '("/home/matthew/msp/orgmode/"))
-  (setq org-agenda-restore-windows-after-quit t)
   (org-babel-do-load-languages
       'org-babel-load-languages
       '((emacs-lisp . t)
@@ -281,8 +250,10 @@
 
 ;; directory tracking in shell-mode
 ;; we want to use the dirtrack package rather than shell-dirtrack-mode
-(setq dirtrack-list '("^.*?:\\(.*\\)\n" 1 nil))
-(add-hook 'shell-mode-hook 'dirtrack-mode)
+(use-package dirtrack
+  :hook (shell-mode . dirtrack-mode)
+  :init
+  (setq dirtrack-list '("^.*?:\\(.*\\)\n" 1 nil)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end shell mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
