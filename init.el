@@ -214,23 +214,6 @@
 
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "\C-c a") 'org-agenda)
-
-;;(require 'org)
-;; (global-set-key (kbd "C-c l") 'org-store-link)
-;; (global-set-key (kbd "\C-c a") 'org-agenda)
-;; (setq org-agenda-files '("/home/matthew/msp/orgmode/"))
-;; (setq org-agenda-restore-windows-after-quit t)
-
-;; languages to allow for code block execution
-;; (org-babel-do-load-languages
-;;       'org-babel-load-languages
-;;       '((emacs-lisp . t)
-;;         (sh . t)
-;; 	(shell . t)
-;; 	(perl . t)
-;; 	(python . t)))
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end org
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -284,51 +267,59 @@
 ;; (add-to-list 'custom-theme-load-path "/home/matthew/.emacs.d/themes/solarized/")
 ;; (load-theme 'solarized t)
 
-(sml/setup)
-(setq sml/theme 'dark) ;; can use one of 'dark, 'light or 'respectful
-(setq sml/name-width 35)
-(setq sml/mode-width 'full)
+(use-package smart-mode-line
+  :init
+  (setq sml/theme 'dark) ;; can use one of 'dark, 'light or 'respectful
+  (setq sml/name-width 35)
+  (setq sml/mode-width 'full)
+  :config
+  (sml/setup))
 
-;; (add-to-list 'sml/replacer-regexp-list '("^~/sbcc/137/" ":SBCC:") t)
-(add-to-list 'sml/replacer-regexp-list '("^~/msp/pjm/src/work/" ":PJM:") t)
-(add-to-list 'sml/replacer-regexp-list '("^~/msp/ant/src/work/" ":ANT:") t)
-(add-to-list 'sml/replacer-regexp-list '("^~/msp/akt/src/work/" ":AKT:") t)
-(add-to-list 'sml/replacer-regexp-list '("^~/msp/apde/src/work/" ":APDE:") t)
-(add-to-list 'sml/replacer-regexp-list '("^~/msp/camcos/src/work/" ":CAMCOS:") t)
-(add-to-list 'sml/replacer-regexp-list '("^~/msp/jomms/src/work/" ":JOMMS:") t)
-(add-to-list 'sml/replacer-regexp-list '("^~/msp/memocs/src/work/" ":MEMOCS:") t)
-(add-to-list 'sml/replacer-regexp-list '("^~/msp/involve/src/work/" ":INVOLVE:") t)
-(add-to-list 'sml/replacer-regexp-list '("^~/msp/agt/src/work/" ":AGT:") t)
-(add-to-list 'sml/replacer-regexp-list '("^~/msp/gt/src/work/" ":GT:") t)
-(add-to-list 'sml/replacer-regexp-list '("^:ANT:[0-9-]+\\([A-Za-z]+\\)/" ":ANT:\\1:") t)
-(add-to-list 'sml/replacer-regexp-list '("^:AKT:[0-9-]+\\([A-Za-z]+\\)/" ":AKT:\\1:") t)
-(add-to-list 'sml/replacer-regexp-list '("^:PJM:[0-9-]+\\([A-Za-z]+\\)/" ":PJM:\\1:") t)
-(add-to-list 'sml/replacer-regexp-list '("^:APDE:[0-9-]+\\([A-Za-z]+\\)/" ":APDE:\\1:") t)
-(add-to-list 'sml/replacer-regexp-list '("^:CAMCOS:[0-9-]+\\([A-Za-z]+\\)/" ":CAMCOS:\\1:") t)
-(add-to-list 'sml/replacer-regexp-list '("^:JOMMS:[0-9-]+\\([A-Za-z]+\\)/" ":JOMMS:\\1:") t)
-(add-to-list 'sml/replacer-regexp-list '("^:MEMOCS:[0-9-]+\\([A-Za-z]+\\)/" ":MEMOCS:\\1:") t)
-(add-to-list 'sml/replacer-regexp-list '("^:INVOLVE:[0-9-]+\\([A-Za-z]+\\)/" ":INVOLVE:\\1:") t)
-(add-to-list 'sml/replacer-regexp-list '("^:AGT:[0-9-]+\\([A-Za-z]+\\)/" ":AGT:\\1:") t)
-(add-to-list 'sml/replacer-regexp-list '("^:GT:[0-9-]+\\([A-Za-z]+\\)/" ":GT:\\1:") t)
-(add-to-list 'sml/replacer-regexp-list '("^~/msp/training/" ":TRAINING:") t)
-(add-to-list 'sml/replacer-regexp-list '("^~/msp/mspdoc/" ":MSPDOC:") t)
-(add-to-list 'sml/replacer-regexp-list '("^~/msp/dev/" ":DEV:") t)
-(add-to-list 'sml/replacer-regexp-list '("^:ED:snippets" ":YAS:") t)
-(add-to-list 'sml/replacer-regexp-list '("^~/msp/warwick/gtpub/" ":GTPUB:") t)
-(add-to-list 'sml/replacer-regexp-list '("^~/msp/warwick/agtpub/" ":AGTPUB:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/pjm/src/work/" ":PJM:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/ant/src/work/" ":ANT:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/akt/src/work/" ":AKT:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/apde/src/work/" ":APDE:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/camcos/src/work/" ":CAMCOS:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/jomms/src/work/" ":JOMMS:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/memocs/src/work/" ":MEMOCS:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/involve/src/work/" ":INVOLVE:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/agt/src/work/" ":AGT:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/gt/src/work/" ":GT:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^:ANT:[0-9-]+\\([A-Za-z]+\\)/" ":ANT:\\1:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^:AKT:[0-9-]+\\([A-Za-z]+\\)/" ":AKT:\\1:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^:PJM:[0-9-]+\\([A-Za-z]+\\)/" ":PJM:\\1:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^:APDE:[0-9-]+\\([A-Za-z]+\\)/" ":APDE:\\1:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^:CAMCOS:[0-9-]+\\([A-Za-z]+\\)/" ":CAMCOS:\\1:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^:JOMMS:[0-9-]+\\([A-Za-z]+\\)/" ":JOMMS:\\1:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^:MEMOCS:[0-9-]+\\([A-Za-z]+\\)/" ":MEMOCS:\\1:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^:INVOLVE:[0-9-]+\\([A-Za-z]+\\)/" ":INVOLVE:\\1:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^:AGT:[0-9-]+\\([A-Za-z]+\\)/" ":AGT:\\1:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^:GT:[0-9-]+\\([A-Za-z]+\\)/" ":GT:\\1:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/training/" ":TRAINING:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/mspdoc/" ":MSPDOC:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/dev/" ":DEV:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^:ED:snippets" ":YAS:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/warwick/gtpub/" ":GTPUB:") t)
+;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/warwick/agtpub/" ":AGTPUB:") t)
 
-(require 'highlight-current-line)
-(global-hl-line-mode t)
-(setq highlight-current-line-globally t)
-(setq highlight-current-line-high-faces nil)
-(setq highlight-current-line-whole-line nil)
+(use-package highlight-current-line
+  :custom
+  (highlight-current-line-globally t)
+  (highlight-current-line-high-faces nil)
+  (highlight-current-line-whole-line t)
+  :custom-face
+  (highlight-current-line-face ((t (:background "gray36"))))
+  :config
+  (global-hl-line-mode t))
 
-(require 'font-lock)
-(setq font-lock-maximum-decoration t)
-(global-font-lock-mode t)
-(global-hi-lock-mode nil)
-(setq jit-lock-contextually t)
-(setq jit-lock-stealth-verbose t)
+(use-package font-lock
+  :custom
+  (font-lock-maximum-decoration t)
+  (jit-lock-contextually t)
+  (jit-lock-stealth-verbose t)
+  :config
+  (global-font-lock-mode t)
+  (global-hi-lock-mode nil))
 
 (require 'mic-paren)
 (paren-activate)
