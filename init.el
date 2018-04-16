@@ -62,51 +62,38 @@
   :bind (("C-="   . er/expand-region)
 	 ("C-; p" . er/mark-inside-pairs))
   :config
-  (setq shift-select-mode nil))
-;;(require 'expand-region)
-  ;; (global-set-key (kbd "C-=") 'er/expand-region)
-  ;; (global-set-key (kbd "C-; p") 'er/mark-inside-pairs)
-  ;; (setq shift-select-mode nil)
-;; workaround for expand-region to interact nicely with transient-mark-mode
+  (setq shift-select-mode nil)
+  :ensure t)
 
 (use-package embrace
-  :bind ("C-," . embrace-commander))
-;; (require 'embrace)
-;; (global-set-key (kbd "C-,") #'embrace-commander)
+  :bind ("C-," . embrace-commander)
+  :ensure t)
 
 (use-package ace-jump-mode
-  :bind ("C-." . ace-jump-mode))
-;; (require 'ace-jump-mode)
-;; (global-set-key (kbd "C-.") 'ace-jump-mode)
+  :bind ("C-." . ace-jump-mode)
+  :ensure t)
 
 (use-package yasnippet
   :init
   (add-to-list 'load-path "/home/matthew/.emacs.d/snippets/")
   :config
-  (yas-global-mode 1))
-;; (add-to-list 'load-path "/home/matthew/.emacs.d/snippets/")
-;; (require 'yasnippet)
-;; (yas-global-mode 1)
+  (yas-global-mode 1)
+  :ensure t)
 
 (use-package unicode-fonts
   :config
   (unicode-fonts-setup))
-;; (require 'unicode-fonts)
-;; (unicode-fonts-setup)
 
 (use-package autopair
   :config
   (autopair-global-mode)
-  (setq autopair-autowrap t))
-;; (require 'autopair)
-;; (autopair-global-mode)
-;; (setq autopair-autowrap t)
+  (setq autopair-autowrap t)
+  :ensure t)
 
 (use-package flycheck
   :init
-  (global-flycheck-mode))
-
-;;(add-hook 'after-init-hook #'global-flycheck-mode)
+  (global-flycheck-mode)
+  :ensure t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -128,6 +115,18 @@
 ;;  end desktop mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  magit
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package magit
+  :ensure t)
+
+(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  end magit
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  helm
@@ -160,7 +159,8 @@
     ("C-x C-f" . helm-find-files)
     ("C-h a"   . helm-apropos)
     ("C-x C-b" . helm-buffers-list)
-    ("M-s o"   . helm-occur)))
+    ("M-s o"   . helm-occur))
+   :ensure t)
 
 (use-package helm-mode
   :config
@@ -170,7 +170,8 @@
   :config
   (projectile-mode)
   (helm-projectile-on)
-  (setq projectile-completion-system 'helm))
+  (setq projectile-completion-system 'helm)
+  :ensure t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end helm
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -227,9 +228,10 @@
 (setq comint-use-prompt-regexp t)
 
 ;; Add colors when running the shell
-(require 'ansi-color)
-(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-(add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
+(use-package ansi-color
+  :hook (shell-mode . ansi-color-for-comint-mode-on)
+  :config
+  (add-to-list 'comint-output-filter-functions 'ansi-color-process-output))
 
 ;; directory tracking in shell-mode
 ;; we want to use the dirtrack package rather than shell-dirtrack-mode
@@ -241,22 +243,6 @@
 ;;  end shell mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  global keybindings
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(global-set-key (kbd "<f5>") 'revert-buffer)
-(global-set-key (kbd "<f6>") 'split-window-horizontally)
-(global-set-key (kbd "M-[") 'backward-paragraph)
-(global-set-key (kbd "M-]") 'forward-paragraph)
-(global-set-key (kbd "C-c ;") 'comment-or-uncomment-region)
-(global-set-key (kbd "M-s f") 'flush-lines)
-(global-set-key (kbd "M-s c") 'how-many)
-(global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  end keybindings
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  appearance
@@ -308,26 +294,30 @@
   (highlight-current-line-high-faces nil)
   (highlight-current-line-whole-line t)
   :custom-face
-  (highlight-current-line-face ((t (:background "gray36"))))
+  (highlight-current-line-face ((t (:background "gray18"))))
   :config
   (global-hl-line-mode t))
 
 (use-package font-lock
   :custom
   (font-lock-maximum-decoration t)
-  (jit-lock-contextually t)
-  (jit-lock-stealth-verbose t)
   :config
   (global-font-lock-mode t)
   (global-hi-lock-mode nil))
 
-(require 'mic-paren)
-(paren-activate)
-(setq paren-sexp-mode t)
+(use-package jit-lock
+  :custom
+  (jit-lock-contextually t)
+  (jit-lock-stealth-verbose t))
 
-(require 'rainbow-delimiters)
-(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-(add-hook 'LaTeX-mode-hook 'rainbow-delimiters-mode)
+(use-package mic-paren
+  :custom
+  (paren-sexp-mode t)
+  :config
+  (paren-activate))
+
+(use-package rainbow-delimiters
+  :hook ((prog-mode LaTeX-mode) . rainbow-delimiters-mode))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end appearance
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -340,18 +330,18 @@
 ;; Require cases to match when replacing
 (setq case-replace t)
 
-(setq ispell-program-name "aspell")
-(setq ispell-list-command "list")
+(use-package flyspell
+  :custom
+  (ispell-program-name "aspell")
+  (ispell-list-command "list")
+  :hook (prog-mode . flyspell-prog-mode)
+  ;; currently disabled b/c it binds C-,  which we want for embrace-commander
+  :disabled)
 
 ;; make > into a comment character in text mode
 ;; (useful for quoting stuff in email replies, eg)
 (add-hook 'text-mode-hook (lambda ()
             (set (make-local-variable 'comment-start) ">")))
-
-;; explicitly set % for comments in LaTeX mode too
-;; otherwise the previous setting overrides it
-(add-hook 'LaTeX-mode-hook (lambda ()
-            (set (make-local-variable 'comment-start) "%")))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end text-editing
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -361,7 +351,7 @@
 ;;  custom functions (move to other file?)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun comment-and-kill-ring-save ()
-  "Copy the current region into the kill ring and then comment it out"
+  "Copy the current region into the kill ring and then comment it out."
   (interactive)
   (save-excursion
     (kill-ring-save (region-beginning) (region-end))
@@ -381,8 +371,8 @@
 
 ;; Python
 
-(require 'isortify)
-(add-hook 'python-mode-hook 'isort-mode)
+(use-package isortify
+  :hook (python-mode . isort-mode))
 
 (require 'elpy)
 (elpy-enable)
@@ -397,4 +387,19 @@
 (defalias 'perl-mode 'cperl-mode)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end language-specific stuff
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  global keybindings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(global-set-key (kbd "<f5>") 'revert-buffer)
+(global-set-key (kbd "<f6>") 'split-window-horizontally)
+(global-set-key (kbd "M-[") 'backward-paragraph)
+(global-set-key (kbd "M-]") 'forward-paragraph)
+(global-set-key (kbd "C-c ;") 'comment-or-uncomment-region)
+(global-set-key (kbd "M-s f") 'flush-lines)
+(global-set-key (kbd "M-s c") 'how-many)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  end keybindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
