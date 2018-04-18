@@ -192,7 +192,7 @@
 	(shell . t)
 	(perl . t)
 	(python . t)))
-  (setq org-todo-keywords '((sequence "TODO(t)" "BACKBURNER(b)" "WAITING(w)" "IN PROGRESS(p)""|" "DONE(d)")))
+  (setq org-todo-keywords '((sequence "TODO(t)" "BACKBURNER(b)" "WAITING(w)" "IN PROGRESS(p)""|" "DONE(d)" "CANCELED(c)")))
   (defface org-backburner-face
     '((default (:foreground "DarkMagenta" :weight bold)))
     "Face for back burner projects"
@@ -205,13 +205,20 @@
     '((default (:foreground "Darkgoldenrod3" :weight bold)))
     "Face for stuff I'm waiting on"
     :group 'matt-org-faces)
+  (defface org-canceled-face
+    '((default (:foreground "Firebrick" :weight bold)))
+    "Face for canceled items"
+    :group 'matt-org-faces)
   (setq org-todo-keyword-faces
 	'(("BACKBURNER" . org-backburner-face)
 	  ("WAITING" . org-waiting-face)
-	  ("IN PROGRESS" . org-in-progress-face)))
+	  ("IN PROGRESS" . org-in-progress-face)
+	  ("CANCELED" . org-canceled-face)))
   (setq org-log-done 'time)
   (setq org-log-done 'note)
-  :defer t)
+  :defer t
+  :ensure t
+  :pin org)
 
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "\C-c a") 'org-agenda)
@@ -296,7 +303,8 @@
   :custom-face
   (highlight-current-line-face ((t (:background "gray18"))))
   :config
-  (global-hl-line-mode t))
+  (global-hl-line-mode t)
+  :ensure t)
 
 (use-package font-lock
   :custom
@@ -314,10 +322,12 @@
   :custom
   (paren-sexp-mode t)
   :config
-  (paren-activate))
+  (paren-activate)
+  :ensure t)
 
 (use-package rainbow-delimiters
-  :hook ((prog-mode LaTeX-mode) . rainbow-delimiters-mode))
+  :hook ((prog-mode LaTeX-mode) . rainbow-delimiters-mode)
+  :ensure t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end appearance
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -367,24 +377,41 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; TeX setup moved to separate file since it's bulky
-(load "tex-config.el")
+;; (load "tex-config.el")
 
 ;; Python
 
 (use-package isortify
   :hook (python-mode . isort-mode))
 
+;; (use-package elpy
+;;   :custom
+;;   (py-shell-name "Python shell")
+;;   :config
+;;   (elpy-enable))
+
 (require 'elpy)
 (elpy-enable)
 (setq python-shell-interpreter "python3")
 (setq elpy-rpc-python-command "python3")
 (setq python-shell-interpreter-args "-i")
-(setq py-shell-name "Python shell")
+(setq py-shell-name "python3")
 (setq elpy-shell-echo-input nil)
 (setq elpy-shell-display-buffer-after-send t)
 
 ;; Perl
 (defalias 'perl-mode 'cperl-mode)
+
+;; PHP
+(use-package php-mode
+  :ensure t)
+
+(use-package web-mode
+  :ensure t)
+
+(use-package company
+  :ensure t
+  :hook ((php-mode web-mode) . company-mode))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end language-specific stuff
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

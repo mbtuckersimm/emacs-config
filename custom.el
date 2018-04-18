@@ -60,13 +60,13 @@
  '(helm-moccur-show-buffer-fontification t)
  '(helm-moccur-truncate-lines nil)
  '(helm-mode-fuzzy-match t)
- '(helm-recentf-fuzzy-match t t)
+ '(helm-recentf-fuzzy-match t)
  '(helm-split-window-default-side (quote right))
  '(mh-variant "GNU Mailutils 2.99.98")
  '(org-agenda-restore-windows-after-quit t t)
  '(package-selected-packages
    (quote
-    (highlight-current-line use-package php-mode flycheck isortify atom-dark-theme atom-one-dark-theme elpy material-theme helm-projectile ag helm-ag zen-and-art-theme hc-zenburn-theme zenburn-theme undo-tree unicode-fonts iedit wgrep-helm helm ace-jump-mode embrace org smart-mode-line rainbow-delimiters python-mode python-info pymacs palette mic-paren magit expand-region autopair auto-complete-auctex auctex ac-math)))
+    (company-php company-web web-mode flycheck highlight-current-line use-package php-mode isortify atom-dark-theme atom-one-dark-theme elpy material-theme helm-projectile ag helm-ag zen-and-art-theme hc-zenburn-theme zenburn-theme undo-tree unicode-fonts iedit wgrep-helm helm ace-jump-mode embrace org smart-mode-line rainbow-delimiters python-mode python-info pymacs palette mic-paren magit expand-region autopair auto-complete-auctex auctex ac-math)))
  '(py-split-window-on-execute t)
  '(pyvenv-tracking-ask-before-change t)
  '(safe-local-variable-values
@@ -85,4 +85,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 140 :width normal))))
+ '(highlight-current-line-face ((t (:background "gray18"))))
  '(paren-face-match ((t (:foreground "medium aquamarine")))))
