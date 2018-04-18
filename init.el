@@ -18,7 +18,7 @@
 (column-number-mode 1)
 (mouse-wheel-mode t)
 (scroll-bar-mode -1)
-(horizontal-scroll-bar-mode -1)
+;; (horizontal-scroll-bar-mode -1)
 (transient-mark-mode 1)
 (display-time-mode 1)
 (size-indication-mode t)
@@ -82,7 +82,8 @@
 
 (use-package unicode-fonts
   :config
-  (unicode-fonts-setup))
+  (unicode-fonts-setup)
+  :disabled)
 
 (use-package autopair
   :config
@@ -140,7 +141,8 @@
              ("a" . helm-ag)
              ("o" . helm-occur)
              ("y" . yas-insert-snippet)
-	     ("g" . helm-google-suggest)))
+	     ("g" . helm-google-suggest))
+  :ensure t)
 
 (use-package helm
   :custom
@@ -254,11 +256,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  appearance
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(load-theme 'atom-one-dark t)
+;; (load-theme 'atom-one-dark t)
 ;; had this setting in custom.el that helps load the dark solarized theme
 ; '(frame-background-mode (quote dark))
 ;; (add-to-list 'custom-theme-load-path "/home/matthew/.emacs.d/themes/solarized/")
 ;; (load-theme 'solarized t)
+(load-theme 'zenburn t)
 
 (use-package smart-mode-line
   :init
