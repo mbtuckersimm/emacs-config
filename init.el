@@ -94,6 +94,12 @@
   :init
   (global-flycheck-mode)
   :ensure t)
+
+(use-package whitespace
+  :custom
+  (whitespace-style '(face trailing))
+  :init
+  (whitespace-mode))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -169,8 +175,9 @@
 (use-package helm-projectile
   :config
   (projectile-mode)
-  (helm-projectile-on)
   (setq projectile-completion-system 'helm)
+  (setq projectile-switch-project-action 'helm-projectile-find-file)
+  (helm-projectile-on)
   :ensure t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end helm
@@ -192,7 +199,7 @@
 	(shell . t)
 	(perl . t)
 	(python . t)))
-  (setq org-todo-keywords '((sequence "TODO(t)" "BACKBURNER(b)" "WAITING(w)" "IN PROGRESS(p)""|" "DONE(d)" "CANCELED(c)")))
+  (setq org-todo-keywords '((sequence "TODO(t)" "BACKBURNER(b)" "WAITING(w)" "IN PROGRESS(p)" "QUESTION(q)" "NEXT(n)" "|" "DONE(d)" "CANCELED(c)")))
   (defface org-backburner-face
     '((default (:foreground "DarkMagenta" :weight bold)))
     "Face for back burner projects"
@@ -209,11 +216,16 @@
     '((default (:foreground "Firebrick" :weight bold)))
     "Face for canceled items"
     :group 'matt-org-faces)
+  (defface org-question-face
+    '((default (:foreground "MediumSeaGreen" :weight bold)))
+    "Face for canceled items"
+    :group 'matt-org-faces)
   (setq org-todo-keyword-faces
 	'(("BACKBURNER" . org-backburner-face)
 	  ("WAITING" . org-waiting-face)
 	  ("IN PROGRESS" . org-in-progress-face)
-	  ("CANCELED" . org-canceled-face)))
+	  ("CANCELED" . org-canceled-face)
+	  ("QUESTION" . org-question-face)))
   (setq org-log-done 'time)
   (setq org-log-done 'note)
   :defer t
@@ -405,6 +417,9 @@
 ;; PHP
 (use-package php-mode
   :ensure t)
+  ;; :config
+  ;; (setq-default c-basic-offset 2)
+  ;; (c-set-style "pear" t))
 
 (use-package web-mode
   :ensure t)
