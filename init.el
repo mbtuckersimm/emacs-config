@@ -50,6 +50,14 @@
 (package-initialize)
 
 (require 'use-package)
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(eval-when-compile
+  (require 'use-package))
+(require 'diminish)
+(require 'bind-key)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end package manager
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -99,7 +107,7 @@
   :custom
   (whitespace-style '(face trailing))
   :init
-  (whitespace-mode))
+  (global-whitespace-mode))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -233,7 +241,7 @@
   :pin org)
 
 (global-set-key (kbd "C-c l") 'org-store-link)
-(global-set-key (kbd "\C-c a") 'org-agenda)
+(global-set-key (kbd "C-c a") 'org-agenda)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end org
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -364,6 +372,11 @@
 ;; (useful for quoting stuff in email replies, eg)
 (add-hook 'text-mode-hook (lambda ()
             (set (make-local-variable 'comment-start) ">")))
+
+;; explicitly set % for comments in LaTeX mode
+;; (otherwise our setting for text-mode overrides it)
+(add-hook 'LaTeX-mode-hook (lambda ()
+            (set (make-local-variable 'comment-start) "%")))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end text-editing
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -416,9 +429,9 @@
 
 ;; PHP
 (use-package php-mode
-  :ensure t)
-  ;; :config
-  ;; (setq-default c-basic-offset 2)
+  :ensure t
+  :init
+  (add-hook 'php-mode-hook '(lambda () (setq c-basic-offset 2))))
   ;; (c-set-style "pear" t))
 
 (use-package web-mode

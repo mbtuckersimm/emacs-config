@@ -6,11 +6,6 @@
 		      (paren-toggle-matching-quoted-paren 1)
 		      (paren-rtoggle-matching-paired-delimiter 1))))
 
-;; explicitly set % for comments in LaTeX mode 
-;; (otherwise our setting for text-mode overrides it)
-(add-hook 'LaTeX-mode-hook (lambda ()
-            (set (make-local-variable 'comment-start) "%")))
-
 ;; Math mode for LaTeX
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 
