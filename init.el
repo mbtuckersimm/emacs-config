@@ -274,11 +274,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  appearance
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(load-theme 'atom-one-dark t)
+;; (load-theme 'atom-one-dark t)
 ;; had this setting in custom.el that helps load the dark solarized theme
 ; '(frame-background-mode (quote dark))
 ;; (add-to-list 'custom-theme-load-path "/home/matthew/.emacs.d/themes/solarized/")
 ;; (load-theme 'solarized t)
+(load-theme 'hc-zenburn t)
 
 (use-package smart-mode-line
   :init
