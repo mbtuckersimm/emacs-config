@@ -1,3 +1,11 @@
+;;; init.el --- Summary
+;;; Time-stamp: <2018-06-04 13:31:20 matthew>
+
+;;; Commentary:
+;;; This is only here to stop flycheck from giving me a warning
+
+;;; Code:
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  basic setup
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -30,6 +38,9 @@
 
 ;; displays filename (or buffername if no filename) in title bar
 (setq frame-title-format '(buffer-file-name "%f" ("%b")))
+
+;; just used for this file, so far
+(add-hook 'before-save-hook #'time-stamp)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end basic setup
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
