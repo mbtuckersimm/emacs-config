@@ -322,7 +322,7 @@
   (highlight-current-line-high-faces nil)
   (highlight-current-line-whole-line t)
   :custom-face
-  (highlight-current-line-face ((t (:background "gray18"))))
+  ;; (highlight-current-line-face ((t (:background "gray18"))))
   :config
   (global-hl-line-mode t)
   :ensure t)
