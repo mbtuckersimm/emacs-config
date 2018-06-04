@@ -107,7 +107,12 @@
   :custom
   (whitespace-style '(face trailing))
   :init
-  (global-whitespace-mode))
+  (add-hook 'prog-mode-hook #'whitespace-mode)
+  (add-hook 'LaTeX-mode-hook #'whitespace-mode)
+  :ensure t)
+
+(use-package linum
+   :hook (prog-mode . linum-mode))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
