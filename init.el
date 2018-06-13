@@ -1,11 +1,13 @@
 ;;; init.el --- Summary
-;;; Time-stamp: <2018-06-04 13:31:20 matthew>
+;;; Author: Matthew Tucker-Simmons
+;;; Time-stamp: <2018-06-13 16:50:04 matthew>
 
 ;;; Commentary:
-;;; This is only here to stop flycheck from giving me a warning
+;;; This is only here to stop flycheck from giving me a warning.
+;;; Maybe I should tell flycheck not to warn me about that instead.
 
 ;;; Code:
-
+;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  basic setup
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -47,7 +49,7 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  package manager
+;;  package management
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'package)
 (setq package-archives '(("elpa" . "http://tromey.com/elpa/")
@@ -70,7 +72,7 @@
 (require 'diminish)
 (require 'bind-key)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  end package manager
+;;  end package management
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
@@ -107,6 +109,7 @@
   :config
   (autopair-global-mode)
   (setq autopair-autowrap t)
+  :diminish autopair-mode
   :ensure t)
 
 (use-package flycheck
@@ -120,6 +123,7 @@
   :init
   (add-hook 'prog-mode-hook #'whitespace-mode)
   (add-hook 'LaTeX-mode-hook #'whitespace-mode)
+  :diminish whitespace-mode
   :ensure t)
 
 (use-package linum
@@ -194,13 +198,19 @@
 
 (use-package helm-mode
   :config
-  (helm-mode 1))
+  (helm-mode 1)
+  :diminish helm-mode)
 
 (use-package helm-projectile
   :config
   (projectile-mode)
   (setq projectile-completion-system 'helm)
   (setq projectile-switch-project-action 'helm-projectile-find-file)
+  (setq projectile-mode-line
+    (quote
+      (:eval
+        (format " Proj[%s]"
+	     (projectile-project-name)))))
   (helm-projectile-on)
   :ensure t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -296,6 +306,10 @@
 ;; (add-to-list 'custom-theme-load-path "/home/matthew/.emacs.d/themes/solarized/")
 ;; (load-theme 'solarized t)
 (load-theme 'hc-zenburn t)
+
+;; diminish minor modes that we don't care about
+(diminish 'auto-revert-mode)
+(diminish 'abbrev-mode)
 
 (use-package smart-mode-line
   :init
