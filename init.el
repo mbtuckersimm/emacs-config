@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2018-06-14 16:08:40 matthew>
+;;; Time-stamp: <2018-06-14 16:10:21 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -300,11 +300,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  appearance
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (load-theme 'atom-one-dark t)
-;; had this setting in custom.el that helps load the dark solarized theme
-; '(frame-background-mode (quote dark))
-;; (add-to-list 'custom-theme-load-path "/home/matthew/.emacs.d/themes/solarized/")
-;; (load-theme 'solarized t)
+
+;; theme
 (load-theme 'hc-zenburn t)
 
 ;; diminish minor modes that we don't care about
@@ -318,33 +315,6 @@
   (setq sml/mode-width 'full)
   :config
   (sml/setup))
-
-;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/pjm/src/work/" ":PJM:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/ant/src/work/" ":ANT:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/akt/src/work/" ":AKT:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/apde/src/work/" ":APDE:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/camcos/src/work/" ":CAMCOS:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/jomms/src/work/" ":JOMMS:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/memocs/src/work/" ":MEMOCS:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/involve/src/work/" ":INVOLVE:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/agt/src/work/" ":AGT:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/gt/src/work/" ":GT:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^:ANT:[0-9-]+\\([A-Za-z]+\\)/" ":ANT:\\1:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^:AKT:[0-9-]+\\([A-Za-z]+\\)/" ":AKT:\\1:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^:PJM:[0-9-]+\\([A-Za-z]+\\)/" ":PJM:\\1:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^:APDE:[0-9-]+\\([A-Za-z]+\\)/" ":APDE:\\1:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^:CAMCOS:[0-9-]+\\([A-Za-z]+\\)/" ":CAMCOS:\\1:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^:JOMMS:[0-9-]+\\([A-Za-z]+\\)/" ":JOMMS:\\1:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^:MEMOCS:[0-9-]+\\([A-Za-z]+\\)/" ":MEMOCS:\\1:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^:INVOLVE:[0-9-]+\\([A-Za-z]+\\)/" ":INVOLVE:\\1:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^:AGT:[0-9-]+\\([A-Za-z]+\\)/" ":AGT:\\1:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^:GT:[0-9-]+\\([A-Za-z]+\\)/" ":GT:\\1:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/training/" ":TRAINING:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/mspdoc/" ":MSPDOC:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/dev/" ":DEV:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^:ED:snippets" ":YAS:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/warwick/gtpub/" ":GTPUB:") t)
-;; (add-to-list 'sml/replacer-regexp-list '("^~/msp/warwick/agtpub/" ":AGTPUB:") t)
 
 (use-package highlight-current-line
   :custom
