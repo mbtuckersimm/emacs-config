@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2018-06-13 16:50:04 matthew>
+;;; Time-stamp: <2018-06-14 16:08:40 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -459,18 +459,17 @@
 (defalias 'perl-mode 'cperl-mode)
 
 ;; PHP
-(use-package php-mode
-  :ensure t
-  :init
-  (add-hook 'php-mode-hook '(lambda () (setq c-basic-offset 2))))
-  ;; (c-set-style "pear" t))
-
 (use-package web-mode
-  :ensure t)
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
+  :custom
+  (web-mode-code-indent-offset 2))
 
+;; auto-completion
 (use-package company
   :ensure t
-  :hook ((php-mode web-mode) . company-mode))
+  :hook (prog-mode . company-mode))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end language-specific stuff
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -489,3 +488,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end keybindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(provide 'init)
+;;; init.el ends here
