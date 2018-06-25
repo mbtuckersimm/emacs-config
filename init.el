@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2018-06-14 16:10:21 matthew>
+;;; Time-stamp: <2018-06-25 16:12:13 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -302,7 +302,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; theme
-(load-theme 'hc-zenburn t)
+(use-package hc-zenburn-theme
+  :config
+  (load-theme 'hc-zenburn t)
+  :ensure t)
 
 ;; diminish minor modes that we don't care about
 (diminish 'auto-revert-mode)
@@ -399,14 +402,13 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  language-specific stuff
+;;  programming
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; TeX setup moved to separate file since it's bulky
 ;; (load "tex-config.el")
 
-;; Python
-
+;; Python (need to convert to use-package)
 (use-package isortify
   :hook (python-mode . isort-mode))
 
@@ -431,17 +433,32 @@
 ;; PHP
 (use-package web-mode
   :ensure t
-  :config
-  (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
+  :mode "\\.php\\'"
   :custom
   (web-mode-code-indent-offset 2))
+
+;; JavaScript
+(use-package js
+  :ensure t
+  :custom
+  (js-indent-level 2))
+
+(use-package nodejs-repl
+  :ensure t)
 
 ;; auto-completion
 (use-package company
   :ensure t
   :hook (prog-mode . company-mode))
+
+;; vagrant (for MSP work)
+(use-package vagrant
+  :ensure t)
+
+(use-package vagrant-tramp
+  :ensure t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  end language-specific stuff
+;;  end programming
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
