@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2018-06-25 16:12:13 matthew>
+;;; Time-stamp: <2018-06-26 21:36:26 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -224,8 +224,20 @@
 (use-package org
   :custom
   (org-agenda-restore-windows-after-quit t)
+  (org-directory "~/.emacs.d/org")
+  (org-default-notes-file (concat org-directory "/notes.org"))
+  (org-refile-use-outline-path 'file)
+  (org-outline-path-complete-in-steps nil)
   :config
-  (setq org-agenda-files '("/home/matthew/msp/orgmode/"))
+  (setq org-msp-directory (concat org-directory "/msp"))
+  (setq org-personal-file (concat org-directory "/personal.org"))
+  (setq org-sysadmin-file (concat org-directory "/sysadmin.org"))
+  (setq org-golem-file (concat org-msp-directory "/golem.org"))
+  (setq org-templates-directory (concat org-directory "/templates"))
+  (setq org-agenda-files (list org-msp-directory org-personal-file org-sysadmin-file))
+  (setq org-refile-targets '((org-agenda-files :maxlevel . 1)))
+  (setq org-refile-allow-creating-parent-nodes 'confirm)
+  (setq org-archive-location (concat org-directory "/archive/%s_archive::"))
   (org-babel-do-load-languages
       'org-babel-load-languages
       '((emacs-lisp . t)
@@ -233,7 +245,26 @@
 	(shell . t)
 	(perl . t)
 	(python . t)))
-  (setq org-todo-keywords '((sequence "TODO(t)" "BACKBURNER(b)" "WAITING(w)" "IN PROGRESS(p)" "QUESTION(q)" "NEXT(n)" "|" "DONE(d)" "CANCELED(c)")))
+  (setq org-todo-keywords
+	'((type "TODO(t)"
+		"BACKBURNER(b)"
+		"WAITING(w)"
+		"IN PROGRESS(p)"
+		"QUESTION(q)"
+		"NEXT(n)"
+		"|" "DONE(d)" "CANCELED(c)")
+	  (sequence "DESIGNING"
+		    "CODING"
+		    "IN REVIEW"
+		    "DONE"
+		    "|" "DEPLOYED" "CLOSED")
+	  (sequence "TO REVIEW" "CURRENTLY REVIEWING" "|" "PASSED REVIEW")))
+  (setq org-capture-templates
+	'(("r" "Redmine ticket" entry (file org-golem-file)
+	   (file "~/.emacs.d/org/templates/redmine_ticket"))
+	  ("R" "Review ticket" entry (file org-golem-file)
+	   (file "~/.emacs.d/org/templates/review_ticket"))
+	  ("t" "Todo" entry (file "") "* TODO %?  %^G\n  %i\n")))
   (defface org-backburner-face
     '((default (:foreground "DarkMagenta" :weight bold)))
     "Face for back burner projects"
@@ -266,8 +297,10 @@
   :ensure t
   :pin org)
 
+;; move these into :bindings section of use-package form
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end org
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -395,7 +428,7 @@
   (save-excursion
     (kill-ring-save (region-beginning) (region-end))
     (comment-region (region-beginning) (region-end))))
-(global-set-key (kbd "C-c c") 'comment-and-kill-ring-save)
+;; (global-set-key (kbd "C-c c") 'comment-and-kill-ring-save)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end custom functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
