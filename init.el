@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2018-06-26 21:36:26 matthew>
+;;; Time-stamp: <2018-07-03 15:20:06 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -250,15 +250,15 @@
 		"BACKBURNER(b)"
 		"WAITING(w)"
 		"IN PROGRESS(p)"
-		"QUESTION(q)"
 		"NEXT(n)"
 		"|" "DONE(d)" "CANCELED(c)")
-	  (sequence "DESIGNING"
-		    "CODING"
-		    "IN REVIEW"
-		    "DONE"
-		    "|" "DEPLOYED" "CLOSED")
-	  (sequence "TO REVIEW" "CURRENTLY REVIEWING" "|" "PASSED REVIEW")))
+	  (sequence "QUESTION(q)" "|" "ANSWER(a)")
+	  (sequence "DESIGNING(D)"
+		    "CODING(C)"
+		    "IN REVIEW(R)"
+		    "VALIDATING(V)"
+		    "|" "DEPLOYED(Y)" "CLOSED(L)")
+	  (sequence "TO REVIEW" "CURRENTLY REVIEWING" "|" "REVIEW DONE")))
   (setq org-capture-templates
 	'(("r" "Redmine ticket" entry (file org-golem-file)
 	   (file "~/.emacs.d/org/templates/redmine_ticket"))
