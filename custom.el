@@ -66,14 +66,14 @@
  '(org-agenda-files
    (quote
     ("/home/matthew/msp/orgmode/golem.org" "/home/matthew/msp/orgmode/backburner.org" "/home/matthew/msp/orgmode/org-mode.org" "/home/matthew/msp/orgmode/projects.org" "/home/matthew/msp/orgmode/sysadmin.org")))
- '(org-agenda-restore-windows-after-quit t t)
+ '(org-agenda-restore-windows-after-quit t)
  '(org-default-notes-file "~/.emacs.d/org/notes.org")
  '(org-directory "~/.emacs.d/org")
  '(org-outline-path-complete-in-steps nil)
  '(org-refile-use-outline-path (quote file))
  '(package-selected-packages
    (quote
-    (orgit nodejs-repl vagrant-tramp vagrant diminish company-php company-web web-mode flycheck highlight-current-line use-package isortify atom-dark-theme atom-one-dark-theme elpy material-theme helm-projectile ag helm-ag zen-and-art-theme hc-zenburn-theme zenburn-theme unicode-fonts iedit wgrep-helm helm ace-jump-mode embrace org smart-mode-line rainbow-delimiters python-mode python-info pymacs palette mic-paren magit expand-region autopair auto-complete-auctex auctex ac-math)))
+    (gnugo orgit nodejs-repl vagrant-tramp vagrant diminish company-php company-web web-mode flycheck highlight-current-line use-package isortify atom-dark-theme atom-one-dark-theme elpy material-theme helm-projectile ag helm-ag zen-and-art-theme hc-zenburn-theme zenburn-theme unicode-fonts iedit wgrep-helm helm ace-jump-mode embrace org smart-mode-line rainbow-delimiters python-mode python-info pymacs palette mic-paren magit expand-region autopair auto-complete-auctex auctex ac-math)))
  '(py-split-window-on-execute t)
  '(pyvenv-tracking-ask-before-change t)
  '(safe-local-variable-values
