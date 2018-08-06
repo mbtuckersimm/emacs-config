@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2018-07-26 16:03:55 matthew>
+;;; Time-stamp: <2018-08-06 10:54:32 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -246,8 +246,7 @@
   (org-babel-do-load-languages
       'org-babel-load-languages
       '((emacs-lisp . t)
-        (sh . t)
-	(shell . t)
+        (shell . t)
 	(perl . t)
 	(python . t)))
   (setq org-todo-keywords
@@ -298,7 +297,6 @@
 	  ("QUESTION" . org-question-face)))
   (setq org-log-done 'time)
   (setq org-log-done 'note)
-  :defer t
   :ensure t
   :pin org)
 
