@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2018-08-06 10:54:32 matthew>
+;;; Time-stamp: <2018-08-07 15:51:29 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -127,8 +127,8 @@
   :diminish whitespace-mode
   :ensure t)
 
-(use-package linum
-   :hook (prog-mode . linum-mode))
+(use-package display-line-numbers
+  :hook (prog-mode . display-line-numbers-mode))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
