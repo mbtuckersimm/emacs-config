@@ -44,8 +44,8 @@
     ("190a9882bef28d7e944aa610aa68fe1ee34ecea6127239178c7ac848754992df" "59171e7f5270c0f8c28721bb96ae56d35f38a0d86da35eab4001aebbd99271a8" "e9460a84d876da407d9e6accf9ceba453e2f86f8b86076f37c08ad155de8223c" "732b807b0543855541743429c9979ebfb363e27ec91e82f463c91e68c772f6e3" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" "e11569fd7e31321a33358ee4b232c2d3cf05caccd90f896e1df6cab228191109" "bcc6775934c9adf5f3bd1f428326ce0dcd34d743a92df48c128e6438b815b44f" "2a739405edf418b8581dcd176aaf695d319f99e3488224a3c495cb0f9fd814e3" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "7b4a48ba440cf63b7e9f3183f085a2f306ba8405b7c4c5f74126349cf8fe141f" "c42ef18cfebf144a7c39ec8a95dd268dbe8276b858e793b0a2e8aa3d20e6edb1" "602cf380fedc6ce52b135ffd1be4bfedc96aafd80645844817f3de0b12e6e077" "d6115669a9d0bdde235c33549bab6927910b5f7162a1c618548b59285bdd58f1" "fc43b3ef4682a5826485515cccef323ac71219e0698bed7b8ed806ffb93270df" "009bf2d575807e71e244c2223362bf48f348f05f7d2bf5ed23dc2991fca83ecf" "34543312860bbc58b2fcf4d24a9bdc5c114347f16903ac9d7ae70f3c44616a9e" "9a4aca5cddf34a7f70afe7b1057232d1b86c26daed1e1d7324ea804ba3911fcd" default)))
  '(display-time-mode t)
  '(fci-rule-color "#383838")
- '(helm-M-x-fuzzy-match t t)
- '(helm-M-x-requires-pattern 0 t)
+ '(helm-M-x-fuzzy-match t)
+ '(helm-M-x-requires-pattern 0)
  '(helm-boring-buffer-regexp-list
    (quote
     ("\\` " "\\`\\*helm" "\\`\\*Echo Area" "\\`\\*Minibuf")))
@@ -61,15 +61,12 @@
  '(helm-moccur-show-buffer-fontification t)
  '(helm-moccur-truncate-lines nil)
  '(helm-mode-fuzzy-match t)
- '(helm-recentf-fuzzy-match t t)
+ '(helm-recentf-fuzzy-match t)
  '(helm-split-window-default-side (quote right))
  '(mh-variant "GNU Mailutils 2.99.98")
- '(org-agenda-files
-   (quote
-    ("/home/matthew/msp/orgmode/golem.org" "/home/matthew/msp/orgmode/backburner.org" "/home/matthew/msp/orgmode/org-mode.org" "/home/matthew/msp/orgmode/projects.org" "/home/matthew/msp/orgmode/sysadmin.org")))
- '(org-agenda-restore-windows-after-quit t t)
- '(org-default-notes-file "~/.emacs.d/org/notes.org")
- '(org-directory "~/.emacs.d/org")
+ '(org-agenda-restore-windows-after-quit t)
+ '(org-default-notes-file "~/org/notes.org")
+ '(org-directory "~/org")
  '(org-outline-path-complete-in-steps nil)
  '(org-refile-use-outline-path (quote file))
  '(package-selected-packages

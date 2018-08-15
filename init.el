@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2018-08-15 08:15:31 matthew>
+;;; Time-stamp: <2018-08-15 08:25:27 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -265,9 +265,9 @@
 	  (sequence "TO REVIEW" "CURRENTLY REVIEWING" "|" "REVIEW DONE")))
   (setq org-capture-templates
 	'(("r" "Redmine ticket" entry (file org-golem-file)
-	   (file "~/.emacs.d/org/templates/redmine_ticket"))
+	   (file "~/org/templates/redmine_ticket"))
 	  ("R" "Review ticket" entry (file org-golem-file)
-	   (file "~/.emacs.d/org/templates/review_ticket"))
+	   (file "~/org/templates/review_ticket"))
 	  ("t" "Todo" entry (file "") "* TODO %?  %^G\n  %i\n")))
   (defface org-backburner-face
     '((default (:foreground "DarkMagenta" :weight bold)))
