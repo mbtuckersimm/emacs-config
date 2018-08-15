@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2018-08-07 15:51:29 matthew>
+;;; Time-stamp: <2018-08-15 08:15:31 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -229,7 +229,7 @@
 (use-package org
   :custom
   (org-agenda-restore-windows-after-quit t)
-  (org-directory "~/.emacs.d/org")
+  (org-directory "~/org")
   (org-default-notes-file (concat org-directory "/notes.org"))
   (org-refile-use-outline-path 'file)
   (org-outline-path-complete-in-steps nil)
