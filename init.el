@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2018-08-15 08:25:27 matthew>
+;;; Time-stamp: <2018-08-15 10:34:43 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -471,6 +471,7 @@
   :ensure t
   :mode "\\.php\\'"
   :custom
+  (web-mode-enable-auto-indentation nil)
   (web-mode-code-indent-offset 2))
 
 ;; JavaScript
