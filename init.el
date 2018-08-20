@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2018-08-15 10:34:43 matthew>
+;;; Time-stamp: <2018-08-20 16:37:37 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -206,9 +206,15 @@
   (helm-mode 1)
   :diminish helm-mode)
 
+(use-package projectile
+  :ensure t
+  :config
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+
 (use-package helm-projectile
   :config
   (projectile-mode)
+  (helm-projectile-on)
   (setq projectile-completion-system 'helm)
   (setq projectile-switch-project-action 'helm-projectile-find-file)
   (setq projectile-mode-line
@@ -216,7 +222,6 @@
       (:eval
         (format " Proj[%s]"
 	     (projectile-project-name)))))
-  (helm-projectile-on)
   :ensure t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end helm
