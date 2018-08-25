@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2018-08-22 12:17:35 matthew>
+;;; Time-stamp: <2018-08-25 12:57:22 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -318,7 +318,7 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  shell mode
+;;  shell/comint modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; stop editor from breaking line into fields
@@ -336,6 +336,10 @@
   :hook (shell-mode . dirtrack-mode)
   :init
   (setq dirtrack-list '("^.*?:\\(.*\\)\n" 1 nil)))
+
+(use-package sqlup-mode
+  :hook (sql-interactive-mode . sqlup-mode)
+  :ensure t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end shell mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
