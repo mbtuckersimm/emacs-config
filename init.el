@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2018-08-29 09:06:59 matthew>
+;;; Time-stamp: <2018-08-29 15:52:47 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -340,6 +340,15 @@
 (use-package sqlup-mode
   :hook (sql-interactive-mode . sqlup-mode)
   :ensure t)
+
+;; default login parameters for mysql on devenv
+(use-package sql
+  :custom
+  (sql-mysql-login-params
+     '((user :default "root")
+       (database :default "msp")
+       (server :default "127.0.0.1")
+       (port :default 3307))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end shell mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
