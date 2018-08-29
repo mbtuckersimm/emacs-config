@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2018-08-25 12:57:22 matthew>
+;;; Time-stamp: <2018-08-29 09:06:59 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -458,7 +458,7 @@
 
 ;; Python (need to convert to use-package)
 (use-package isortify
-  :hook (python-mode . isort-mode))
+  :hook (python-mode . isortify-mode))
 
 ;; (use-package elpy
 ;;   :custom
