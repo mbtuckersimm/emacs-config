@@ -86,6 +86,12 @@
            (rainbow-mode 1)))))
  '(send-mail-function nil)
  '(size-indication-mode t)
+ '(sql-mysql-login-params
+   (quote
+    ((user :default "root")
+     (database :default "msp")
+     (server :default "127.0.0.1")
+     (port :default 3307))))
  '(tool-bar-mode nil)
  '(whitespace-style (quote (face trailing))))
 (custom-set-faces
