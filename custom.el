@@ -64,8 +64,9 @@
  '(helm-mode-fuzzy-match t)
  '(helm-recentf-fuzzy-match t)
  '(helm-split-window-default-side (quote right))
+ '(indent-tabs-mode nil)
  '(mh-variant "GNU Mailutils 2.99.98")
- '(org-agenda-restore-windows-after-quit t)
+ '(org-agenda-restore-windows-after-quit t t)
  '(org-default-notes-file "~/org/notes.org")
  '(org-directory "~/org")
  '(org-outline-path-complete-in-steps nil)
@@ -80,9 +81,9 @@
     ((eval show-all)
      (TeX-master . t)
      (eval when
-	   (fboundp
-	    (quote rainbow-mode))
-	   (rainbow-mode 1)))))
+           (fboundp
+            (quote rainbow-mode))
+           (rainbow-mode 1)))))
  '(send-mail-function nil)
  '(size-indication-mode t)
  '(tool-bar-mode nil)
