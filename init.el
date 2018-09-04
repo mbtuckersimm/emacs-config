@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2018-08-29 16:09:39 matthew>
+;;; Time-stamp: <2018-09-04 10:50:57 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -371,12 +371,19 @@
 (diminish 'abbrev-mode)
 
 (use-package smart-mode-line
-  :init
-  (setq sml/theme 'dark) ;; can use one of 'dark, 'light or 'respectful
-  (setq sml/name-width 35)
-  (setq sml/mode-width 'full)
+  :custom
+  (sml/theme 'dark) ;; can use one of 'dark, 'light or 'respectful
+  (sml/name-width 35)
+  (sml/mode-width 'full)
   :config
-  (sml/setup))
+  (sml/setup)
+  (add-to-list 'sml/replacer-regexp-list '("^~/msp/" ":MSP:") t)
+  (add-to-list 'sml/replacer-regexp-list '(":Doc:msp/" ":MSP:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/editflow/ef/" ":ORCUS:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/editflow/ef-devenv/" ":DEVENV:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/editflow/lib/" ":EF-LIB:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/" ":JANUS:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/janus-kgb/" ":KGB:") t))
 
 (use-package highlight-current-line
   :custom
