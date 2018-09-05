@@ -86,6 +86,9 @@
            (rainbow-mode 1)))))
  '(send-mail-function nil)
  '(size-indication-mode t)
+ '(sml/mode-width (quote full))
+ '(sml/name-width 35)
+ '(sml/theme (quote dark))
  '(sql-mysql-login-params
    (quote
     ((user :default "root")

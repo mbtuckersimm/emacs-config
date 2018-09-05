@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2018-09-04 10:50:57 matthew>
+;;; Time-stamp: <2018-09-04 20:06:53 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -377,12 +377,13 @@
   (sml/mode-width 'full)
   :config
   (sml/setup)
+  (add-to-list 'sml/replacer-regexp-list '("^~/org/" ":Org:"))
   (add-to-list 'sml/replacer-regexp-list '("^~/msp/" ":MSP:") t)
   (add-to-list 'sml/replacer-regexp-list '(":Doc:msp/" ":MSP:") t)
-  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/editflow/ef/" ":ORCUS:") t)
-  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/editflow/ef-devenv/" ":DEVENV:") t)
-  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/editflow/lib/" ":EF-LIB:") t)
-  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/" ":JANUS:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/editflow/ef/" ":Orcus:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/editflow/ef-devenv/" ":Devenv:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/editflow/lib/" ":EF-lib:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/" ":Janus:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/janus-kgb/" ":KGB:") t))
 
 (use-package highlight-current-line
