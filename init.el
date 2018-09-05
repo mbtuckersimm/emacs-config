@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2018-09-04 20:06:53 matthew>
+;;; Time-stamp: <2018-09-04 20:54:39 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -243,17 +243,12 @@
   (setq org-personal-file (concat org-directory "/personal.org"))
   (setq org-sysadmin-file (concat org-directory "/sysadmin.org"))
   (setq org-golem-file (concat org-msp-directory "/golem.org"))
+  (setq org-golem-admin-file (concat org-msp-directory "/golem-admin.org"))
   (setq org-templates-directory (concat org-directory "/templates"))
   (setq org-agenda-files (list org-msp-directory org-personal-file org-sysadmin-file))
   (setq org-refile-targets '((org-agenda-files :maxlevel . 1)))
   (setq org-refile-allow-creating-parent-nodes 'confirm)
   (setq org-archive-location (concat org-directory "/archive/%s_archive::"))
-  (org-babel-do-load-languages
-      'org-babel-load-languages
-      '((emacs-lisp . t)
-        (shell . t)
-	(perl . t)
-	(python . t)))
   (setq org-todo-keywords
 	'((type "TODO(t)"
 		"BACKBURNER(b)"
@@ -271,10 +266,12 @@
   (setq org-capture-templates
 	'(("r" "Redmine ticket" entry (file org-golem-file)
 	   (file "~/org/templates/redmine_ticket"))
-	  ("R" "Review ticket" entry (file org-golem-file)
-	   (file "~/org/templates/review_ticket"))
 	  ("h" "Hotfix" entry (file org-golem-file)
 	   (file "~/org/templates/hotfix"))
+	  ("R" "Review ticket" entry (file org-golem-file)
+	   (file "~/org/templates/review_ticket"))
+          ("m" "Meeting" entry (file org-golem-admin-file)
+           (file "~/org/templates/golem_meeting"))
 	  ("t" "Todo" entry (file "") "* TODO %?  %^G\n  %i\n")))
   (defface org-backburner-face
     '((default (:foreground "DarkMagenta" :weight bold)))
@@ -304,6 +301,12 @@
 	  ("QUESTION" . org-question-face)))
   (setq org-log-done 'time)
   (setq org-log-done 'note)
+  (org-babel-do-load-languages
+      'org-babel-load-languages
+      '((emacs-lisp . t)
+        (shell . t)
+	(perl . t)
+	(python . t)))
   :ensure t
   :pin org)
 
