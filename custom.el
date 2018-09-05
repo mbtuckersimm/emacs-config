@@ -102,6 +102,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:foreground "#DCDCCC" :background "#313131" :family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 143 :width normal))))
+ '(default ((t (:foreground "#DCDCCC" :background "#313131" :family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 128 :width normal))))
  '(highlight-current-line-face ((t (:background "gray18"))))
  '(paren-face-match ((t (:foreground "medium aquamarine")))))
