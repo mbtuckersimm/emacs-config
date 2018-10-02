@@ -45,8 +45,8 @@
  '(display-time-mode t)
  '(ediff-split-window-function (quote split-window-horizontally))
  '(fci-rule-color "#383838")
- '(helm-M-x-fuzzy-match t)
- '(helm-M-x-requires-pattern 0)
+ '(helm-M-x-fuzzy-match t t)
+ '(helm-M-x-requires-pattern 0 t)
  '(helm-boring-buffer-regexp-list
    (quote
     ("\\` " "\\`\\*helm" "\\`\\*Echo Area" "\\`\\*Minibuf")))
