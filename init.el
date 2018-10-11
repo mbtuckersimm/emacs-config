@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2018-10-04 09:07:56 matthew>
+;;; Time-stamp: <2018-10-11 10:31:19 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -325,6 +325,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  shell/comint modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package shell
+  :custom
+  (explicit-shell-file-name "/bin/bash"))
 
 ;; stop editor from breaking line into fields
 (setq comint-use-prompt-regexp t)
