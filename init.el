@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2018-10-11 10:31:19 matthew>
+;;; Time-stamp: <2018-10-20 14:23:43 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -531,6 +531,9 @@
 
 (use-package vagrant-tramp
   :ensure t)
+
+;; shell script mode
+(add-to-list 'auto-mode-alist '("\\.fish\\'" . shell-script-mode))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end programming
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
