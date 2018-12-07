@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2018-12-07 11:09:51 matthew>
+;;; Time-stamp: <2018-12-07 11:11:39 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -512,9 +512,6 @@
   :ensure t
   :custom
   (js-indent-level 2))
-
-(use-package nodejs-repl
-  :ensure t)
 
 ;; auto-completion
 (use-package company
