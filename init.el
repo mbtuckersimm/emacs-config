@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2018-12-07 11:11:39 matthew>
+;;; Time-stamp: <2018-12-07 11:15:42 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -342,7 +342,8 @@
   (setq dirtrack-list '("^.*?:\\(.*\\)\n" 1 nil)))
 
 (use-package sqlup-mode
-  :hook (sql-interactive-mode . sqlup-mode)
+  :hook ((sql-interactive-mode . sqlup-mode)
+         (sql-mode . sqlup-mode))
   :ensure t)
 
 ;; default login parameters for mysql on devenv
