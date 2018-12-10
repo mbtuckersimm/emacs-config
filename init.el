@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2018-12-07 11:15:42 matthew>
+;;; Time-stamp: <2018-12-10 12:52:32 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -307,7 +307,8 @@
   :pin org)
 
 (use-package org-bullets
-  :hook (org-mode . org-bullets-mode))
+  :hook (org-mode . org-bullets-mode)
+  :ensure t)
 
 ;; move these into :bindings section of use-package form
 (global-set-key (kbd "C-c l") 'org-store-link)
