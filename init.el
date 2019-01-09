@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2019-01-07 12:52:40 matthew>
+;;; Time-stamp: <2019-01-09 11:51:47 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -129,6 +129,14 @@
 
 (use-package display-line-numbers
   :hook (prog-mode . display-line-numbers-mode))
+
+(use-package all-the-icons)
+
+(use-package neotree
+  :custom
+  (neo-theme (if (display-graphic-p) 'icons 'arrow))
+  :config
+  (global-set-key [f8] 'neotree-toggle))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
