@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2019-01-09 11:51:47 matthew>
+;;; Time-stamp: <2019-01-10 09:24:31 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -136,7 +136,9 @@
   :custom
   (neo-theme (if (display-graphic-p) 'icons 'arrow))
   :config
-  (global-set-key [f8] 'neotree-toggle))
+  (global-set-key (kbd "<f8>") 'neotree-toggle)
+  (global-set-key (kbd "<S-f8>") 'neotree-find)
+  :ensure t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
