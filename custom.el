@@ -67,6 +67,7 @@
  '(helm-split-window-default-side (quote right))
  '(indent-tabs-mode nil)
  '(mh-variant "GNU Mailutils 2.99.98")
+ '(neo-theme (quote icons))
  '(org-agenda-restore-windows-after-quit t t)
  '(org-default-notes-file "~/org/notes.org")
  '(org-directory "~/org")
