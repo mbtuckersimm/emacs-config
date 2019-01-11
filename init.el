@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2019-01-10 09:24:31 matthew>
+;;; Time-stamp: <2019-01-10 16:18:05 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -72,6 +72,11 @@
   (require 'use-package))
 (require 'diminish)
 (require 'bind-key)
+
+(use-package paradox
+  :config
+  (paradox-enable)
+  :ensure t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end package management
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
