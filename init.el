@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2019-01-10 16:18:05 matthew>
+;;; Time-stamp: <2019-01-18 16:03:00 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -402,11 +402,15 @@
   (add-to-list 'sml/replacer-regexp-list '("^~/org/" ":Org:"))
   (add-to-list 'sml/replacer-regexp-list '("^~/msp/" ":MSP:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:Doc:msp/" ":MSP:") t)
-  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/editflow/ef/" ":ef-core:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/editflow/ef/" ":orcus:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/editflow/ef-devenv/" ":devenv:") t)
-  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/editflow/lib/" ":ef-lib:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/" ":janus:") t)
-  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/janus-kgb/" ":KGB:") t))
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/janus-kgb/" ":KGB:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/janus-cork/" ":CorkBoard:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/janus-corkthrower/" ":CorkThrower:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/publish/copykit/" ":CopyKit:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/publish/prodkit/" ":ProdKit:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/publish/publicast/" ":PubliCast:") t))
 
 (use-package highlight-current-line
   :custom
