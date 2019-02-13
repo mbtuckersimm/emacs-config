@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2019-01-18 16:03:00 matthew>
+;;; Time-stamp: <2019-02-13 07:40:25 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -233,6 +233,16 @@
       (:eval
         (format " Proj[%s]"
 	     (projectile-project-name)))))
+  :ensure t)
+
+;; multi-line searching and flexible ordering are really nice; however,
+;; potential annoyance: the projectile-swoop thing only applies to the *open*
+;;   buffers from the project, not to *all* buffers, so it's of limited use
+(use-package helm-swoop
+  :after
+  (helm projectile)
+  :config
+  ;; set up keybindings here
   :ensure t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end helm
@@ -541,13 +551,6 @@
 (use-package company
   :ensure t
   :hook (prog-mode . company-mode))
-
-;; vagrant (for MSP work)
-(use-package vagrant
-  :ensure t)
-
-(use-package vagrant-tramp
-  :ensure t)
 
 ;; shell script mode
 (add-to-list 'auto-mode-alist '("\\.fish\\'" . shell-script-mode))
