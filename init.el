@@ -521,14 +521,16 @@
 ;;   :config
 ;;   (elpy-enable))
 
-(require 'elpy)
-(elpy-enable)
-(setq python-shell-interpreter "python3")
-(setq elpy-rpc-python-command "python3")
-(setq python-shell-interpreter-args "-i")
-(setq py-shell-name "python3")
-(setq elpy-shell-echo-input nil)
-(setq elpy-shell-display-buffer-after-send t)
+(use-package elpy
+  :config
+  (elpy-enable)
+  :ensure t)
+;; (setq python-shell-interpreter "python3")
+;; (setq elpy-rpc-python-command "python3")
+;; (setq python-shell-interpreter-args "-i")
+;; (setq py-shell-name "python3")
+;; (setq elpy-shell-echo-input nil)
+;; (setq elpy-shell-display-buffer-after-send t)
 
 ;; Perl
 (defalias 'perl-mode 'cperl-mode)
