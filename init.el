@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2019-02-13 07:40:25 matthew>
+;;; Time-stamp: <2019-02-14 10:33:47 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -511,20 +511,17 @@
 ;; TeX setup moved to separate file since it's bulky
 ;; (load "tex-config.el")
 
-;; Python (need to convert to use-package)
-(use-package isortify
-  :hook (python-mode . isortify-mode))
-
-;; (use-package elpy
-;;   :custom
-;;   (py-shell-name "Python shell")
-;;   :config
-;;   (elpy-enable))
+;; Python
+;; (use-package isortify
+;;   :hook (python-mode . isortify-mode))
 
 (use-package elpy
   :config
   (elpy-enable)
+  ;; disable flymake since we use flycheck instead
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
   :ensure t)
+
 ;; (setq python-shell-interpreter "python3")
 ;; (setq elpy-rpc-python-command "python3")
 ;; (setq python-shell-interpreter-args "-i")
