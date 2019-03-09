@@ -91,12 +91,6 @@
  '(sml/mode-width (quote full))
  '(sml/name-width 35)
  '(sml/theme (quote dark))
- '(sql-mysql-login-params
-   (quote
-    ((user :default "root")
-     (database :default "msp")
-     (server :default "127.0.0.1")
-     (port :default 3307))))
  '(tool-bar-mode nil)
  '(whitespace-style (quote (face trailing))))
 (custom-set-faces
