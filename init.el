@@ -425,17 +425,7 @@
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/janus-corkthrower/" ":CorkThrower:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/publish/copykit/" ":CopyKit:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/publish/prodkit/" ":ProdKit:") t)
-  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/publish/publicast/" ":PubliCast:") t))
-
-(use-package highlight-current-line
-  :custom
-  (highlight-current-line-globally t)
-  (highlight-current-line-high-faces nil)
-  (highlight-current-line-whole-line t)
-  :custom-face
-  ;; (highlight-current-line-face ((t (:background "gray18"))))
-  :config
-  (global-hl-line-mode t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/publish/publicast/" ":PubliCast:") t)
   :ensure t)
 
 (use-package font-lock
