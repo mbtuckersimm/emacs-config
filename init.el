@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2019-02-14 10:33:47 matthew>
+;;; Time-stamp: <2019-03-11 16:19:47 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -32,6 +32,7 @@
 (transient-mark-mode 1)
 (display-time-mode 1)
 (size-indication-mode t)
+(global-hl-line-mode t)
 (setq blink-cursor-blinks 0)
 (setq require-final-newline t)
 
@@ -62,7 +63,7 @@
 ;; load self-installed packages
 (package-initialize)
 
-(require 'use-package)
+;; use-package
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
@@ -70,8 +71,10 @@
 
 (eval-when-compile
   (require 'use-package))
-(require 'diminish)
-(require 'bind-key)
+(use-package diminish
+  :ensure t)
+(use-package bind-key
+  :ensure t)
 
 (use-package paradox
   :config
