@@ -112,7 +112,8 @@
 
 (use-package unicode-fonts
   :config
-  (unicode-fonts-setup))
+  (unicode-fonts-setup)
+  :ensure t)
 
 (use-package autopair
   :config
@@ -138,7 +139,8 @@
 (use-package display-line-numbers
   :hook (prog-mode . display-line-numbers-mode))
 
-(use-package all-the-icons)
+(use-package all-the-icons
+  :ensure t)
 
 (use-package neotree
   :custom
