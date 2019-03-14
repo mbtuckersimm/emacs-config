@@ -1,0 +1,9 @@
+* DESIGNING %^{project|Orcus|Janus|Prodkit|PubliCast} hotfix (%^{description}) :msp:
+  :PROPERTIES:
+  :Project: %\1
+  :Started: %U
+  :END:
+** resources and links
+*** relevant project files
+*** web links
+** ticket design

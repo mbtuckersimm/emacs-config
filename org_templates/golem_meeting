@@ -1,0 +1,4 @@
+* notes from Golem %^{meeting type|huddle|meeting} %U
+** my report
+** main topics
+%(when (y-or-n-p "Include joke?") (concat "** TODO joke"))

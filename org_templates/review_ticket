@@ -1,0 +1,9 @@
+* TO REVIEW %^{project|Orcus|Janus|Prodkit|PubliCast} %^{ticket number} (%^{description}) :msp:
+  :PROPERTIES:
+  :Project: %\1
+  :Coder: %^{Coder|Andrew|Joe|Alex}
+  :END:
+** [[https://beta.msp.org/redmine/issues/%\2][redmine ticket]]
+** relevant project files
+** TODO review code
+** TODO kick tires

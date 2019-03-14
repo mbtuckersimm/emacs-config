@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2019-03-11 16:19:47 matthew>
+;;; Time-stamp: <2019-03-13 21:24:02 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -270,7 +270,7 @@
   (setq org-sysadmin-file (concat org-directory "/sysadmin.org"))
   (setq org-golem-file (concat org-msp-directory "/golem.org"))
   (setq org-golem-admin-file (concat org-msp-directory "/golem-admin.org"))
-  (setq org-templates-directory (concat org-directory "/templates"))
+  (setq org-templates-directory "~/.emacs.d/org_templates")
   (setq org-agenda-files (list org-msp-directory org-personal-file org-sysadmin-file))
   (setq org-refile-targets '((org-agenda-files :maxlevel . 1)))
   (setq org-refile-allow-creating-parent-nodes 'confirm)
@@ -291,13 +291,13 @@
 	  (sequence "TO REVIEW" "CURRENTLY REVIEWING" "|" "REVIEW DONE")))
   (setq org-capture-templates
 	'(("r" "Redmine ticket" entry (file org-golem-file)
-	   (file "~/org/templates/redmine_ticket"))
+	   (file "~/.emacs.d/org_templates/redmine_ticket"))
 	  ("h" "Hotfix" entry (file org-golem-file)
-	   (file "~/org/templates/hotfix"))
+	   (file "~/.emacs.d/org_templates/hotfix"))
 	  ("R" "Review ticket" entry (file org-golem-file)
-	   (file "~/org/templates/review_ticket"))
+	   (file "~/.emacs.d/org_templates/review_ticket"))
           ("m" "Meeting" entry (file org-golem-admin-file)
-           (file "~/org/templates/golem_meeting"))
+           (file "~/.emacs.d/org_templates/golem_meeting"))
 	  ("t" "Todo" entry (file "") "* TODO %?  %^G\n  %i\n")))
   (defface org-backburner-face
     '((default (:foreground "DarkMagenta" :weight bold)))
