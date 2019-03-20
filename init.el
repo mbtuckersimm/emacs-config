@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2019-03-20 11:34:31 matthew>
+;;; Time-stamp: <2019-03-20 11:59:32 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -110,10 +110,10 @@
   (yas-global-mode 1)
   :ensure t)
 
-(use-package unicode-fonts
-  :config
-  (unicode-fonts-setup)
-  :ensure t)
+;; (use-package unicode-fonts
+;;   :config
+;;   (unicode-fonts-setup)
+;;   :ensure t)
 
 (use-package autopair
   :config
