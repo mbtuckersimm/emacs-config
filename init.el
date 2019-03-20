@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2019-03-20 11:24:16 matthew>
+;;; Time-stamp: <2019-03-20 11:34:31 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -175,6 +175,11 @@
 ;;  magit
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package magit
+  :custom
+   (magit-repository-directories
+    '(("~/.emacs.d" . 0)
+      ("~/Documents/msp/code" . 4)
+      ("~/dotfiles" . 0)))
   :ensure t)
 
 (global-set-key (kbd "C-x g") 'magit-status)
