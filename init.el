@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2019-03-20 11:59:32 matthew>
+;;; Time-stamp: <2019-03-22 15:51:20 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -434,6 +434,8 @@
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/office/metawiz/" ":MetaWiz:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/office/newmsp/" ":newMSP:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/office/plutonium/" ":Plutonium:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/office/skorptoys/" ":SkorpToys:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/office/exchange/" ":Exchange:") t)
   :ensure t)
 
 (use-package font-lock
