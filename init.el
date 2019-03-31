@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2019-03-22 15:51:20 matthew>
+;;; Time-stamp: <2019-03-30 17:53:26 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -206,7 +206,7 @@
   :custom
    (helm-split-window-default-side 'right) ;; open helm buffer in another window
    (helm-candidate-number-limit 200) ; limit the number of displayed canidates
-   (helm-M-x-requires-pattern   0)     ; show all candidates when set to 0
+   (helm-M-x-requires-pattern   0)   ; show all candidates when set to 0
    (helm-M-x-fuzzy-match        t)
    (helm-buffers-fuzzy-matching t)
    (helm-recentf-fuzzy-match    t)

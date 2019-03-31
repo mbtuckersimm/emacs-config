@@ -46,8 +46,8 @@
  '(ediff-split-window-function (quote split-window-horizontally))
  '(explicit-shell-file-name "/bin/bash")
  '(fci-rule-color "#383838")
- '(helm-M-x-fuzzy-match t t)
- '(helm-M-x-requires-pattern 0 t)
+ '(helm-M-x-fuzzy-match t)
+ '(helm-M-x-requires-pattern 0)
  '(helm-boring-buffer-regexp-list
    (quote
     ("\\` " "\\`\\*helm" "\\`\\*Echo Area" "\\`\\*Minibuf")))
@@ -68,7 +68,7 @@
  '(indent-tabs-mode nil)
  '(mh-variant "GNU Mailutils 2.99.98")
  '(neo-theme (quote icons))
- '(org-agenda-restore-windows-after-quit t t)
+ '(org-agenda-restore-windows-after-quit t)
  '(org-default-notes-file "~/org/notes.org")
  '(org-directory "~/org")
  '(org-outline-path-complete-in-steps nil)
