@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2019-03-30 17:53:26 matthew>
+;;; Time-stamp: <2019-04-05 15:35:16 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -23,12 +23,15 @@
 
 (add-to-list 'load-path "/home/matthew/.emacs.d/lisp/")
 
-(tool-bar-mode -1)
+;; settings that only apply in windowed mode
+(when (display-graphic-p)
+  (tool-bar-mode -1)
+  (mouse-wheel-mode t)
+  (scroll-bar-mode -1)
+  (horizontal-scroll-bar-mode -1))
+
 (line-number-mode 1)
 (column-number-mode 1)
-(mouse-wheel-mode t)
-(scroll-bar-mode -1)
-(horizontal-scroll-bar-mode -1)
 (transient-mark-mode 1)
 (display-time-mode 1)
 (size-indication-mode t)
