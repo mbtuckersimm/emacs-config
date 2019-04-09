@@ -439,6 +439,7 @@
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/office/plutonium/" ":Plutonium:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/office/skorptoys/" ":SkorpToys:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/office/exchange/" ":Exchange:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/web/msp-hub" ":msp_org:") t)
   :ensure t)
 
 (use-package font-lock
