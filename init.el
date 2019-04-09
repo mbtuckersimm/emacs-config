@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2019-04-05 15:35:16 matthew>
+;;; Time-stamp: <2019-04-09 09:59:13 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -576,6 +576,10 @@
 (global-set-key (kbd "C-c ;") 'comment-or-uncomment-region)
 (global-set-key (kbd "M-s f") 'flush-lines)
 (global-set-key (kbd "M-s c") 'how-many)
+(global-set-key (kbd "C-x <left>") 'windmove-left)
+(global-set-key (kbd "C-x <right>") 'windmove-right)
+(global-set-key (kbd "C-x <up>") 'windmove-up)
+(global-set-key (kbd "C-x <down>") 'windmove-down)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end keybindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
