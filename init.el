@@ -387,15 +387,6 @@
   :hook ((sql-interactive-mode . sqlup-mode)
          (sql-mode . sqlup-mode))
   :ensure t)
-
-;; default login parameters for mysql on devenv
-;; (use-package sql
-;;   :custom
-;;   (sql-mysql-login-params
-;;      '((user :default "root")
-;;        (database :default "msp")
-;;        (server :default "127.0.0.1")
-;;        (port :default 3307))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end shell mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
