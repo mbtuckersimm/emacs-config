@@ -66,16 +66,21 @@
  '(helm-recentf-fuzzy-match t)
  '(helm-split-window-default-side (quote right))
  '(indent-tabs-mode nil)
+ '(magit-repository-directories
+   (quote
+    (("~/.emacs.d" . 0)
+     ("~/Documents/msp/code" . 4)
+     ("~/dotfiles" . 0))))
  '(mh-variant "GNU Mailutils 2.99.98")
  '(neo-theme (quote icons))
- '(org-agenda-restore-windows-after-quit t)
+ '(org-agenda-restore-windows-after-quit t t)
  '(org-default-notes-file "~/org/notes.org")
  '(org-directory "~/org")
  '(org-outline-path-complete-in-steps nil)
  '(org-refile-use-outline-path (quote file))
  '(package-selected-packages
    (quote
-    (helm-swoop paradox all-the-icons neotree sqlup-mode org-bullets gnugo diminish company-php company-web web-mode flycheck highlight-current-line use-package isortify atom-dark-theme atom-one-dark-theme elpy material-theme helm-projectile ag helm-ag zen-and-art-theme hc-zenburn-theme zenburn-theme unicode-fonts iedit wgrep-helm helm ace-jump-mode embrace org smart-mode-line rainbow-delimiters python-mode python-info pymacs palette mic-paren magit expand-region autopair auto-complete-auctex auctex ac-math)))
+    (elpy helm-swoop paradox all-the-icons neotree sqlup-mode org-bullets gnugo diminish company-php company-web web-mode flycheck highlight-current-line use-package isortify atom-dark-theme atom-one-dark-theme material-theme helm-projectile ag helm-ag zen-and-art-theme hc-zenburn-theme zenburn-theme unicode-fonts iedit wgrep-helm helm ace-jump-mode embrace org smart-mode-line rainbow-delimiters python-mode python-info pymacs palette mic-paren magit expand-region autopair auto-complete-auctex auctex ac-math)))
  '(py-split-window-on-execute t)
  '(pyvenv-tracking-ask-before-change t)
  '(safe-local-variable-values
