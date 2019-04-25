@@ -516,8 +516,10 @@
 ;;   :hook (python-mode . isortify-mode))
 
 (use-package elpy
-  :config
+  :init
   (elpy-enable)
+  :config
+  (setenv "WORKON_HOME" "~/.pyenv/versions/")
   ;; disable flymake since we use flycheck instead
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
   :ensure t)
