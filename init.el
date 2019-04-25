@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2019-04-09 09:59:13 matthew>
+;;; Time-stamp: <2019-04-25 15:14:39 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -418,6 +418,7 @@
   (add-to-list 'sml/replacer-regexp-list '("^:Doc:msp/" ":MSP:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/editflow/ef/" ":orcus:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/editflow/ef-devenv/" ":devenv:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/editflow/ef-local/" ":ef-local:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/" ":janus:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/janus-kgb/" ":KGB:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/janus-cork/" ":CorkBoard:") t)
