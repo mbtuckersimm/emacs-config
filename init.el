@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2019-04-25 15:14:39 matthew>
+;;; Time-stamp: <2019-05-01 08:10:37 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -419,19 +419,18 @@
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/editflow/ef/" ":orcus:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/editflow/ef-devenv/" ":devenv:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/editflow/ef-local/" ":ef-local:") t)
-  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/" ":janus:") t)
-  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/janus-kgb/" ":KGB:") t)
-  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/janus-cork/" ":CorkBoard:") t)
-  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/janus-corkthrower/" ":CorkThrower:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/kgb_site/" ":KGB:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/ef-api_site/" ":ef-api:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/corkboard_site/" ":CorkBoard:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/corkthrower_site/" ":CorkThrower:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/publish/copykit/" ":CopyKit:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/publish/prodkit/" ":ProdKit:") t)
-  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/publish/publicast/" ":PubliCast:") t)
-  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/office/metawiz/" ":MetaWiz:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/publish/publicast_site/" ":PubliCast:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/office/metawiz_site/" ":MetaWiz:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/office/newmsp/" ":newMSP:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/office/plutonium/" ":Plutonium:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/office/skorptoys/" ":SkorpToys:") t)
-  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/office/exchange/" ":Exchange:") t)
-  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/web/msp-hub" ":msp_org:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/web/msp_org_site" ":msp_org:") t)
   :ensure t)
 
 (use-package font-lock
