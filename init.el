@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2019-05-01 08:10:37 matthew>
+;;; Time-stamp: <2019-06-19 09:08:35 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -58,7 +58,6 @@
 (require 'package)
 (setq package-archives '(("elpa" . "http://tromey.com/elpa/")
                           ("gnu" . "http://elpa.gnu.org/packages/")
-                          ;; ("marmalade" . "http://marmalade-repo.org/packages/")
          		  ("melpa" . "http://melpa.milkbox.net/packages/")
 	        	  ("melpa-stable" . "https://stable.melpa.org/packages/")
 		          ("org" . "http://orgmode.org/elpa/")))
