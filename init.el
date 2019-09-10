@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2019-08-12 16:10:24 matthew>
+;;; Time-stamp: <2019-09-10 11:54:50 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -186,6 +186,7 @@
 
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
+(setq auto-revert-check-vc-info t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end magit
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
