@@ -1,7 +1,6 @@
 * DESIGNING %^{project||Orcus|Janus|Prodkit|PubliCast|OfficeKit} %^{ticket number} (%^{description}) :msp:
   :PROPERTIES:
   :Project: %\1
-  :git-branch: %\2_%^{git branch name (w/out ticket number)}
   :Started: %U
   :END:
 ** notes and links
