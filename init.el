@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2019-09-12 08:25:26 matthew>
+;;; Time-stamp: <2019-09-25 14:39:16 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -117,6 +117,9 @@
 ;;   (unicode-fonts-setup)
 ;;   :ensure t)
 
+;; TODO: replace this with electric-pair-mode
+;; see comment on autopair github page:
+;; https://github.com/joaotavora/autopair#electric-pair-mode-in-emacs-244
 (use-package autopair
   :config
   (autopair-global-mode)
