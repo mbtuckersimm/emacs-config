@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2019-09-25 14:39:16 matthew>
+;;; Time-stamp: <2019-10-23 15:14:59 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -426,6 +426,7 @@
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/ef-api_site/" ":ef-api:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/corkboard_site/" ":CorkBoard:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/corkthrower_site/" ":CorkThrower:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/ef/casting_site/" ":Casting:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/publish/copykit/" ":CopyKit:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/publish/prodkit/" ":ProdKit:") t)
   (add-to-list 'sml/replacer-regexp-list '("^:MSP:code/publish/publicast_site/" ":PubliCast:") t)
