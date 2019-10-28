@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2019-10-23 15:14:59 matthew>
+;;; Time-stamp: <2019-10-23 15:34:59 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -522,6 +522,8 @@
 (use-package elpy
   :init
   (elpy-enable)
+  :custom
+  (elpy-rpc-virtualenv-path 'current)
   :config
   (setenv "WORKON_HOME" "~/.pyenv/versions/")
   ;; disable flymake since we use flycheck instead
