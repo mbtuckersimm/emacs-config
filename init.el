@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2019-10-23 15:34:59 matthew>
+;;; Time-stamp: <2019-11-01 17:13:11 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -549,7 +549,9 @@
   (web-mode-markup-indent-offset 2)
   (web-mode-sql-indent-offset 4)
   (web-mode-css-indent-offset 2)
-  (web-mode-code-indent-offset 2))
+  (web-mode-code-indent-offset 2)
+  :init
+  (setq web-mode-block-padding -1))
 
 ;; JavaScript
 (use-package js
