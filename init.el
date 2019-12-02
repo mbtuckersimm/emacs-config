@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2019-11-01 17:13:11 matthew>
+;;; Time-stamp: <2019-12-02 15:46:46 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -514,6 +514,27 @@
 
 ;; TeX setup moved to separate file since it's bulky
 ;; (load "tex-config.el")
+
+(use-package bibtex
+  :custom
+  (bibtex-generate-url-list
+   (quote
+    ((("url" . ".*:.*"))
+     (("doi" . "10\\.[0-9]+/.+")
+      "http://dx.doi.org/%s"
+      ("doi" ".*" 0))
+     (("mrkey" . "\\(mr\\)?[0-9]\\{1,8\\}")
+      "http://mathscinet.ams.org/mathscinet-getitem?mr=%s"
+      ("mrkey" "\\(mr\\)?\\([0-9]\\{1,8\\}\\)" 2))
+     (("mrnumber" . "\\(mr\\)?[0-9]\\{1,8\\}")
+      "http://mathscinet.ams.org/mathscinet-getitem?mr=%s"
+      ("mrnumber" "\\(mr\\)?\\([0-9]\\{1,8\\}\\)" 2))
+     (("arxiv" . "\\([0-9]\\{4\\}\\.[0-9]\\{4,5\\}\\|[-a-z]+/[0-9]\\{7\\}\\|[-a-z]+\\.[a-z]\\{2\\}/[0-9]\\{7\\}\\)\\(v[0-9]+\\)?")
+      "http://arxiv.org/abs/%s"
+      ("arxiv" ".*" 0))
+     (("zblnumber" . "\\([0-9]\\{4\\}\\.[0-9]\\{5\\}\\|[0-9]\\{8\\}\\)")
+      "http://zbmath.org/?q=an:%s"
+      ("zblnumber" ".*" 0))))))
 
 ;; Python
 ;; (use-package isortify
