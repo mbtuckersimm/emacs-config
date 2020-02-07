@@ -62,7 +62,7 @@
  '(org-refile-use-outline-path (quote file))
  '(package-selected-packages
    (quote
-    (elpy helm-swoop paradox all-the-icons neotree sqlup-mode org-bullets gnugo diminish company-php company-web web-mode flycheck highlight-current-line use-package isortify atom-dark-theme atom-one-dark-theme material-theme helm-projectile ag helm-ag zen-and-art-theme hc-zenburn-theme zenburn-theme unicode-fonts iedit wgrep-helm helm ace-jump-mode embrace org smart-mode-line rainbow-delimiters python-mode python-info pymacs palette mic-paren magit expand-region autopair auto-complete-auctex auctex ac-math)))
+    (markdown-mode elpy helm-swoop paradox all-the-icons neotree sqlup-mode org-bullets gnugo diminish company-php company-web web-mode flycheck highlight-current-line use-package isortify atom-dark-theme atom-one-dark-theme material-theme helm-projectile ag helm-ag zen-and-art-theme hc-zenburn-theme zenburn-theme unicode-fonts iedit wgrep-helm helm ace-jump-mode embrace org smart-mode-line rainbow-delimiters python-mode python-info pymacs palette mic-paren magit expand-region autopair auto-complete-auctex auctex ac-math)))
  '(py-split-window-on-execute t)
  '(pyvenv-tracking-ask-before-change t)
  '(safe-local-variable-values
