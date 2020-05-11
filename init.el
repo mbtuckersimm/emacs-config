@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2019-12-02 15:46:46 matthew>
+;;; Time-stamp: <2020-05-11 07:37:36 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -352,7 +352,8 @@
   :ensure t)
 
 ;; trigger easy templates via (eg) `< s TAB'
-(use-package org-tempo)
+;; (use-package org-tempo)
+;; meh -- can do this with C-c C-, s
 
 ;; move these into :bindings section of use-package form
 (global-set-key (kbd "C-c l") 'org-store-link)
