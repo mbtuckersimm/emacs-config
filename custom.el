@@ -103,11 +103,11 @@
  '(sml/name-width 35)
  '(sml/theme (quote dark))
  '(tool-bar-mode nil)
- '(web-mode-code-indent-offset 2)
- '(web-mode-css-indent-offset 2)
- '(web-mode-enable-auto-indentation nil)
- '(web-mode-markup-indent-offset 2)
- '(web-mode-sql-indent-offset 4)
+ '(web-mode-code-indent-offset 2 t)
+ '(web-mode-css-indent-offset 2 t)
+ '(web-mode-enable-auto-indentation nil t)
+ '(web-mode-markup-indent-offset 2 t)
+ '(web-mode-sql-indent-offset 4 t)
  '(whitespace-style (quote (face trailing))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
