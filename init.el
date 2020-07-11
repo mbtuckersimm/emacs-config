@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2020-05-11 07:37:36 matthew>
+;;; Time-stamp: <2020-07-11 14:34:02 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -254,12 +254,12 @@
 ;; multi-line searching and flexible ordering are really nice; however,
 ;; potential annoyance: the projectile-swoop thing only applies to the *open*
 ;;   buffers from the project, not to *all* buffers, so it's of limited use
-(use-package helm-swoop
-  :after
-  (helm projectile)
-  :config
-  ;; set up keybindings here
-  :ensure t)
+;; (use-package helm-swoop
+;;   :after
+;;   (helm projectile)
+;;   :config
+;;   ;; set up keybindings here
+;;   :ensure t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end helm
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -482,13 +482,13 @@
 
 ;; make > into a comment character in text mode
 ;; (useful for quoting stuff in email replies, eg)
-(add-hook 'text-mode-hook (lambda ()
-            (set (make-local-variable 'comment-start) ">")))
+;; (add-hook 'text-mode-hook (lambda ()
+;;             (set (make-local-variable 'comment-start) ">")))
 
 ;; explicitly set % for comments in LaTeX mode
 ;; (otherwise our setting for text-mode overrides it)
-(add-hook 'LaTeX-mode-hook (lambda ()
-            (set (make-local-variable 'comment-start) "%")))
+;; (add-hook 'LaTeX-mode-hook (lambda ()
+;;             (set (make-local-variable 'comment-start) "%")))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end text-editing
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -516,26 +516,26 @@
 ;; TeX setup moved to separate file since it's bulky
 ;; (load "tex-config.el")
 
-(use-package bibtex
-  :custom
-  (bibtex-generate-url-list
-   (quote
-    ((("url" . ".*:.*"))
-     (("doi" . "10\\.[0-9]+/.+")
-      "http://dx.doi.org/%s"
-      ("doi" ".*" 0))
-     (("mrkey" . "\\(mr\\)?[0-9]\\{1,8\\}")
-      "http://mathscinet.ams.org/mathscinet-getitem?mr=%s"
-      ("mrkey" "\\(mr\\)?\\([0-9]\\{1,8\\}\\)" 2))
-     (("mrnumber" . "\\(mr\\)?[0-9]\\{1,8\\}")
-      "http://mathscinet.ams.org/mathscinet-getitem?mr=%s"
-      ("mrnumber" "\\(mr\\)?\\([0-9]\\{1,8\\}\\)" 2))
-     (("arxiv" . "\\([0-9]\\{4\\}\\.[0-9]\\{4,5\\}\\|[-a-z]+/[0-9]\\{7\\}\\|[-a-z]+\\.[a-z]\\{2\\}/[0-9]\\{7\\}\\)\\(v[0-9]+\\)?")
-      "http://arxiv.org/abs/%s"
-      ("arxiv" ".*" 0))
-     (("zblnumber" . "\\([0-9]\\{4\\}\\.[0-9]\\{5\\}\\|[0-9]\\{8\\}\\)")
-      "http://zbmath.org/?q=an:%s"
-      ("zblnumber" ".*" 0))))))
+;; (use-package bibtex
+;;   :custom
+;;   (bibtex-generate-url-list
+;;    (quote
+;;     ((("url" . ".*:.*"))
+;;      (("doi" . "10\\.[0-9]+/.+")
+;;       "http://dx.doi.org/%s"
+;;       ("doi" ".*" 0))
+;;      (("mrkey" . "\\(mr\\)?[0-9]\\{1,8\\}")
+;;       "http://mathscinet.ams.org/mathscinet-getitem?mr=%s"
+;;       ("mrkey" "\\(mr\\)?\\([0-9]\\{1,8\\}\\)" 2))
+;;      (("mrnumber" . "\\(mr\\)?[0-9]\\{1,8\\}")
+;;       "http://mathscinet.ams.org/mathscinet-getitem?mr=%s"
+;;       ("mrnumber" "\\(mr\\)?\\([0-9]\\{1,8\\}\\)" 2))
+;;      (("arxiv" . "\\([0-9]\\{4\\}\\.[0-9]\\{4,5\\}\\|[-a-z]+/[0-9]\\{7\\}\\|[-a-z]+\\.[a-z]\\{2\\}/[0-9]\\{7\\}\\)\\(v[0-9]+\\)?")
+;;       "http://arxiv.org/abs/%s"
+;;       ("arxiv" ".*" 0))
+;;      (("zblnumber" . "\\([0-9]\\{4\\}\\.[0-9]\\{5\\}\\|[0-9]\\{8\\}\\)")
+;;       "http://zbmath.org/?q=an:%s"
+;;       ("zblnumber" ".*" 0))))))
 
 ;; Python
 ;; (use-package isortify
