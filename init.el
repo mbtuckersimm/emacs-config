@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2020-07-11 14:34:02 matthew>
+;;; Time-stamp: <2020-07-30 12:29:57 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -56,11 +56,11 @@
 ;;  package management
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'package)
-(setq package-archives '(("elpa" . "http://tromey.com/elpa/")
-                          ("gnu" . "http://elpa.gnu.org/packages/")
-         		  ("melpa" . "http://melpa.milkbox.net/packages/")
-	        	  ("melpa-stable" . "https://stable.melpa.org/packages/")
-		          ("org" . "http://orgmode.org/elpa/")))
+(setq package-archives '(("elpa" . "https://tromey.com/elpa/")
+                         ("gnu" . "https://elpa.gnu.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")
+                         ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
+                         ("org" . "https://orgmode.org/elpa/")))
 
 ;; load self-installed packages
 (package-initialize)
