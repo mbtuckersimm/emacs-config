@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2020-07-30 12:29:57 matthew>
+;;; Time-stamp: <2020-10-31 12:53:53 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -153,7 +153,8 @@
   (add-hook 'prog-mode-hook #'whitespace-mode)
   (add-hook 'LaTeX-mode-hook #'whitespace-mode)
   :diminish whitespace-mode
-  :ensure t)
+  ;; :ensure t
+)
 
 (use-package display-line-numbers
   :hook (prog-mode . display-line-numbers-mode))
@@ -211,15 +212,16 @@
 ;;  helm
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;(require 'helm)
-(use-package helm-config
+;; (use-package helm-config
   ;; :init
   ;; (custom-set-variables '(helm-command-prefix-key "C-;"))
-  :config
-  (bind-keys :map helm-command-map
-             ("a" . helm-ag)
-             ("o" . helm-occur)
-             ("y" . yas-insert-snippet)
-	     ("g" . helm-google-suggest)))
+  ;; :config
+  ;; TODO: it seems helm-command-map is outdated
+  ;; (bind-keys :map helm-command-map
+  ;;            ("a" . helm-ag)
+  ;;            ("o" . helm-occur)
+  ;;            ("y" . yas-insert-snippet)
+  ;;            ("g" . helm-google-suggest)))
 
 (use-package helm
   :custom
