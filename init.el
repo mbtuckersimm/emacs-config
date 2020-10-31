@@ -259,16 +259,6 @@
   (setq projectile-switch-project-action 'helm-projectile-find-file)
   (setq projectile-mode-line-prefix " Proj")
   :ensure t)
-
-;; multi-line searching and flexible ordering are really nice; however,
-;; potential annoyance: the projectile-swoop thing only applies to the *open*
-;;   buffers from the project, not to *all* buffers, so it's of limited use
-;; (use-package helm-swoop
-;;   :after
-;;   (helm projectile)
-;;   :config
-;;   ;; set up keybindings here
-;;   :ensure t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end helm
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
