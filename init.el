@@ -11,6 +11,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  basic setup
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; set high garbage-collection threshold to speed startup
+(setq gc-cons-threshold (* 100 1000 1000))
+
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
 (server-start)
@@ -621,6 +625,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end keybindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; reset garbage-collection threshold
+(setq gc-cons-threshold (* 2 1000 1000))
 
 (provide 'init)
 ;;; init.el ends here
