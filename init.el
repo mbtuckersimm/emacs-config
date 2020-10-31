@@ -119,6 +119,7 @@
   :ensure t)
 
 (use-package yasnippet
+  :defer t
   :init
   (add-to-list 'load-path "/home/matthew/.emacs.d/snippets/")
   :config
@@ -161,11 +162,10 @@
   :ensure t)
 
 (use-package neotree
+  :bind (("<f8>" . neotree-toggle)
+         ("<S-f8>" . neotree-find))
   :custom
   (neo-theme (if (display-graphic-p) 'icons 'arrow))
-  :config
-  (global-set-key (kbd "<f8>") 'neotree-toggle)
-  (global-set-key (kbd "<S-f8>") 'neotree-find)
   :ensure t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end packages
@@ -193,15 +193,15 @@
 ;;  magit
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package magit
+  :bind ("C-x g" . magit-status)
   :custom
    (magit-repository-directories
     '(("~/.emacs.d" . 0)
-      ("~/Documents/msp/code" . 4)
+      ("~/msp/code" . 4)
       ("~/dotfiles" . 0)))
   :ensure t)
 
-(global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
+;; reload files when switching git branches
 (setq auto-revert-check-vc-info t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end magit
@@ -282,6 +282,8 @@
 ;;  org
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package org
+  :bind (("C-c l" . org-store-link)
+         ("C-c c" . org-capture))
   :custom
   (org-agenda-restore-windows-after-quit t)
   (org-directory "~/org")
@@ -363,15 +365,6 @@
 (use-package org-bullets
   :hook (org-mode . org-bullets-mode)
   :ensure t)
-
-;; trigger easy templates via (eg) `< s TAB'
-;; (use-package org-tempo)
-;; meh -- can do this with C-c C-, s
-
-;; move these into :bindings section of use-package form
-(global-set-key (kbd "C-c l") 'org-store-link)
-(global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-c c") 'org-capture)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end org
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -555,6 +548,7 @@
 ;;   :hook (python-mode . isortify-mode))
 
 (use-package elpy
+  :defer t
   :init
   (elpy-enable)
   :custom
@@ -590,6 +584,7 @@
 
 ;; JavaScript
 (use-package js
+  :defer t
   :ensure t
   :custom
   (js-indent-level 2))
