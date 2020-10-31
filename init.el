@@ -339,12 +339,12 @@
 	  ("QUESTION" . org-question-face)))
   (setq org-log-done 'time)
   (setq org-log-done 'note)
-  (org-babel-do-load-languages
-      'org-babel-load-languages
-      '((emacs-lisp . t)
-        (shell . t)
-	(perl . t)
-	(python . t)))
+  ;; (org-babel-do-load-languages
+  ;;     'org-babel-load-languages
+  ;;     '((emacs-lisp . t)
+  ;;       (shell . t)
+  ;;       (perl . t)
+  ;;       (python . t)))
   :ensure t
   :pin org)
 
