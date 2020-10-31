@@ -257,11 +257,7 @@
   (helm-projectile-on)
   (setq projectile-completion-system 'helm)
   (setq projectile-switch-project-action 'helm-projectile-find-file)
-  (setq projectile-mode-line
-    (quote
-      (:eval
-        (format " Proj[%s]"
-	     (projectile-project-name)))))
+  (setq projectile-mode-line-prefix " Proj")
   :ensure t)
 
 ;; multi-line searching and flexible ordering are really nice; however,
