@@ -149,9 +149,7 @@
 (use-package whitespace
   :custom
   (whitespace-style '(face trailing))
-  :init
-  (add-hook 'prog-mode-hook #'whitespace-mode)
-  (add-hook 'LaTeX-mode-hook #'whitespace-mode)
+  :hook ((prog-mode LaTeX-mode) . whitespace-mode)
   :diminish whitespace-mode
   ;; :ensure t
 )
