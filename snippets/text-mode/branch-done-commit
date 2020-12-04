@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: branch-done-commit
+# key: done
+# binding: direct-keybinding
+# --
+`(magit-get-current-branch)` | done

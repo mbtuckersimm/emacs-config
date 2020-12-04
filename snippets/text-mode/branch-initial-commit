@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: branch-initial-commit
+# key: init
+# binding: direct-keybinding
+# --
+`(magit-get-current-branch)` | initial
