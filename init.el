@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2020-10-31 12:53:53 matthew>
+;;; Time-stamp: <2020-10-31 13:46:52 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -134,12 +134,14 @@
 ;; TODO: replace this with electric-pair-mode
 ;; see comment on autopair github page:
 ;; https://github.com/joaotavora/autopair#electric-pair-mode-in-emacs-244
-(use-package autopair
-  :config
-  (autopair-global-mode)
-  (setq autopair-autowrap t)
-  :diminish autopair-mode
-  :ensure t)
+;; (use-package autopair
+;;   :config
+;;   (autopair-global-mode)
+;;   (setq autopair-autowrap t)
+;;   :diminish autopair-mode
+;;   :ensure t)
+(use-package electric
+  :init (electric-pair-mode t))
 
 (use-package flycheck
   :init
