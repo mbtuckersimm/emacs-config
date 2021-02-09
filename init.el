@@ -489,19 +489,19 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  custom functions (move to other file?)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun comment-and-kill-ring-save ()
-  "Copy the current region into the kill ring and then comment it out."
-  (interactive)
-  (save-excursion
-    (kill-ring-save (region-beginning) (region-end))
-    (comment-region (region-beginning) (region-end))))
-;; (global-set-key (kbd "C-c c") 'comment-and-kill-ring-save)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  end custom functions
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;;  custom functions (move to other file?)
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (defun comment-and-kill-ring-save ()
+;;   "Copy the current region into the kill ring and then comment it out."
+;;   (interactive)
+;;   (save-excursion
+;;     (kill-ring-save (region-beginning) (region-end))
+;;     (comment-region (region-beginning) (region-end))))
+;; ;; (global-set-key (kbd "C-c c") 'comment-and-kill-ring-save)
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;;  end custom functions
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
