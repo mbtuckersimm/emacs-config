@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2020-10-31 13:46:52 matthew>
+;;; Time-stamp: <2021-01-02 17:22:05 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -72,7 +72,8 @@
                          ("gnu" . "https://elpa.gnu.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")
                          ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
-                         ("org" . "https://orgmode.org/elpa/")))
+                         ;; ("org" . "https://orgmode.org/elpa/")
+))
 
 ;; load self-installed packages
 ;; not necessary anymore as of emacs 27
@@ -348,7 +349,7 @@
   ;;       (perl . t)
   ;;       (python . t)))
   :ensure t
-  :pin org)
+  :pin gnu)
 
 (use-package org-bullets
   :hook (org-mode . org-bullets-mode)
