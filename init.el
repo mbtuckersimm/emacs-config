@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2021-01-02 17:22:05 matthew>
+;;; Time-stamp: <2021-03-05 11:45:08 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -163,12 +163,12 @@
 (use-package all-the-icons
   :ensure t)
 
-(use-package neotree
-  :bind (("<f8>" . neotree-toggle)
-         ("<S-f8>" . neotree-find))
-  :custom
-  (neo-theme (if (display-graphic-p) 'icons 'arrow))
-  :ensure t)
+;; (use-package neotree
+;;   :bind (("<f8>" . neotree-toggle)
+;;          ("<S-f8>" . neotree-find))
+;;   :custom
+;;   (neo-theme (if (display-graphic-p) 'icons 'arrow))
+;;   :ensure t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
