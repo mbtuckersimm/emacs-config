@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2021-03-05 11:45:08 matthew>
+;;; Time-stamp: <2021-03-09 09:31:16 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -515,6 +515,41 @@
 ;; (use-package isortify
 ;;   :hook (python-mode . isortify-mode))
 
+(use-package lsp-mode
+  :init
+  (setq lsp-keymap-prefix "C-c f")
+  (setq read-process-output-max (* 1024 1024))
+  :custom
+  (lsp-enable-file-watchers t)
+  (lsp-file-watch-threshold 3000)
+  (lsp-intelephense-licence-key "00PATU5JSL4WFDD")
+  ;; (lsp-log-io t)  ;; for debugging only
+  :hook web-mode
+  :commands lsp)
+
+(use-package lsp-ui
+  :custom
+  (lsp-ui-sideline-show-diagnostics t)
+  ;; (lsp-ui-sideline-show-hover t)
+  ;; (lsp-ui-sideline-show-code-actions t)
+  :config
+  (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)  ;; M-.
+  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)  ;; M-?
+  (lsp-ui-peek-enable t)
+  (lsp-ui-doc-enable t)
+  :commands lsp-ui-mode
+  :ensure t)
+
+(use-package helm-lsp
+  :config
+  (define-key lsp-mode-map [remap xref-find-apropos] #'helm-lsp-workspace-symbol)  ;; c f g a, C-M-.
+  :commands helm-lsp-workspace-symbol
+  :ensure t)
+
+;; just needed for the header-line icons, really
+(use-package lsp-treemacs :commands lsp-treemacs-errors-list :ensure t)
+
+
 (use-package elpy
   :defer t
   :init
@@ -590,7 +625,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; reset garbage-collection threshold
-(setq gc-cons-threshold (* 2 1000 1000))
+;; commented b/c it's better to have a larger threshold for lsp-mode
+;; (setq gc-cons-threshold (* 2 1000 1000))
 
 (provide 'init)
 ;;; init.el ends here
