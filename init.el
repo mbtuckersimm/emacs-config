@@ -297,23 +297,23 @@
 		"IN PROGRESS(p)"
 		"NEXT(n)"
 		"|" "DONE(d)" "CANCELED(c)")
-	  (sequence "QUESTION(q)" "|" "ANSWER(a)")
-	  (sequence "DESIGNING(D)"
-		    "CODING(C)"
-		    "IN REVIEW(R)"
-		    "VALIDATING(V)"
-		    "|" "DEPLOYED(Y)" "CLOSED(L)")
-	  (sequence "TO REVIEW" "CURRENTLY REVIEWING" "|" "REVIEW DONE")))
-  (setq org-capture-templates
-	'(("r" "Redmine ticket" entry (file org-golem-file)
-	   (file "~/.emacs.d/org_templates/redmine_ticket"))
-	  ("h" "Hotfix" entry (file org-golem-file)
-	   (file "~/.emacs.d/org_templates/hotfix"))
-	  ("R" "Review ticket" entry (file org-golem-file)
-	   (file "~/.emacs.d/org_templates/review_ticket"))
-          ("m" "Meeting" entry (file org-golem-admin-file)
-           (file "~/.emacs.d/org_templates/golem_meeting"))
-	  ("t" "Todo" entry (file "") "* TODO %?  %^G\n  %i\n")))
+	  (sequence "QUESTION(q)" "|" "ANSWER(a)")))
+  ;;         (sequence "DESIGNING(D)"
+  ;;       	    "CODING(C)"
+  ;;       	    "IN REVIEW(R)"
+  ;;       	    "VALIDATING(V)"
+  ;;       	    "|" "DEPLOYED(Y)" "CLOSED(L)")
+  ;;         (sequence "TO REVIEW" "CURRENTLY REVIEWING" "|" "REVIEW DONE")))
+  ;; (setq org-capture-templates
+  ;;       '(("r" "Redmine ticket" entry (file org-golem-file)
+  ;;          (file "~/.emacs.d/org_templates/redmine_ticket"))
+  ;;         ("h" "Hotfix" entry (file org-golem-file)
+  ;;          (file "~/.emacs.d/org_templates/hotfix"))
+  ;;         ("R" "Review ticket" entry (file org-golem-file)
+  ;;          (file "~/.emacs.d/org_templates/review_ticket"))
+  ;;         ("m" "Meeting" entry (file org-golem-admin-file)
+  ;;          (file "~/.emacs.d/org_templates/golem_meeting"))
+  ;;         ("t" "Todo" entry (file "") "* TODO %?  %^G\n  %i\n")))
   (defface org-backburner-face
     '((default (:foreground "DarkMagenta" :weight bold)))
     "Face for back burner projects"
