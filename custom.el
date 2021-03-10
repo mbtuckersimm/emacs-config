@@ -79,7 +79,7 @@
  '(org-outline-path-complete-in-steps nil nil nil "Customized with use-package org")
  '(org-refile-use-outline-path 'file nil nil "Customized with use-package org")
  '(package-selected-packages
-   '(lsp-treemacs helm-lsp lsp-mode php-mode dash lsp-ui docker-compose-mode dockerfile-mode color-theme-sanityinc-solarized solarized-theme markdown-mode elpy paradox all-the-icons neotree org-bullets gnugo diminish company-php company-web web-mode flycheck highlight-current-line use-package isortify atom-dark-theme atom-one-dark-theme material-theme helm-projectile ag helm-ag zen-and-art-theme hc-zenburn-theme zenburn-theme unicode-fonts iedit wgrep-helm helm ace-jump-mode embrace org smart-mode-line rainbow-delimiters python-mode python-info pymacs palette mic-paren magit expand-region autopair auto-complete-auctex auctex ac-math))
+   '(lsp-treemacs helm-lsp lsp-mode dash lsp-ui docker-compose-mode dockerfile-mode color-theme-sanityinc-solarized solarized-theme markdown-mode elpy paradox all-the-icons org-bullets gnugo diminish company-php company-web web-mode flycheck highlight-current-line use-package isortify atom-dark-theme atom-one-dark-theme material-theme helm-projectile ag helm-ag zen-and-art-theme hc-zenburn-theme zenburn-theme unicode-fonts iedit wgrep-helm helm ace-jump-mode embrace org smart-mode-line rainbow-delimiters python-mode python-info pymacs palette mic-paren magit expand-region autopair auto-complete-auctex auctex ac-math))
  '(paradox-github-token t)
  '(py-split-window-on-execute t)
  '(pyvenv-tracking-ask-before-change t)

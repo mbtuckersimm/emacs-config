@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2021-03-10 12:58:26 matthew>
+;;; Time-stamp: <2021-03-10 13:01:18 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -145,7 +145,6 @@
   (whitespace-style '(face trailing))
   :hook ((prog-mode LaTeX-mode) . whitespace-mode)
   :diminish whitespace-mode
-  ;; :ensure t
 )
 
 (use-package display-line-numbers
@@ -153,13 +152,6 @@
 
 (use-package all-the-icons
   :ensure t)
-
-;; (use-package neotree
-;;   :bind (("<f8>" . neotree-toggle)
-;;          ("<S-f8>" . neotree-find))
-;;   :custom
-;;   (neo-theme (if (display-graphic-p) 'icons 'arrow))
-;;   :ensure t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
