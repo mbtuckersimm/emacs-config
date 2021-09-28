@@ -434,10 +434,6 @@
   :config
   (paren-activate)
   :ensure t)
-
-(use-package rainbow-delimiters
-  :hook ((prog-mode LaTeX-mode) . rainbow-delimiters-mode)
-  :ensure t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end appearance
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
