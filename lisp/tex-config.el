@@ -59,6 +59,16 @@
 
 ;;; AUCTeX AND MATH SETTINGS ;;;
 
+;; make > into a comment character in text mode
+;; (useful for quoting stuff in email replies, eg)
+;; (add-hook 'text-mode-hook (lambda ()
+;;             (set (make-local-variable 'comment-start) ">")))
+
+;; explicitly set % for comments in LaTeX mode
+;; (otherwise our setting for text-mode overrides it)
+;; (add-hook 'LaTeX-mode-hook (lambda ()
+;;             (set (make-local-variable 'comment-start) "%")))
+
 ;; make $ and $$ pair properly in LaTeX mode
 (add-hook 'LaTeX-mode-hook
 	  (function (lambda ()

@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2021-09-29 10:54:47 matthew>
+;;; Time-stamp: <2021-09-29 10:55:36 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -455,15 +455,6 @@
   ;; currently disabled b/c it binds C-,  which we want for embrace-commander
   :disabled)
 
-;; make > into a comment character in text mode
-;; (useful for quoting stuff in email replies, eg)
-;; (add-hook 'text-mode-hook (lambda ()
-;;             (set (make-local-variable 'comment-start) ">")))
-
-;; explicitly set % for comments in LaTeX mode
-;; (otherwise our setting for text-mode overrides it)
-;; (add-hook 'LaTeX-mode-hook (lambda ()
-;;             (set (make-local-variable 'comment-start) "%")))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end text-editing
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
