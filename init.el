@@ -145,8 +145,7 @@
   :custom
   (whitespace-style '(face trailing))
   :hook ((prog-mode LaTeX-mode) . whitespace-mode)
-  :diminish whitespace-mode
-)
+  :diminish whitespace-mode)
 
 (use-package display-line-numbers
   :hook (prog-mode . display-line-numbers-mode))
