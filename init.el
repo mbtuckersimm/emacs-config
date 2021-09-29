@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2021-09-29 10:51:46 matthew>
+;;; Time-stamp: <2021-09-29 10:54:47 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -469,31 +469,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ;;  custom functions (move to other file?)
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (defun comment-and-kill-ring-save ()
-;;   "Copy the current region into the kill ring and then comment it out."
-;;   (interactive)
-;;   (save-excursion
-;;     (kill-ring-save (region-beginning) (region-end))
-;;     (comment-region (region-beginning) (region-end))))
-;; ;; (global-set-key (kbd "C-c c") 'comment-and-kill-ring-save)
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ;;  end custom functions
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  programming
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; TeX setup moved to separate file since it's bulky
 ;; (load "tex-config.el")
-
-;; Python
-;; (use-package isortify
-;;   :hook (python-mode . isortify-mode))
 
 (use-package editorconfig
   :config
