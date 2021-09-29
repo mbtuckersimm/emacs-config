@@ -495,6 +495,11 @@
 ;; (use-package isortify
 ;;   :hook (python-mode . isortify-mode))
 
+(use-package which-key
+  :config
+  (which-key-mode)
+  :ensure t)
+
 (use-package lsp-mode
   :init
   (setq lsp-keymap-prefix "C-c f")
@@ -504,19 +509,23 @@
   (lsp-file-watch-threshold 3000)
   (lsp-intelephense-licence-key "00PATU5JSL4WFDD")
   ;; (lsp-log-io t)  ;; for debugging only
-  :hook web-mode
+  :hook ((web-mode . lsp)
+         (javascript-mode . lsp)
+         (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
 
 (use-package lsp-ui
-  :custom
-  (lsp-ui-sideline-show-diagnostics t)
-  ;; (lsp-ui-sideline-show-hover t)
-  ;; (lsp-ui-sideline-show-code-actions t)
   :config
   (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)  ;; M-.
   (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)  ;; M-?
   (lsp-ui-peek-enable t)
   (lsp-ui-doc-enable t)
+  :custom
+  (lsp-ui-sideline-show-diagnostics t)
+  (lsp-ui-doc-show-with-mouse t)
+  (lsp-ui-doc-show-with-cursor nil)
+  ;; (lsp-ui-sideline-show-hover t)
+  ;; (lsp-ui-sideline-show-code-actions t)
   :commands lsp-ui-mode
   :ensure t)
 
