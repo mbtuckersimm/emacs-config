@@ -76,10 +76,6 @@
                          ;; ("org" . "https://orgmode.org/elpa/")
 ))
 
-;; load self-installed packages
-;; not necessary anymore as of emacs 27
-;; (package-initialize)
-
 ;; use-package
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
