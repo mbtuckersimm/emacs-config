@@ -104,7 +104,7 @@
 ;; makes emacs query for the master-file when creating a tex file
 ;; (setq-default TeX-master nil)
 
-;; Make emacs go into LaTeX-mode when editing .pdf_tex files 
+;; Make emacs go into LaTeX-mode when editing .pdf_tex files
 (add-to-list 'auto-mode-alist '("\\.pdf_tex\\'" . LaTeX-mode))
 
 ;; teach auctex about various msp and ams macros
@@ -140,13 +140,13 @@
 	("marginparhere")
 ))
 
-(setq font-latex-match-reference-keywords 
+(setq font-latex-match-reference-keywords
     '(
-	   ("fullref" "{") 
-	   ("citeyear" "[{") 
-	   ("citeNP" "[{") 
-	   ("citeyearNP" "[{") 
-	   ("citeN" "[{") 
+	   ("fullref" "{")
+	   ("citeyear" "[{")
+	   ("citeNP" "[{")
+	   ("citeyearNP" "[{")
+	   ("citeN" "[{")
 	   ("citeANP" "{")
 	   ("citeib" "[[{")
 ))
