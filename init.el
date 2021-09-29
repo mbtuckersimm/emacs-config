@@ -179,6 +179,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package magit
   :bind ("C-x g" . magit-status)
+  :init
+  (setq auto-revert-check-vc-info t)
+  (diminish 'auto-revert-mode)
   :custom
    (magit-repository-directories
     '(("~/.emacs.d" . 0)
@@ -187,7 +190,6 @@
   :ensure t)
 
 ;; reload files when switching git branches
-(setq auto-revert-check-vc-info t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end magit
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -385,7 +387,6 @@
   :ensure t)
 
 ;; diminish minor modes that we don't care about
-(diminish 'auto-revert-mode)
 (diminish 'abbrev-mode)
 
 (use-package smart-mode-line
