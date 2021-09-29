@@ -50,6 +50,7 @@
 (global-hl-line-mode t)
 (setq blink-cursor-blinks 0)
 (setq require-final-newline t)
+(setq tab-width 4)
 
 ;; move through mark ring with C-<SPC> after one initial C-u C-<SPC>
 (setq set-mark-command-repeat-pop t)
