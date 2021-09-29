@@ -1,6 +1,5 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2021-09-29 11:05:06 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -58,8 +57,6 @@
 ;; displays filename (or buffername if no filename) in title bar
 (setq frame-title-format '(buffer-file-name "%f" ("%b")))
 
-;; just used for this file, so far
-(add-hook 'before-save-hook #'time-stamp)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end basic setup
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
