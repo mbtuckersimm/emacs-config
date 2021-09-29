@@ -1,6 +1,6 @@
 ;;; init.el --- Summary
 ;;; Author: Matthew Tucker-Simmons
-;;; Time-stamp: <2021-03-10 13:01:18 matthew>
+;;; Time-stamp: <2021-09-29 10:51:46 matthew>
 
 ;;; Commentary:
 ;;; This is only here to stop flycheck from giving me a warning.
@@ -495,6 +495,15 @@
 ;; (use-package isortify
 ;;   :hook (python-mode . isortify-mode))
 
+(use-package editorconfig
+  :config
+  (editorconfig-mode 1)
+  ;; Fix conflict between web-mode and editorconfig; cribbed from
+  ;; https://github.com/editorconfig/editorconfig-emacs#editorconfig-after-apply-functions
+  (add-hook 'editorconfig-after-apply-functions
+            (lambda (props) (setq web-mode-block-padding 0)))
+  :ensure t)
+
 (use-package which-key
   :config
   (which-key-mode)
@@ -564,22 +573,12 @@
 ;; PHP
 (use-package web-mode
   :ensure t
-  :mode "\\.php\\'"
-  :custom
-  (web-mode-enable-auto-indentation nil)
-  (web-mode-markup-indent-offset 2)
-  (web-mode-sql-indent-offset 4)
-  (web-mode-css-indent-offset 2)
-  (web-mode-code-indent-offset 2)
-  :init
-  (setq web-mode-block-padding -1))
+  :mode "\\.php\\'")
 
 ;; JavaScript
 (use-package js
   :defer t
-  :ensure t
-  :custom
-  (js-indent-level 2))
+  :ensure t)
 
 ;; auto-completion
 (use-package company
