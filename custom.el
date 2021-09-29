@@ -47,7 +47,7 @@
    '("SCCS" "RCS" "CVS" "MCVS" ".src" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "js/bundles" "css/bundles" "js/jQuery" "js/timezones"))
  '(grep-find-ignored-files
    '(".#*" "*.o" "*~" "*.bin" "*.lbin" "*.so" "*.a" "*.ln" "*.blg" "*.bbl" "*.elc" "*.lof" "*.glo" "*.idx" "*.lot" "*.fmt" "*.tfm" "*.class" "*.fas" "*.lib" "*.mem" "*.x86f" "*.sparcf" "*.dfsl" "*.pfsl" "*.d64fsl" "*.p64fsl" "*.lx64fsl" "*.lx32fsl" "*.dx64fsl" "*.dx32fsl" "*.fx64fsl" "*.fx32fsl" "*.sx64fsl" "*.sx32fsl" "*.wx64fsl" "*.wx32fsl" "*.fasl" "*.ufsl" "*.fsl" "*.dxl" "*.lo" "*.la" "*.gmo" "*.mo" "*.toc" "*.aux" "*.cp" "*.fn" "*.ky" "*.pg" "*.tp" "*.vr" "*.cps" "*.fns" "*.kys" "*.pgs" "*.tps" "*.vrs" "*.pyc" "*.pyo" "*.min.js"))
- '(helm-M-x-fuzzy-match t t nil "Customized with use-package helm")
+ '(helm-M-x-fuzzy-match t nil nil "Customized with use-package helm")
  '(helm-M-x-requires-pattern 0 t nil "Customized with use-package helm")
  '(helm-boring-buffer-regexp-list
    '("\\` " "\\`\\*helm" "\\`\\*Echo Area" "\\`\\*Minibuf" "\\`magit-"))
@@ -73,13 +73,15 @@
      ("~/dotfiles" . 0)) nil nil "Customized with use-package magit")
  '(mh-variant "GNU Mailutils 2.99.98")
  '(neo-theme 'icons nil nil "Customized with use-package neotree")
+ '(org-agenda-files
+   '("/home/matthew/org/msp/golem.org" "/home/matthew/org/msp/backburner.org" "/home/matthew/org/msp/golem-admin.org" "~/org/personal.org" "~/org/sysadmin.org"))
  '(org-agenda-restore-windows-after-quit t t nil "Customized with use-package org")
  '(org-default-notes-file "~/org/notes.org" nil nil "Customized with use-package org")
  '(org-directory "~/org" nil nil "Customized with use-package org")
  '(org-outline-path-complete-in-steps nil nil nil "Customized with use-package org")
  '(org-refile-use-outline-path 'file nil nil "Customized with use-package org")
  '(package-selected-packages
-   '(lsp-treemacs helm-lsp lsp-mode dash lsp-ui docker-compose-mode dockerfile-mode color-theme-sanityinc-solarized solarized-theme markdown-mode elpy paradox all-the-icons org-bullets gnugo diminish company-php company-web web-mode flycheck highlight-current-line use-package isortify atom-dark-theme atom-one-dark-theme material-theme helm-projectile ag helm-ag zen-and-art-theme hc-zenburn-theme zenburn-theme unicode-fonts iedit wgrep-helm helm ace-jump-mode embrace org smart-mode-line python-mode python-info pymacs palette mic-paren magit expand-region autopair auto-complete-auctex auctex ac-math))
+   '(editorconfig lsp-treemacs helm-lsp lsp-mode dash lsp-ui docker-compose-mode dockerfile-mode color-theme-sanityinc-solarized solarized-theme markdown-mode elpy paradox all-the-icons org-bullets gnugo diminish company-php company-web web-mode flycheck highlight-current-line use-package isortify atom-dark-theme atom-one-dark-theme material-theme helm-projectile ag helm-ag zen-and-art-theme hc-zenburn-theme zenburn-theme unicode-fonts iedit wgrep-helm helm ace-jump-mode embrace org smart-mode-line python-mode python-info pymacs palette mic-paren magit expand-region autopair auto-complete-auctex auctex ac-math))
  '(paradox-github-token t)
  '(py-split-window-on-execute t)
  '(pyvenv-tracking-ask-before-change t)
@@ -94,7 +96,9 @@
  '(sml/mode-width 'full nil nil "Customized with use-package smart-mode-line")
  '(sml/name-width 35 nil nil "Customized with use-package smart-mode-line")
  '(sml/theme 'dark nil nil "Customized with use-package smart-mode-line")
+ '(tab-width 4)
  '(tool-bar-mode nil)
+ '(web-mode-enable-comment-interpolation t)
  '(whitespace-style '(face trailing) nil nil "Customized with use-package whitespace"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
