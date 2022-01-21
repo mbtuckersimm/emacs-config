@@ -478,7 +478,10 @@
 ;; PHP
 (use-package web-mode
   :ensure t
-  :mode "\\.php\\'")
+  :mode "\\.php\\'"
+  :custom
+  (web-mode-enable-auto-indentation nil)
+)
 
 ;; JavaScript
 (use-package js
