@@ -415,11 +415,6 @@
             (lambda (props) (setq web-mode-block-padding 0)))
   :ensure t)
 
-(use-package which-key
-  :config
-  (which-key-mode)
-  :ensure t)
-
 (use-package lsp-mode
   :init
   (setq lsp-keymap-prefix "C-c f")
@@ -430,8 +425,7 @@
   (lsp-intelephense-licence-key "00PATU5JSL4WFDD")
   ;; (lsp-log-io t)  ;; for debugging only
   :hook ((web-mode . lsp)
-         (javascript-mode . lsp)
-         (lsp-mode . lsp-enable-which-key-integration))
+         (javascript-mode . lsp))
   :commands lsp)
 
 (use-package lsp-ui
