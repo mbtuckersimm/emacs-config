@@ -257,6 +257,8 @@
   (org-default-notes-file (concat org-directory "/notes.org"))
   (org-refile-use-outline-path 'file)
   (org-outline-path-complete-in-steps nil)
+  (org-hide-leading-stars t)
+  (org-adapt-indentation t)
   :config
   (setq org-msp-directory (concat org-directory "/msp"))
   (setq org-personal-file (concat org-directory "/personal.org"))
@@ -307,9 +309,9 @@
   :ensure t
   :pin gnu)
 
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :ensure t)
+;; (use-package org-bullets
+;;   :hook (org-mode . org-bullets-mode)
+;;   :ensure t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end org
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
