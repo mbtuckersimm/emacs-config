@@ -483,8 +483,28 @@
   :ensure t
   :mode "\\.php\\'"
   :custom
-  (web-mode-enable-auto-indentation nil)
-)
+  (web-mode-enable-auto-indentation nil))
+
+
+(defconst php-cs-fixer-binary "/home/matthew/bin/php-cs-fixer")
+(defconst php-cs-fixer-config "/home/matthew/msp/code/config/.php-cs-fixer.php")
+(defconst php-cs-fixer-configopt (concat "--config=" php-cs-fixer-config))
+(defconst php-cs-fixer-pathopt "--path-mode=override")
+(defconst php-cs-fixer-cacheopt "--using-cache=no")
+
+(use-package reformatter
+  :ensure t
+  :config
+  (reformatter-define php-format
+    :program php-cs-fixer-binary
+    :args (list "fix" "--no-interaction" "-vvv" php-cs-fixer-configopt php-cs-fixer-pathopt php-cs-fixer-cacheopt "--" input-file)
+    :input-file (reformatter-temp-file-in-current-directory)
+    :stdin nil
+    :stdout nil
+    :lighter " PCF")
+  :hook
+  (web-mode . php-format-on-save-mode))
+
 
 ;; JavaScript
 (use-package js
