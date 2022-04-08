@@ -427,7 +427,8 @@
   (lsp-intelephense-licence-key "00PATU5JSL4WFDD")
   ;; (lsp-log-io t)  ;; for debugging only
   :hook ((web-mode . lsp)
-         (javascript-mode . lsp))
+         (javascript-mode . lsp)
+         (CPerl-mode . lsp))
   :commands lsp)
 
 (use-package lsp-ui
