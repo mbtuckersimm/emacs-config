@@ -462,16 +462,20 @@
 
 
 (use-package elpy
+  :ensure t
   :defer t
   :init
-  (elpy-enable)
+  (advice-add 'python-mode :before 'elpy-enable)
   :custom
   (elpy-rpc-virtualenv-path 'current)
   :config
   (setenv "WORKON_HOME" "~/.pyenv/versions/")
   ;; disable flymake since we use flycheck instead
-  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-  :ensure t)
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules)))
+
+;; To enable formatting on save:
+;; (add-hook 'elpy-mode-hook
+;;           (lambda () (add-hook 'before-save-hook 'elpy-format-code nil t)))
 
 ;; (setq python-shell-interpreter "python3")
 ;; (setq elpy-rpc-python-command "python3")
