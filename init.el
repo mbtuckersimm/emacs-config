@@ -57,6 +57,11 @@
 ;; displays filename (or buffername if no filename) in title bar
 (setq frame-title-format '(buffer-file-name "%f" ("%b")))
 
+;; some experimental things from Emacs 28
+(setq use-short-answers t)
+(setq completions-detailed t)
+(setq revert-buffer-quick-short-answers t)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end basic setup
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
