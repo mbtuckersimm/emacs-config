@@ -491,6 +491,8 @@
 (defconst php-cs-fixer-configopt (concat "--config=" php-cs-fixer-config))
 (defconst php-cs-fixer-pathopt "--path-mode=override")
 (defconst php-cs-fixer-cacheopt "--using-cache=no")
+(defconst prettier-binary "/usr/bin/prettier")
+(defconst prettier-config "/home/matthew/msp/code/config/.prettierrc")
 
 (use-package reformatter
   :ensure t
@@ -501,9 +503,16 @@
     :input-file (reformatter-temp-file-in-current-directory)
     :stdin nil
     :stdout nil
-    :lighter " PCF")
-  :hook
-  (web-mode . php-format-on-save-mode))
+    :lighter " PhpFmt")
+  (reformatter-define js-format
+    :program prettier-binary
+    :args (list "--config" prettier-config "--write" input-file)
+    :input-file (reformatter-temp-file-in-current-directory)
+    :stdin nil
+    :stdout nil
+    :lighter " JsFmt")
+  :hook ((web-mode . php-format-on-save-mode)
+         (js-mode . js-format-on-save-mode)))
 
 
 ;; JavaScript
