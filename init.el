@@ -71,6 +71,7 @@
 ;;  package management
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'package)
+(setq package-native-compile t)
 (setq package-archives '(("elpa" . "https://tromey.com/elpa/")
                          ("gnu" . "https://elpa.gnu.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")
