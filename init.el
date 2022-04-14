@@ -503,6 +503,9 @@
 (defconst php-cs-fixer-cacheopt "--using-cache=no")
 (defconst prettier-binary "/usr/bin/prettier")
 (defconst prettier-config "/home/matthew/msp/code/config/.prettierrc")
+(defconst perltidy-binary "/usr/local/bin/perltidy")
+(defconst perltidy-config "/home/matthew/msp/code/config/.perltidyrc")
+(defconst perltidy-configopt (concat "--profile=" perltidy-config))
 
 (use-package reformatter
   :ensure t
@@ -521,8 +524,16 @@
     :stdin nil
     :stdout nil
     :lighter " JsFmt")
+  (reformatter-define perltidy
+    :program perltidy-binary
+    :args (list perltidy-configopt input-file)
+    :input-file (reformatter-temp-file-in-current-directory)
+    :stdin nil
+    :stdout nil
+    :lighter " PlTdy")
   :hook ((web-mode . php-format-on-save-mode)
-         (js-mode . js-format-on-save-mode)))
+         (js-mode . js-format-on-save-mode)
+         (cperl-mode . perltidy-on-save-mode)))
 
 
 ;; JavaScript
