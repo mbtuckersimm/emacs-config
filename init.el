@@ -542,6 +542,12 @@
   :defer t
   :ensure t)
 
+;; docker, docker-compose
+(use-package docker-compose-mode
+  :ensure t)
+(use-package dockerfile-mode
+  :ensure t)
+
 ;; auto-completion
 (use-package company
   :ensure t
