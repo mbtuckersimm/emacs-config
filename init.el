@@ -545,6 +545,10 @@
 
 ;; shell script mode
 (add-to-list 'auto-mode-alist '("\\.fish\\'" . shell-script-mode))
+
+
+(use-package go-mode
+  :ensure t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  end programming
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
