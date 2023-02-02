@@ -50,13 +50,12 @@
 (setq blink-cursor-blinks 0)
 (setq require-final-newline t)
 (setq tab-width 4)
-(setq frame-title-format '("" "%b @Emacs"))
 
 ;; move through mark ring with C-<SPC> after one initial C-u C-<SPC>
 (setq set-mark-command-repeat-pop t)
 
 ;; displays filename (or buffername if no filename) in title bar
-(setq frame-title-format '(buffer-file-name "%f" ("%b")))
+(setq frame-title-format (list "%b @ Emacs" emacs-version))
 
 ;; some experimental things from Emacs 28
 (setq use-short-answers t)
