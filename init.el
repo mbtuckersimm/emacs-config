@@ -414,15 +414,6 @@
 ;; TeX setup moved to separate file since it's bulky
 ;; (load "tex-config.el")
 
-(use-package editorconfig
-  :config
-  (editorconfig-mode 1)
-  ;; Fix conflict between web-mode and editorconfig; cribbed from
-  ;; https://github.com/editorconfig/editorconfig-emacs#editorconfig-after-apply-functions
-  (add-hook 'editorconfig-after-apply-functions
-            (lambda (props) (setq web-mode-block-padding 0)))
-  :ensure t)
-
 (use-package lsp-mode
   :init
   (setq lsp-keymap-prefix "C-c f")
