@@ -477,7 +477,11 @@
 ;; (setq elpy-shell-display-buffer-after-send t)
 
 ;; Perl
-(defalias 'perl-mode 'cperl-mode)
+(use-package cperl-mode
+  :mode "\\.\\(pl\\|pm\\)\\'"
+  :interpreter "perl"
+  :custom (cperl-indent-level 4))
+
 
 ;; PHP
 (use-package web-mode
