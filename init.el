@@ -414,6 +414,10 @@
 ;; TeX setup moved to separate file since it's bulky
 ;; (load "tex-config.el")
 
+;; (subword-mode 1)
+(use-package subword-mode
+  :hook (prog-mode . subword-mode))
+
 (use-package lsp-mode
   :init
   (setq lsp-keymap-prefix "C-c f")
