@@ -115,9 +115,9 @@
   :bind ("C-," . embrace-commander)
   :ensure t)
 
-(use-package ace-jump-mode
-  :bind ("C-." . ace-jump-mode)
-  :ensure t)
+;; (use-package ace-jump-mode
+;;   :bind ("C-." . ace-jump-mode)
+;;   :ensure t)
 
 (use-package yasnippet
   :defer t
